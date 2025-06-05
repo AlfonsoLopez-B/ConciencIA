@@ -152,6 +152,12 @@
   </div>
 
   <script>
+    // Obtener el parámetro 'id' de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+
+    // Ejemplo de uso (opcional, para depuración)
+    alert('El valor de id es:', id);
     // Lista de audios con nombres personalizados
     const audios = [
       { nombre: "Calma", audio: "audios/1.mp3", imagen: "imagenes/relajacion.jpg" },
