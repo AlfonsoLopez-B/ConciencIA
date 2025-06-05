@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Audios Mindfulness</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1a0b2e; /* Fondo galáctico violeta oscuro */
+      color: #d1c4e9; /* Texto claro con toque violeta */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #e0d7ff; /* Lila claro */
+      margin-bottom: 40px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    }
+
+    .main-container {
+      display: grid;
+      grid-template-columns: 1fr 200px;
+      gap: 20px;
+      max-width: 900px;
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    .content-container {
+      background-color: rgba(46, 27, 74, 0.9); /* Violeta oscuro translúcido */
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .image-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .image-container img {
+      max-width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    .audio-container {
+      width: 100%;
+    }
+
+    audio {
+      width: 100%;
+      outline: none;
+      background-color: #6b21a8; /* Violeta medio */
+      border-radius: 10px;
+    }
+
+    .audio-selector {
+      max-height: 400px;
+      overflow-y: auto;
+      background-color: rgba(46, 27, 74, 0.9); /* Violeta oscuro translúcido */
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .audio-selector button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      background-color: #6b21a8; /* Violeta medio */
+      color: #e0d7ff; /* Lila claro */
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-weight: bold;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .audio-selector button:hover {
+      background-color: #ff4b5c; /* Lila rosado */
+    }
+
+    .audio-selector::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .audio-selector::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+    }
+
+    .audio-selector::-webkit-scrollbar-thumb {
+      background: #b794f4; /* Lila suave */
+      border-radius: 10px;
+    }
+
+    .audio-selector::-webkit-scrollbar-thumb:hover {
+      background: #ff4af8; /* Fucsia vibrante */
+    }
+
+    @media (max-width: 768px) {
+      .main-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+      }
+
+      .content-container, .audio-selector {
+        max-width: 600px;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Explora tus Audios</h1>
+
+  <div class="main-container">
+    <div class="content-container">
+      <div class="image-container">
+        <img id="audioImage" src="imagenes/relajacion.jpg" alt="Imagen del audio">
+      </div>
+      <div class="audio-container">
+        <audio id="audioPlayer" controls>
+          <source src="audios/mindfulness_relajacion.mp3" type="audio/mpeg">
+          Tu navegador no soporta la reproducción de audio. Prueba con Chrome, Firefox o un navegador actualizado.
+        </audio>
+      </div>
+    </div>
+
+    <div class="audio-selector" id="audioSelector"></div>
+  </div>
+
+  <script>
+    // Lista de audios con nombres personalizados
+    const audios = [
+      { nombre: "Calma", audio: "audios/1.mp3", imagen: "imagenes/relajacion.jpg" },
+      { nombre: "Dolor físico y emocional", audio: "audios/2.mp3", imagen: "imagenes/respiracion.jpg" },
+      { nombre: "Limpieza energética", audio: "audios/3.mp3", imagen: "imagenes/matutina.jpg" },
+      { nombre: "Sueño", audio: "audios/4.mp3", imagen: "imagenes/atencion.jpg" },
+      { nombre: "Creatividad", audio: "audios/5.mp3", imagen: "imagenes/gratitud.jpg" },
+      { nombre: "Calma y enfoque", audio: "audios/6.mp3", imagen: "imagenes/cuerpo.jpg" },
+      { nombre: "Concentración", audio: "audios/7.mp3", imagen: "imagenes/silencio.jpg" },
+      { nombre: "Intuición", audio: "audios/8.mp3", imagen: "imagenes/energia.jpg" },
+      { nombre: "Claridad y aprendizaje", audio: "audios/9.mp3", imagen: "imagenes/sueno.jpg" },
+      { nombre: "Cambiar", audio: "audios/10.mp3", imagen: "imagenes/natural.jpg" },
+      { nombre: "Cambiar", audio: "audios/11.mp3", imagen: "imagenes/nocturna.jpg" },
+      { nombre: "Cambiar", audio: "audios/12.mp3", imagen: "imagenes/foco.jpg" },
+      { nombre: "Cambiar", audio: "audios/13.mp3", imagen: "imagenes/liberacion.jpg" },
+      { nombre: "Cambiar", audio: "audios/14.mp3", imagen: "imagenes/paz.jpg" },
+      { nombre: "Cambiar", audio: "audios/15.mp3", imagen: "imagenes/equilibrio.jpg" },
+      { nombre: "Cambiar", audio: "audios/16.mp3", imagen: "imagenes/armonia.jpg" },
+      { nombre: "Cambiar", audio: "audios/17.mp3", imagen: "imagenes/renovacion.jpg" },
+      { nombre: "Cambiar", audio: "audios/18.mp3", imagen: "imagenes/fluir.jpg" },
+      { nombre: "Cambiar", audio: "audios/19.mp3", imagen: "imagenes/consciencia.jpg" },
+      { nombre: "Cambiar", audio: "audios/20.mp3", imagen: "imagenes/amor.jpg" },
+      { nombre: "Cambiar", audio: "audios/21.mp3", imagen: "imagenes/resiliencia.jpg" },
+      { nombre: "Cambiar", audio: "audios/22.mp3", imagen: "imagenes/claridad.jpg" },
+      { nombre: "Cambiar", audio: "audios/23.mp3", imagen: "imagenes/sanacion.jpg" },
+      { nombre: "Cambiar", audio: "audios/24.mp3", imagen: "imagenes/fuerza.jpg" },
+      { nombre: "Cambiar", audio: "audios/25.mp3", imagen: "imagenes/tranquilidad.jpg" },
+      { nombre: "Cambiar", audio: "audios/26.mp3", imagen: "imagenes/aceptacion.jpg" },
+      { nombre: "Cambiar", audio: "audios/27.mp3", imagen: "imagenes/presencia.jpg" },
+      { nombre: "Cambiar", audio: "audios/28.mp3", imagen: "imagenes/esperanza.jpg" },
+      { nombre: "Sonidos Cuencos", audio: "audios/sonidos cuencos.mp3", imagen: "imagenes/presencia.jpg" }
+
+    ];
+
+    // Generar botones dinámicamente
+    const audioSelector = document.getElementById("audioSelector");
+    audios.forEach((audio, index) => {
+      const button = document.createElement("button");
+      button.textContent = audio.nombre;
+      button.onclick = () => cambiarAudio(index); // Pasar el índice en lugar del nombre
+      audioSelector.appendChild(button);
+    });
+
+    // Función para cambiar audio
+    function cambiarAudio(index) {
+      const audioData = audios[index]; // Usar el índice directamente
+      const audioPlayer = document.getElementById("audioPlayer");
+      const image = document.getElementById("audioImage");
+      audioPlayer.src = audioData.audio;
+      image.src = audioData.imagen;
+      image.alt = `Imagen de ${audioData.nombre}`;
+      audioPlayer.load(); // Recargar el audio
+      audioPlayer.play();
+    }
+
+    // Leer parámetro de la URL y reproducir audio automáticamente
+    window.onload = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const audioIndex = parseInt(urlParams.get('audio')) - 1; // Restar 1 porque el índice comienza en 0
+      if (audioIndex >= 0 && audioIndex < audios.length) {
+        cambiarAudio(audioIndex);
+      }
+    };
+  </script>
+</body>
+</html>

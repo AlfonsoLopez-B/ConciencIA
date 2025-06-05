@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Consciencia</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1a0b2e; /* Fondo galáctico violeta oscuro */
+      color: #d1c4e9; /* Texto claro con toque violeta */
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px; /* Más pequeño */
+      background-color: #2a1b4a; /* Violeta profundo */
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Sombra galáctica */
+      transition: all 0.3s ease;
+      height: 80px; /* Inicial más pequeño */
+    }
+
+    header.scrolled {
+      padding: 10px 20px; /* Aún más pequeño al scroll */
+      height: 50px; /* Reducido */
+    }
+
+    .logo img {
+      width: 120px; /* Reducido */
+      height: auto;
+      transition: width 0.3s ease;
+    }
+
+    header.scrolled .logo img {
+      width: 90px; /* Más pequeño al scroll */
+    }
+
+    .titulo {
+      position: absolute;
+      left: 150px; /* Más a la izquierda */
+      font-size: 24px; /* Reducido */
+      font-weight: bold;
+      color: #e0d7ff; /* Lila claro */
+      transition: font-size 0.3s ease;
+    }
+
+    header.scrolled .titulo {
+      font-size: 18px; /* Reducido al scroll */
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 25px; /* Reducido */
+      margin-left: auto; /* Mueve el menú más a la derecha */
+      margin-right: 30px; /* Espacio adicional a la derecha */
+      transition: gap 0.3s ease;
+    }
+
+    header.scrolled nav {
+      gap: 20px;
+    }
+
+    nav a {
+      position: relative;
+      text-decoration: none;
+      color: #e0d7ff; /* Lila claro */
+      font-weight: bold;
+      font-size: 16px; /* Reducido */
+      padding: 6px; /* Reducido */
+      transition: all 0.3s ease;
+    }
+
+    header.scrolled nav a {
+      font-size: 12px; /* Reducido al scroll */
+      padding: 4px;
+    }
+
+    nav a:hover {
+      color: #ff4af8; /* Fucsia vibrante */
+    }
+
+    /* Dropdown */
+    .dropdown {
+      position: relative;
+      padding: 6px;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #2e1b4a; /* Violeta oscuro */
+      min-width: 160px;
+      box-shadow: 0 8px 12px rgba(0,0,0,0.3);
+      z-index: 1000;
+      border-radius: 8px;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 8px 12px;
+      color: #e0d7ff;
+      text-align: left;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #3c2f5f; /* Tono más claro */
+      color: #ff4af8; /* Fucsia */
+    }
+
+    /* Secciones */
+    section {
+      padding: 100px 40px 80px; /* Ajustado para encabezado más pequeño */
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    section h2 {
+      font-size: 24px;
+      color: #b794f4; /* Lila suave */
+      margin-bottom: 16px;
+    }
+
+    section p {
+      font-size: 14px;
+      color: #d1c4e9; /* Texto claro */
+      line-height: 1.8;
+    }
+
+    /* Espaciador */
+    .spacer {
+      height: 100px; /* Ajustado para encabezado */
+    }
+
+    /* Personajes */
+    #personajes {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .character-capsule {
+      background-color: rgba(46, 27, 74, 0.9); /* Violeta oscuro translúcido */
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+      padding: 25px;
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      max-width: 750px;
+      margin-bottom: 25px;
+    }
+
+    .character-image-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .character-image-container h3 {
+      font-size: 24px;
+      color: #b794f4; /* Lila suave */
+      margin: 0 0 12px 0;
+      text-align: center;
+    }
+
+    .character-image-container img {
+      max-width: 100%;
+      max-height: 350px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .character-description {
+      flex: 1;
+      padding: 15px;
+      font-size: 16px;
+      color: #d1c4e9; /* Texto claro */
+      line-height: 1.8;
+    }
+
+    .character-selector {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      max-width: 750px;
+    }
+
+    .character-selector button {
+      width: 90px;
+      height: 30px;
+      background-color: #6b21a8; /* Violeta medio */
+      color: #e0d7ff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      text-align: center;
+    }
+
+    .character-selector button:hover {
+      background-color: #ff4b5c; /* Lila rosado */
+    }
+
+    @media (max-width: 768px) {
+      .character-capsule {
+        flex-direction: column;
+        max-width: 100%;
+      }
+
+      .character-description {
+        padding: 10px 0;
+      }
+
+      .character-selector {
+        margin-top: 15px;
+      }
+
+      .titulo {
+        left: 120px; /* Ajustado para pantallas pequeñas */
+      }
+
+      nav {
+        margin-right: 10px; /* Menos margen en pantallas pequeñas */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header>
+    <div class="logo">
+      <img src="tu-logo-aqui.jpg" alt="Consciencia">
+    </div>
+    <div class="titulo">
+      Consciencia
+    </div>
+    <nav>
+      <a href="#proyecto" onclick="scrollToTop()">Inicio</a>
+      <a href="#proyecto">Nuestro proyecto</a>
+      <div class="dropdown">
+        <a href="#">Comics</a>
+        <div class="dropdown-content">
+          <a href="#historia">Historia</a>
+          <a href="#personajes">Personajes</a>
+          <a href="#comics">Comics</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#">Juego</a>
+        <div class="dropdown-content">
+          <a href="#reglas">Reglas</a>
+          <a href="#cartas">Cartas</a>
+          <a href="audios.html" target="_blank">Audios</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Espaciador -->
+  <div class="spacer"></div>
+
+  <!-- Sección Nuestro proyecto -->
+  <section id="proyecto">
+    <h2>Nuestro proyecto</h2>
+    <p>Consciencia es una propuesta educativa lúdica orientada al desarrollo del mindfulness y el bienestar personal, diseñada para estudiantes y docentes.</p>
+  </section>
+
+  <!-- Sección Historia -->
+  <section id="historia">
+    <h2>Historia</h2>
+    <p>Aquí va la historia de los comics...</p>
+  </section>
+
+  <!-- Sección Personajes -->
+  <section id="personajes">
+    <h2>Personajes</h2>
+    <div class="character-capsule">
+      <div class="character-image-container">
+        <h3 id="characterName">Personaje 1</h3>
+        <img id="characterImage" src="personajes/personaje1.jpg" alt="Personaje 1">
+      </div>
+      <div class="character-description" id="characterDescription">
+        Descripción del Personaje 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </div>
+    </div>
+    <div class="character-selector" id="characterSelector"></div>
+  </section>
+
+  <!-- Sección Comics -->
+  <section id="comics">
+    <h2>Comics</h2>
+    <p>Aquí va el contenido de los comics...</p>
+  </section>
+
+  <!-- Sección Reglas -->
+  <section id="reglas">
+    <h2>Reglas</h2>
+    <p>Aquí van las reglas del juego...</p>
+  </section>
+
+  <!-- Sección Cartas -->
+  <section id="cartas">
+    <h2>Cartas</h2>
+    <p>Explicación de los tipos de cartas disponibles...</p>
+  </section>
+
+  <script>
+    // Datos de los personajes
+    const personajes = [
+      { id: 1, nombre: "Personaje 1", imagen: "personajes/personaje1.jpg", descripcion: "Descripción del Personaje 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
+      { id: 2, nombre: "Personaje 2", imagen: "personajes/personaje2.jpg", descripcion: "Descripción del Personaje 2. Sed do eiusmod tempor incididunt ut labore." },
+      { id: 3, nombre: "Personaje 3", imagen: "personajes/personaje3.jpg", descripcion: "Descripción del Personaje 3. Ut enim ad minim veniam, quis nostrud." },
+      { id: 4, nombre: "Personaje 4", imagen: "personajes/personaje4.jpg", descripcion: "Descripción del Personaje 4. Duis aute irure dolor in reprehenderit." },
+      { id: 5, nombre: "Personaje 5", imagen: "personajes/personaje5.jpg", descripcion: "Descripción del Personaje 5. Excepteur sint occaecat cupidatat non." },
+      { id: 6, nombre: "Personaje 6", imagen: "personajes/personaje6.jpg", descripcion: "Descripción del Personaje 6. Sunt in culpa qui officia deserunt." },
+      { id: 7, nombre: "Personaje 7", imagen: "personajes/personaje7.jpg", descripcion: "Descripción del Personaje 7. Mollit anim id est laborum." }
+    ];
+
+    // Generar botones de personajes
+    const characterSelector = document.getElementById("characterSelector");
+    personajes.forEach(personaje => {
+      const button = document.createElement("button");
+      button.textContent = personaje.nombre;
+      button.onclick = () => cambiarPersonaje(personaje.id);
+      characterSelector.appendChild(button);
+    });
+
+    // Función para cambiar personaje
+    function cambiarPersonaje(id) {
+      const personaje = personajes.find(p => p.id === id);
+      document.getElementById("characterName").textContent = personaje.nombre;
+      document.getElementById("characterImage").src = personaje.imagen;
+      document.getElementById("characterImage").alt = personaje.nombre;
+      document.getElementById("characterDescription").textContent = personaje.descripcion;
+    }
+
+    // Cargar el primer personaje por defecto
+    cambiarPersonaje(1);
+
+    // Reducir encabezado al hacer scroll
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Volver arriba al hacer clic en "Inicio"
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.querySelector('header').classList.remove('scrolled');
+    }
+  </script>
+</body>
+</html>
