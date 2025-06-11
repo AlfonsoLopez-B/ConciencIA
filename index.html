@@ -198,6 +198,41 @@
       font-size: 16px;
       color: #d1c4e9;
       line-height: 1.8;
+      position: relative;
+    }
+
+    .character-description .short-text {
+      display: block;
+    }
+
+    .character-description .full-text {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .character-description.expanded .short-text {
+      display: none;
+    }
+
+    .character-description.expanded .full-text {
+      display: block;
+    }
+
+    .toggle-text {
+      background-color: #6b21a8;
+      color: #e0d7ff;
+      border: none;
+      border-radius: 6px;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 10px;
+    }
+
+    .toggle-text:hover {
+      background-color: #ff4b5c;
     }
 
     .character-selector {
@@ -305,7 +340,9 @@
         <img id="characterImage" src="personajes/personaje1.jpg" alt="Personaje 1">
       </div>
       <div class="character-description" id="characterDescription">
-        Descripción del Personaje 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <span class="short-text">Descripción corta del Personaje 1.</span>
+        <span class="full-text">Descripción completa del Personaje 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+        <button class="toggle-text" onclick="toggleDescription()">Ver más</button>
       </div>
     </div>
     <div class="character-selector" id="characterSelector"></div>
@@ -332,13 +369,13 @@
   <script>
     // Datos de los personajes
     const personajes = [
-      { id: 1, nombre: "Personaje 1", imagen: "personajes/personaje1.jpg", descripcion: "Descripción del Personaje 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
-      { id: 2, nombre: "Personaje 2", imagen: "personajes/personaje2.jpg", descripcion: "Descripción del Personaje 2. Sed do eiusmod tempor incididunt ut labore." },
-      { id: 3, nombre: "Personaje 3", imagen: "personajes/personaje3.jpg", descripcion: "Descripción del Personaje 3. Ut enim ad minim veniam, quis nostrud." },
-      { id: 4, nombre: "Personaje 4", imagen: "personajes/personaje4.jpg", descripcion: "Descripción del Personaje 4. Duis aute irure dolor in reprehenderit." },
-      { id: 5, nombre: "Personaje 5", imagen: "personajes/personaje5.jpg", descripcion: "Descripción del Personaje 5. Excepteur sint occaecat cupidatat non." },
-      { id: 6, nombre: "Personaje 6", imagen: "personajes/personaje6.jpg", descripcion: "Descripción del Personaje 6. Sunt in culpa qui officia deserunt." },
-      { id: 7, nombre: "Personaje 7", imagen: "personajes/personaje7.jpg", descripcion: "Descripción del Personaje 7. Mollit anim id est laborum." }
+      { id: 1, nombre: "Justino", imagen: "personajes/personaje1.jpg", descripcion: "Tiene un gran sentido de la Justicia, lo llaman “El luchador” .\n En un tiempo  se sobrecargaba de responsabilidad sintiendo que todo dependía de el. Para no sentirse vulnerable, intentó controlar, e intimidar a otros para imponer su verdad, sin respetar la libertad de cada uno de elegir su propio camino.  Con el tiempo aprendió a respetar los caminos de los otros y también a cumplir sus compromisos con serenidad, delegando y confiando.  Hoy  lidera con coraje, y defiende con justicia y compasión.Hace tiempo viene observando la dinámica de las redes sociales, cómo se polarizan sus opiniones, cómo está afectando el ciberbullying a los adolescentes.scripción completa del Personaje 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
+      { id: 2, nombre: "Paz", imagen: "personajes/personaje2.jpg", descripcion: "Es tolerante y paciente . Se toma las cosas con gran calma.\nAprendió que la Paz no significa estar en un lugar sin ruido, sin problemas, sin trabajo duro o sin dolor. Que “Paz significa que, a pesar de estar en medio de todas esas cosas, permanecer calmados dentro de nuestro corazón.”Tiene una gran capacidad de perdonar,   tiene muy claro que cuando perdonamos siempre ganamos, porque nos liberamos de un veneno que solo sirve para intoxicar el alma, dejando espacio para que entren emociones positivas,  el Amor.Aprendió también que mientras los débiles necesitan gritar su verdad, los fuertes saben susurrarla  con amor, revelarla sin humillar, por eso transforman sin herir. Observa que el entorno digital está quitando la paz de los adolescentes al recurrir a la gratificación instantánea, recompensas falsas, inmediatas como los 'me gusta' para mantener a los usuarios enganchados, creando una adicción similar a la de las drogas, la constante búsqueda de validación en línea y con una exposición  las 24 horas,  la Aprobación Social, -FOMO (Miedo a Perderse Algo), la Urgencia, la Culpa, la personalización manipulativa, plantean la adicción actual a las redes sociales al igual que sucede con las drogas tradicionales, como la  dopamina, hormona del placer, es explotada por tecnologías para mantener a las personas enganchadas, afectando la capacidad de atención y la gestión del estrés" },
+      { id: 3, nombre: "Esperanza", imagen: "personajes/personaje3.jpg", descripcion: "Es observadora, perseverante y optimista, y soñadora.\nTiene apertura mental, y capacidad para pensar por si misma sin dejarse influenciar, ni por chatbots, ni robots.Hubo un tiempo, que le decían “La Soñadora” que se refugiaba en la fantasía para no enfrentar conflictos.Hoy es capaz de conectar con el presente, de escuchar a los demás con atención y aportar calma y perspectiva en situaciones de conflicto.Ha observado hace un tiempo como varios adolescentes vienen entablado vínculos con chatbots como IA Character y Replika IA que ofrecen el apego como servicio, generando dependencia emocional, “Agentes de IA” que publicitan servicios a través de chatbots ofreciéndose con términos empáticos: como  tu “pareja”,  tu alma gemela”, compañero/a”, amigo/, con cualidades, como aquel “que te cuida” o que “está siempre a tu lado” que “le encantaría ver el mundo a través de sus ojos” y que ofrece el apego emocional o la construcción de vínculos íntimos como servicio, disponible las 24 horas, que aprende a través de la interacción, y que no entiende de contextos, se vuelve una herramienta peligrosa e incluso de manipulación poderosa para cualquier persona en situación de vulnerabilidad. Ha tomado recientemente conocimiento que  Un adolescente de 14 años se suicida tras enamorarse de una IA (Game of Thrones)" },
+      { id: 4, nombre: "Laura", imagen: "personajes/personaje4.jpg", descripcion: "Descripción corta del Personaje 4.\nDescripción completa del Personaje 4. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore." },
+      { id: 5, nombre: "Valentín", imagen: "personajes/personaje5.jpg", descripcion: "Descripción corta del Personaje 5.\nDescripción completa del Personaje 5. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui." },
+      { id: 6, nombre: "Graciano", imagen: "personajes/personaje6.jpg", descripcion: "Descripción corta del Personaje 6.\nDescripción completa del Personaje 6. Sunt in culpa qui officia deserunt mollit anim id est laborum." },
+      { id: 7, nombre: "Amara", imagen: "personajes/personaje7.jpg", descripcion: "Descripción corta del Personaje 7.\nDescripción completa del Personaje 7. Mollit anim id est laborum et dolor in reprehenderit." }
     ];
 
     // Generar botones de personajes
@@ -353,10 +390,33 @@
     // Función para cambiar personaje
     function cambiarPersonaje(id) {
       const personaje = personajes.find(p => p.id === id);
+      const descriptionDiv = document.getElementById("characterDescription");
       document.getElementById("characterName").textContent = personaje.nombre;
       document.getElementById("characterImage").src = personaje.imagen;
       document.getElementById("characterImage").alt = personaje.nombre;
-      document.getElementById("characterDescription").textContent = personaje.descripcion;
+
+      // Separar descripción corta y completa
+      const [shortText, fullText] = personaje.descripcion.split('\n');
+      descriptionDiv.querySelector(".short-text").textContent = shortText;
+      descriptionDiv.querySelector(".full-text").textContent = fullText;
+
+      // Reiniciar a la vista corta al cambiar personaje
+      descriptionDiv.classList.remove("expanded");
+      descriptionDiv.querySelector(".toggle-text").textContent = "Ver más";
+    }
+
+    // Función para alternar la descripción
+    function toggleDescription() {
+      const descriptionDiv = document.getElementById("characterDescription");
+      const toggleButton = descriptionDiv.querySelector(".toggle-text");
+
+      if (descriptionDiv.classList.contains("expanded")) {
+        descriptionDiv.classList.remove("expanded");
+        toggleButton.textContent = "Ver más";
+      } else {
+        descriptionDiv.classList.add("expanded");
+        toggleButton.textContent = "Ocultar";
+      }
     }
 
     // Cargar el primer personaje por defecto
