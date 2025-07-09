@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Audios Mindfulness</title>
+  <title>Espacio Pausa</title>
   <style>
     html {
       scroll-behavior: smooth;
@@ -357,7 +357,6 @@
       <img src="Imagenes/logo_verde_b.png" alt="Logo">
     </div>
     <nav>
-      <a href="index.html#proyecto" onclick="scrollToTop()">Inicio</a>
       <div class="dropdown">
         <a href="index.html#proyecto">Nuestro Proyecto</a>
         <div class="dropdown-content">
@@ -382,20 +381,14 @@
           <a href="index.html#cartas">Cartas</a>
         </div>
       </div>
-      <div class="dropdown">
-        <a href="#meditaciones">Audios</a>
-        <div class="dropdown-content">
-          <a href="#meditaciones">Meditaciones Guiadas</a>
-          <a href="#sonidos">Sonidos</a>
-        </div>
-      </div>
+      <a href="#espacio-pausa">Espacio Pausa</a>
     </nav>
   </header>
 
   <div class="spacer"></div>
 
-  <section id="meditaciones">
-    <h2>Meditaciones Guiadas</h2>
+  <section id="espacio-pausa">
+    <h2>Espacio Pausa</h2>
     <div class="main-container">
       <div class="content-container">
         <div class="image-container">
@@ -409,27 +402,7 @@
         </div>
       </div>
       <div class="audio-selector">
-        <ul class="audio-list" id="meditacionesList"></ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="sonidos">
-    <h2>Sonidos</h2>
-    <div class="main-container">
-      <div class="content-container">
-        <div class="image-container">
-          <img id="sonidosImage" src="Imagenes/presencia.jpg" alt="Imagen de Sonidos Cuencos">
-        </div>
-        <div class="audio-container">
-          <audio id="sonidosPlayer" controls>
-            <source src="Audios/sonidos_cuencos.mp3" type="audio/mpeg">
-            Tu navegador no soporta la reproducción de audio. Prueba con Chrome, Firefox o un navegador actualizado.
-          </audio>
-        </div>
-      </div>
-      <div class="audio-selector">
-        <ul class="audio-list" id="sonidosList"></ul>
+        <ul class="audio-list" id="audioList"></ul>
       </div>
     </div>
   </section>
@@ -437,61 +410,53 @@
   <script>
     // Lista de audios
     const audios = [
-      { nombre: "Calma", audio: "Audios/1.mp3", imagen: "Imagenes/relajacion.jpg", category: "meditaciones" },
-      { nombre: "Dolor físico y emocional", audio: "Audios/2.mp3", imagen: "Imagenes/respiracion.jpg", category: "meditaciones" },
-      { nombre: "Limpieza energética", audio: "Audios/3.mp3", imagen: "Imagenes/matutina.jpg", category: "meditaciones" },
-      { nombre: "Sueño", audio: "Audios/4.mp3", imagen: "Imagenes/atencion.jpg", category: "meditaciones" },
-      { nombre: "Creatividad", audio: "Audios/5.mp3", imagen: "Imagenes/gratitud.jpg", category: "meditaciones" },
-      { nombre: "Calma y enfoque", audio: "Audios/6.mp3", imagen: "Imagenes/cuerpo.jpg", category: "meditaciones" },
-      { nombre: "Concentración", audio: "Audios/7.mp3", imagen: "Imagenes/silencio.jpg", category: "meditaciones" },
-      { nombre: "Intuición", audio: "Audios/8.mp3", imagen: "Imagenes/energia.jpg", category: "meditaciones" },
-      { nombre: "Claridad y aprendizaje", audio: "Audios/9.mp3", imagen: "Imagenes/sueno.jpg", category: "meditaciones" },
-      { nombre: "Cambiar 1", audio: "Audios/10.mp3", imagen: "Imagenes/natural.jpg", category: "meditaciones" },
-      { nombre: "Cambiar 2", audio: "Audios/11.mp3", imagen: "Imagenes/nocturna.jpg", category: "meditaciones" },
-      { nombre: "Cambiar 3", audio: "Audios/12.mp3", imagen: "Imagenes/foco.jpg", category: "meditaciones" },
-      { nombre: "Cambiar 4", audio: "Audios/13.mp3", imagen: "Imagenes/liberacion.jpg", category: "meditaciones" },
-      { nombre: "Cambiar 5", audio: "Audios/14.mp3", imagen: "Imagenes/paz.jpg", category: "meditaciones" },
-      { nombre: "Cambiar 6", audio: "Audios/15.mp3", imagen: "Imagenes/equilibrio.jpg", category: "meditaciones" },
-      { nombre: "Cambiar 7", audio: "Audios/16.mp3", imagen: "Imagenes/armonia.jpg", category: "meditaciones" },
-      { nombre: "Cambiar 8", audio: "Audios/17.mp3", imagen: "Imagenes/renovacion.jpg", category: "meditaciones" },
-      { nombre: "Cambiar 9", audio: "Audios/18.mp3", imagen: "Imagenes/fluir.jpg", category: "meditaciones" },
-      { nombre: "Cambiar 10", audio: "Audios/19.mp3", imagen: "Imagenes/consciencia.jpg", category: "meditaciones" },
-      { nombre: "Cambiar 11", audio: "Audios/20.mp3", imagen: "Imagenes/amor.jpg", category: "meditaciones" },
-      { nombre: "Cambiar 12", audio: "Audios/21.mp3", imagen: "Imagenes/resiliencia.jpg", category: "meditaciones" },
-      { nombre: "Cambiar 13", audio: "Audios/22.mp3", imagen: "Imagenes/claridad.jpg", category: "meditaciones" },
-      { nombre: "Cambiar 14", audio: "Audios/23.mp3", imagen: "Imagenes/sanacion.jpg", category: "meditaciones" },
-      { nombre: "Cambiar 15", audio: "Audios/24.mp3", imagen: "Imagenes/fuerza.jpg", category: "meditaciones" },
-      { nombre: "Cambiar 16", audio: "Audios/25.mp3", imagen: "Imagenes/tranquilidad.jpg", category: "meditaciones" },
-      { nombre: "Cambiar 17", audio: "Audios/26.mp3", imagen: "Imagenes/aceptacion.jpg", category: "meditaciones" },
-      { nombre: "Cambiar 18", audio: "Audios/27.mp3", imagen: "Imagenes/presencia.jpg", category: "meditaciones" },
-      { nombre: "Cambiar 19", audio: "Audios/28.mp3", imagen: "Imagenes/esperanza.jpg", category: "meditaciones" },
-      { nombre: "Sonidos Cuencos", audio: "Audios/sonidos_cuencos.mp3", imagen: "Imagenes/presencia.jpg", category: "sonidos" }
+      { nombre: "Calma", audio: "Audios/1.mp3", imagen: "Imagenes/relajacion.jpg" },
+      { nombre: "Dolor físico y emocional", audio: "Audios/2.mp3", imagen: "Imagenes/respiracion.jpg" },
+      { nombre: "Limpieza energética", audio: "Audios/3.mp3", imagen: "Imagenes/matutina.jpg" },
+      { nombre: "Sueño", audio: "Audios/4.mp3", imagen: "Imagenes/atencion.jpg" },
+      { nombre: "Creatividad", audio: "Audios/5.mp3", imagen: "Imagenes/gratitud.jpg" },
+      { nombre: "Calma y enfoque", audio: "Audios/6.mp3", imagen: "Imagenes/cuerpo.jpg" },
+      { nombre: "Concentración", audio: "Audios/7.mp3", imagen: "Imagenes/silencio.jpg" },
+      { nombre: "Intuición", audio: "Audios/8.mp3", imagen: "Imagenes/energia.jpg" },
+      { nombre: "Claridad y aprendizaje", audio: "Audios/9.mp3", imagen: "Imagenes/sueno.jpg" },
+      { nombre: "Cambiar 1", audio: "Audios/10.mp3", imagen: "Imagenes/natural.jpg" },
+      { nombre: "Cambiar 2", audio: "Audios/11.mp3", imagen: "Imagenes/nocturna.jpg" },
+      { nombre: "Cambiar 3", audio: "Audios/12.mp3", imagen: "Imagenes/foco.jpg" },
+      { nombre: "Cambiar 4", audio: "Audios/13.mp3", imagen: "Imagenes/liberacion.jpg" },
+      { nombre: "Cambiar 5", audio: "Audios/14.mp3", imagen: "Imagenes/paz.jpg" },
+      { nombre: "Cambiar 6", audio: "Audios/15.mp3", imagen: "Imagenes/equilibrio.jpg" },
+      { nombre: "Cambiar 7", audio: "Audios/16.mp3", imagen: "Imagenes/armonia.jpg" },
+      { nombre: "Cambiar 8", audio: "Audios/17.mp3", imagen: "Imagenes/renovacion.jpg" },
+      { nombre: "Cambiar 9", audio: "Audios/18.mp3", imagen: "Imagenes/fluir.jpg" },
+      { nombre: "Cambiar 10", audio: "Audios/19.mp3", imagen: "Imagenes/consciencia.jpg" },
+      { nombre: "Cambiar 11", audio: "Audios/20.mp3", imagen: "Imagenes/amor.jpg" },
+      { nombre: "Cambiar 12", audio: "Audios/21.mp3", imagen: "Imagenes/resiliencia.jpg" },
+      { nombre: "Cambiar 13", audio: "Audios/22.mp3", imagen: "Imagenes/claridad.jpg" },
+      { nombre: "Cambiar 14", audio: "Audios/23.mp3", imagen: "Imagenes/sanacion.jpg" },
+      { nombre: "Cambiar 15", audio: "Audios/24.mp3", imagen: "Imagenes/fuerza.jpg" },
+      { nombre: "Cambiar 16", audio: "Audios/25.mp3", imagen: "Imagenes/tranquilidad.jpg" },
+      { nombre: "Cambiar 17", audio: "Audios/26.mp3", imagen: "Imagenes/aceptacion.jpg" },
+      { nombre: "Cambiar 18", audio: "Audios/27.mp3", imagen: "Imagenes/presencia.jpg" },
+      { nombre: "Cambiar 19", audio: "Audios/28.mp3", imagen: "Imagenes/esperanza.jpg" },
+      { nombre: "Sonidos Cuencos", audio: "Audios/sonidos_cuencos.mp3", imagen: "Imagenes/presencia.jpg" }
     ];
 
-    // Generar listas de audios
-    const meditacionesList = document.getElementById("meditacionesList");
-    const sonidosList = document.getElementById("sonidosList");
-
+    // Generar lista de audios
+    const audioList = document.getElementById("audioList");
     audios.forEach((audio, index) => {
       const li = document.createElement("li");
       const button = document.createElement("button");
       button.textContent = audio.nombre;
       button.onclick = () => cambiarAudio(index);
       li.appendChild(button);
-      if (audio.category === "meditaciones") {
-        meditacionesList.appendChild(li);
-      } else {
-        sonidosList.appendChild(li);
-      }
+      audioList.appendChild(li);
     });
 
     // Función para cambiar audio
     function cambiarAudio(index) {
       const audioData = audios[index];
-      const playerId = audioData.category === "meditaciones" ? "audioPlayer" : "sonidosPlayer";
-      const imageId = audioData.category === "meditaciones" ? "audioImage" : "sonidosImage";
-      const audioPlayer = document.getElementById(playerId);
-      const image = document.getElementById(imageId);
+      const audioPlayer = document.getElementById("audioPlayer");
+      const image = document.getElementById("audioImage");
       audioPlayer.src = audioData.audio;
       image.src = audioData.imagen;
       image.alt = `Imagen de ${audioData.nombre}`;
@@ -506,14 +471,13 @@
 
       if (id >= 0 && id < audios.length) {
         cambiarAudio(id);
-        const sectionId = audios[id].category === "meditaciones" ? "meditaciones" : "sonidos";
-        document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        document.getElementById("espacio-pausa").scrollIntoView({ behavior: 'smooth' });
       }
 
       // Resaltar sección activa en el menú
       const navLinks = document.querySelectorAll('nav a');
       navLinks.forEach(link => {
-        if (link.getAttribute('href') === `#${sectionId}`) {
+        if (link.getAttribute('href') === '#espacio-pausa') {
           link.classList.add('active');
         }
       });
@@ -549,15 +513,6 @@
         }
       });
     });
-
-    // Volver arriba al hacer clic en "Inicio"
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      const header = document.querySelector('header');
-      if (header) {
-        header.classList.remove('scrolled');
-      }
-    }
   </script>
 </body>
 </html>
