@@ -358,12 +358,12 @@
     </div>
     <nav>
       <div class="dropdown">
-        <a href="index.html#proyecto">Nuestro Proyecto</a>
+        <a href="index.html#alcance">Nuestro Proyecto</a>
         <div class="dropdown-content">
-          <a href="index.html#proyecto">Introducción</a>
           <a href="index.html#alcance">Alcance</a>
+          <a href="index.html#marco-conceptual">Marco Conceptual</a>
           <a href="index.html#objetivos">Objetivos</a>
-          <a href="index.html#contenidos">Contenidos</a>
+          <a href="index.html#metodologia">Metodología</a>
         </div>
       </div>
       <div class="dropdown">
@@ -477,6 +477,7 @@
       // Resaltar sección activa en el menú
       const navLinks = document.querySelectorAll('nav a');
       navLinks.forEach(link => {
+        link.classList.remove('active');
         if (link.getAttribute('href') === '#espacio-pausa') {
           link.classList.add('active');
         }
