@@ -71,19 +71,6 @@
       width: 170px;
     }
 
-    .titulo {
-      position: absolute;
-      left: 150px;
-      font-size: 24px;
-      font-weight: bold;
-      color: #f2f1eb;
-      transition: font-size 0.3s ease;
-    }
-
-    header.scrolled .titulo {
-      font-size: 18px;
-    }
-
     nav {
       display: flex;
       align-items: center;
@@ -316,6 +303,14 @@
       background: #1e9c94;
     }
 
+    .error-message {
+      display: none;
+      color: #ff4d4d;
+      font-size: 12px;
+      text-align: center;
+      margin-top: 10px;
+    }
+
     .spacer {
       height: 100px;
     }
@@ -339,10 +334,6 @@
       nav a, .dropdown-content a {
         font-size: 14px;
         padding: 6px;
-      }
-
-      .titulo {
-        left: 120px;
       }
 
       body::after {
@@ -381,7 +372,7 @@
           <a href="juego.html#cartas">Cartas</a>
         </div>
       </div>
-      <a href="#espacio-pausa">Pausa Conexion</a>
+      <a href="#espacio-pausa">Pausa Conexión</a>
     </nav>
   </header>
 
@@ -389,16 +380,18 @@
 
   <section id="espacio-pausa">
     <h2>Pausa Conexión</h2>
+    <p>Escucha estas meditaciones guiadas para encontrar calma, creatividad y enfoque.</p>
     <div class="main-container">
       <div class="content-container">
         <div class="image-container">
-          <img id="audioImage" src="Imagenes/relajacion.jpg" alt="Imagen del audio">
+          <img id="audioImage" src="corlux/Todos/corlux_claro_cortado.png" alt="Imagen del audio">
         </div>
         <div class="audio-container">
           <audio id="audioPlayer" controls>
             <source src="Audios/mindfulness_relajacion.mp3" type="audio/mpeg">
             Tu navegador no soporta la reproducción de audio. Prueba con Chrome, Firefox o un navegador actualizado.
           </audio>
+          <div id="errorMessage" class="error-message"></div>
         </div>
       </div>
       <div class="audio-selector">
@@ -410,35 +403,32 @@
   <script>
     // Lista de audios
     const audios = [
-      { nombre: "Calma", audio: "Audios/1.mp3", imagen: "Imagenes/relajacion.jpg" },
-      { nombre: "Dolor físico y emocional", audio: "Audios/2.mp3", imagen: "Imagenes/respiracion.jpg" },
-      { nombre: "Limpieza energética", audio: "Audios/3.mp3", imagen: "Imagenes/matutina.jpg" },
-      { nombre: "Sueño", audio: "Audios/4.mp3", imagen: "Imagenes/atencion.jpg" },
-      { nombre: "Creatividad", audio: "Audios/5.mp3", imagen: "Imagenes/gratitud.jpg" },
-      { nombre: "Calma y enfoque", audio: "Audios/6.mp3", imagen: "Imagenes/cuerpo.jpg" },
-      { nombre: "Activación", audio: "Audios/7.mp3", imagen: "Imagenes/silencio.jpg" },
-      { nombre: "Intuición", audio: "Audios/8.mp3", imagen: "Imagenes/energia.jpg" },
-      { nombre: "Claridad y aprendizaje", audio: "Audios/9.mp3", imagen: "Imagenes/sueno.jpg" },
-      { nombre: "Foco y Concentración", audio: "Audios/10.mp3", imagen: "Imagenes/natural.jpg" },
-      { nombre: "Sanando heridas", audio: "Audios/11.mp3", imagen: "corlux/paz/paz-3.png" },
-      { nombre: "Punto quieto", audio: "Audios/12.mp3", imagen: "Imagenes/foco.jpg" },
-      { nombre: " Grounding", audio: "Audios/13.mp3", imagen: "Imagenes/liberacion.jpg" },
-      { nombre: "Espejo energético", audio: "Audios/14.mp3", imagen: "Imagenes/paz.jpg" },
-      { nombre: "Visualizo mi meta", audio: "Audios/15.mp3", imagen: "Imagenes/equilibrio.jpg" },
-      { nombre: "El poder de la palabra", audio: "Audios/16.mp3", imagen: "Imagenes/armonia.jpg" },
-      { nombre: "Afinando cuerdas", audio: "Audios/17.mp3", imagen: "Imagenes/renovacion.jpg" },
-      { nombre: "Construyendo confianza", audio: "Audios/18.mp3", imagen: "Imagenes/fluir.jpg" },
-      { nombre: "Mi frase poderosa", audio: "Audios/19.mp3", imagen: "Imagenes/consciencia.jpg" },
-      { nombre: "Un cuerpo una sinfonía", audio: "Audios/20.mp3", imagen: "Imagenes/amor.jpg" },
-      { nombre: "Fortaleza interior", audio: "Audios/21.mp3", imagen: "Imagenes/resiliencia.jpg" },
-      { nombre: "Visualización pantalla mental 1", audio: "Audios/22.mp3", imagen: "Imagenes/claridad.jpg" },
-      { nombre: "Visualización pantalla mental 2", audio: "Audios/23.mp3", imagen: "Imagenes/sanacion.jpg" },
-      { nombre: "Visualización pantalla mental 3", audio: "Audios/24.mp3", imagen: "Imagenes/fuerza.jpg" },
-      { nombre: "Cápsula de movimiento y energía", audio: "Audios/25.mp3", imagen: "corlux/amara/amara-2.png" },
-      //{ nombre: "Atención al segundero", audio: "Audios/26.mp3", imagen: "Imagenes/aceptacion.jpg" },
-      //{ nombre: "Atención al objeto 1", audio: "Audios/27.mp3", imagen: "Imagenes/presencia.jpg" },
-      //{ nombre: "Atención al objeto 2", audio: "Audios/28.mp3", imagen: "Imagenes/esperanza.jpg" },
-      { nombre: "Sonidos Cuencos", audio: "Audios/sonidos cuencos.mp3", imagen: "Imagenes/presencia.jpg" }
+      { nombre: "Calma", audio: "Audios/1.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Dolor físico y emocional", audio: "Audios/2.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Limpieza energética", audio: "Audios/3.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Sueño", audio: "Audios/4.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Creatividad", audio: "Audios/5.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Calma y enfoque", audio: "Audios/6.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Activación", audio: "Audios/7.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Intuición", audio: "Audios/8.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Claridad y aprendizaje", audio: "Audios/9.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Foco y Concentración", audio: "Audios/10.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Sanando heridas", audio: "Audios/11.mp3", imagen: "corlux/Paz/paz-2.png" },
+      { nombre: "Punto quieto", audio: "Audios/12.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Grounding", audio: "Audios/13.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Espejo energético", audio: "Audios/14.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Visualizo mi meta", audio: "Audios/15.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "El poder de la palabra", audio: "Audios/16.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Afinando cuerdas", audio: "Audios/17.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Construyendo confianza", audio: "Audios/18.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Mi frase poderosa", audio: "Audios/19.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Un cuerpo una sinfonía", audio: "Audios/20.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Fortaleza interior", audio: "Audios/21.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Visualización pantalla mental 1", audio: "Audios/22.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Visualización pantalla mental 2", audio: "Audios/23.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Visualización pantalla mental 3", audio: "Audios/24.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" },
+      { nombre: "Cápsula de movimiento y energía", audio: "Audios/25.mp3", imagen: "corlux/Todos/Amara/amara-3.png" },
+      { nombre: "Sonidos Cuencos", audio: "Audios/sonidos cuencos.mp3", imagen: "corlux/Todos/corlux_claro_cortado.png" }
     ];
 
     // Generar lista de audios
@@ -457,11 +447,34 @@
       const audioData = audios[index];
       const audioPlayer = document.getElementById("audioPlayer");
       const image = document.getElementById("audioImage");
+      const errorMessage = document.getElementById("errorMessage");
+
+      // Limpiar estado anterior
+      audioPlayer.pause();
+      audioPlayer.src = '';
+      image.src = '';
+      image.onerror = null;
+      errorMessage.style.display = 'none';
+      errorMessage.textContent = '';
+
+      // Actualizar audio e imagen
       audioPlayer.src = audioData.audio;
       image.src = audioData.imagen;
       image.alt = `Imagen de ${audioData.nombre}`;
+
+      // Manejo de error de imagen
+      image.onerror = () => {
+        image.src = 'corlux/Todos/corlux_claro_cortado.png';
+        errorMessage.style.display = 'block';
+        errorMessage.textContent = 'No se pudo cargar la imagen.';
+      };
+
+      // Cargar y reproducir audio
       audioPlayer.load();
-      audioPlayer.play();
+      audioPlayer.play().catch(() => {
+        errorMessage.style.display = 'block';
+        errorMessage.textContent = 'No se pudo cargar el audio.';
+      });
     }
 
     // Leer parámetro de la URL y reproducir audio automáticamente
@@ -516,9 +529,9 @@
     });
   </script>
   <footer>
-  <p style="text-align: center; font-size: 14px; color: #383838; padding: 20px 0; margin: 0; background-color: #f2f1eb;">
-    &copy; Todos los derechos reservados.
-  </p>
-</footer>
+    <p style="text-align: center; font-size: 14px; color: #383838; padding: 20px 0; margin: 0; background-color: #f2f1eb;">
+      © Todos los derechos reservados.
+    </p>
+  </footer>
 </body>
 </html>
