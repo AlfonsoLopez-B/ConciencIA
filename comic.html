@@ -216,6 +216,17 @@
       align-items: center;
     }
 
+    #personajes {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #comics {
+      display: flex;
+      flex-direction: column;
+    }
+
     .main-description-container {
       background-color: #383838;
       border-radius: 15px;
@@ -361,12 +372,6 @@
       transform: none;
     }
 
-    #personajes {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
     .character-capsule {
       background-color: #383838;
       border-radius: 15px;
@@ -458,8 +463,81 @@
       transform: scale(1.05);
     }
 
+    .comic-capsule {
+      background-color: #383838;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+      padding: 25px;
+      width: 100%;
+      max-width: 750px;
+      margin-bottom: 25px;
+      border-left: 4px solid #26d1c8;
+      transition: box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .comic-capsule:hover {
+      box-shadow: 0 8px 20px rgba(38, 209, 200, 0.5);
+    }
+
+    .comic-capsuleANDcomic-navigation{
+        margin-left: 10%;
+        align-items: center;
+    }
+
+    .comic-image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .comic-image-container img {
+      max-width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .comic-navigation {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      max-width: 750px;
+      margin-top: 15px;
+    }
+
+    .comic-navigation button {
+      width: 40px;
+      height: 40px;
+      background-color: #383838;
+      color: #f2f1eb;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: bold;
+      transition: background-color 0.3s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .comic-navigation button:hover {
+      background-color: #26d1c8;
+      transform: scale(1.1);
+    }
+
+    .comic-navigation button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     @media (max-width: 768px) {
-      .main-description-container, .corlux-capsule, .character-capsule {
+      .main-description-container, .corlux-capsule, .character-capsule, .comic-capsule {
         flex-direction: column;
         max-width: 100%;
       }
@@ -468,7 +546,7 @@
         padding: 10px 0;
       }
 
-      .corlux-navigation, .character-selector {
+      .corlux-navigation, .character-selector, .comic-navigation {
         margin-top: 15px;
       }
 
@@ -529,7 +607,7 @@
   <section id="historia">
     <div><img src="corlux/Todos/corlux_claro_cortado.png" alt="FotoCorlux" height="310" width="800"></div>
     <br><br>
-    <h2>De ILuminanDIA a un centro Educativo de Montevideo</h2>
+    <h2>De ILuminanDia a un centro Educativo de Montevideo</h2>
     <div class="main-description-container">
       <div class="main-description" id="mainDescription">
         <p class="short-text">Los habitantes de IluminanDia vienen observando desde hace un largo tiempo el comportamiento de los Seres “Humanos” y la dificultad que muchas veces tienen para resolver sus problemas y vivir felices. Ello, ante su falta de autoconocimiento, a lo que en el último tiempo se ha sumado su desconocimiento del entorno Digital y de las consecuencias de sus prácticas en él. Desde entonces, “Los Corlux” partieron de IluminanDia con la Misión de acercarse a los habitantes del planeta Tierra con la intención de poner sus virtudes al servicio de ellos y colaborar así con su mayor bienestar. En mayo del 2025, aterrizaron en una institución educativa, La Cea 183, Nelson Mandela. Los “CorLux”, pueden comunicarse con el corazón de las personas, en un lenguaje que sólo pueden entender sus almas. Para hacerlo, envían sus mensajes en formas de rayos de luz, iluminando las zonas inconscientes del cerebro humano, colaborando así con el despertar de sus CONCIENCIAS. De este modo planean ayudar a los humanos, para que entiendan no solo a la IA (Inteligencia Artificial), sino también a la otra IA, la Inteligencia Amorosa, una fuente de poder sin límites que los humanos tienen disposición.</p>
@@ -556,12 +634,12 @@
     <h2>¿Quiénes son los CORLUX?</h2>
     <div class="character-capsule">
       <div class="character-image-container">
-        <h3 id="characterName">Personaje 1</h3>
-        <img id="characterImage" src="personajes/personaje1.jpg" alt="Personaje 1">
+        <h3 id="characterName">Justino</h3>
+        <img id="characterImage" src="corlux/Justino/justino-1.png" alt="Justino">
       </div>
       <div class="character-description" id="characterDescription">
-        <span class="short-text">Descripción corta del Personaje 1.</span>
-        <span class="full-text">Descripción completa del Personaje 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+        <span class="short-text">Tiene un gran sentido de la Justicia, lo llaman “El luchador”.</span>
+        <span class="full-text">Tiene un gran sentido de la Justicia, lo llaman “El luchador” .\n En un tiempo se sobrecargaba de responsabilidad sintiendo que todo dependía de el. Para no sentirse vulnerable, intentó controlar, e intimidar a otros para imponer su verdad, sin respetar la libertad de cada uno de elegir su propio camino. Con el tiempo aprendió a respetar los caminos de los otros y también a cumplir sus compromisos con serenidad, delegando y confiando. Hoy lidera con coraje, y defiende con justicia y compasión.Hace tiempo viene observando la dinámica de las redes sociales, cómo se polarizan sus opiniones, cómo está afectando el ciberbullying a los adolescentes.</span>
         <button class="toggle-text" onclick="toggleDescription()">Ver más</button>
       </div>
     </div>
@@ -572,19 +650,32 @@
     <h2>Humanos S.O.S</h2>
     <p>El programa incluye imágenes de historias de adolescentes que atraviesan conflictos que necesitan resolver</p>
     <p>A continuación se muestra viñetas que introducen conflictos que atraviesan adolescentes en el Entorno digital</p>
-    <h5>Los estudiantes deberán analizar:</h5>
-    <ul>
-      <li>¿Qué pensamientos y emociones tienen los personajes de las historietas?</li>
-      <li>¿Cómo influye el entorno digital en el conflicto?</li>
-      <li>¿Cómo influyen las prácticas de cada personaje en dicho entorno?</li>
-      <li>¿Cómo aportaría el recorrer el camino de las virtudes en la solución del conflicto?</li>
-    </ul>
+    <div>
+        <h5>Los estudiantes deberán analizar:</h5>
+        <ul>
+            <li>¿Qué pensamientos y emociones tienen los personajes de las historietas?</li>
+            <li>¿Cómo influye el entorno digital en el conflicto?</li>
+            <li>¿Cómo influyen las prácticas de cada personaje en dicho entorno?</li>
+            <li>¿Cómo aportaría el recorrer el camino de las virtudes en la solución del conflicto?</li>
+        </ul>
+    </div>
+    <div class="comic-capsuleANDcomic-navigation">
+    <div class="comic-capsule">
+      <div class="comic-image-container">
+        <img id="comicImage" src="corlux/Todos/corlux_claro_cortado.png" alt="Comic">
+      </div>
+    </div>
+    <div class="comic-navigation">
+      <button id="prevComic" onclick="navegarComic(-1)">◄</button>
+      <button id="nextComic" onclick="navegarComic(1)">►</button>
+    </div>
+    </div>
   </section>
 
   <section id="tu-voz-crea-conciencia">
     <h2>Tu voz Crea Conciencia</h2>
     <p>Invitamos a las personas a subir contenidos que cuenten sus historias S.O.S generando narrativas de experiencias de conflictos en el entorno digital (personales o de terceros) y como lograron resolverlo gracias a la otra IA (inteligencia amorosa), transformando los conflictos en oportunidades de crecimiento.</p>
-    <p>En las instituciones educativas, cada equipo deberá identificar las formas de resolver los conflictos, a través del descubrimiento de nuevas verdades, y explicando u capacidad de hacer pausas, ejercer su espíritu crítico, el camino de las virtudes, y la confianza en los miembros de su equipo, les llevó a descubrirse en su individualidad, a desarrollar su creatividad, así como sus habilidades y talentos.</p>
+    <p>En las instituciones educativas, cada equipo deberá identificar las formas de resolver los conflictos, a través del descubrimiento de nuevas revelaciones, y explicando cómo la capacidad de hacer pausas, ejercer su espíritu crítico, el camino de las virtudes, y la confianza en los miembros de su equipo, les llevó a descubrirse en su individualidad, a desarrollar su creatividad, así como sus habilidades y talentos.</p>
   </section>
 
   <footer>
@@ -599,17 +690,17 @@
       {
         id: 1,
         nombre: "Los Corlux y la Humildad",
-        descripcion: "Los Corlux invitan a los humanos a mirar la inmensidad de las estrellas y a apreciar los Misterios del Universo, recordándonos que si bien somos parte de él, y con nuestro comportamiento podemos influir en él, es imposible tener todo bajo control.\nSer Humano es aprender a soltar el control, ser Humilde. Tanto “humano” como “humilde”, provienen de la palabra “humus”, que significa tierra. Así “el humus” es lo que queda en la tierra cuando todo lo superfluo se ha descompuesto. Los humanos necesitamos entender que todo lo que se desprende de la naturaleza, de un modo oscuro, callado, e invisible a los ojos apurados, regresa a la tierra para fertilizarla. Y en esa profundidad, germina lo nuevo. Así solo cuando como humanos nos dejamos tocar por la tierra —nos atrevemos a soltar, a caer, a descomponernos, así “al morir”— podremos nutrir el comienzo de una vida nueva. “Ser humano”, entonces, se trata de aprender a aceptar aquello que se deshizo de nosotros mismos, confiando y esperando lo nuevo que crecerá, incluso cuando al comienzo sea invisible a nuestros ojos humanos. Ser Humanos significa rendirnos con humildad a aquello que no podemos cambiar. Y al aceptar lo que no podemos cambiar, evitamos gastarnos emocionalmente, luchando contra lo que no podemos evitar, y podemos enfocar nuestra atención, y energía, en lo que sí podemos mejorar, confiando en lo nuevo y en lo mejor vendrá. Aceptar y rendirse a aquello que no podemos evitar con optimismo ayuda a disfrutar el camino en paz, incluso cuando las cosas no salgan como las planeamos. En nuestro interior eso se siente como un fluir, en lugar de luchar contra la corriente. Y es allí cuando podremos tener más claridad, y tomar las decisiones más sabias."
+        descripcion: "Los Corlux invitan a los humanos a mirar la inmensidad de las estrellas y a apreciar los Misterios del Universo, recordándonos que si bien somos parte de él, y con nuestro comportamiento podemos influir en él, es imposible tener todo bajo control.\nSer Humano es aprender a soltar el control, ser Humilde. Tanto “humano” como “humilde”, provienen de la palabra “humus”, que significa tierra. Así “el humus” es lo que queda en la tierra cuando todo lo superfluo se ha descompuesto. Los humanos necesitamos entender que todo lo que se desprende de la naturaleza, de un modo oscuro, callado, e invisible a los ojos apurados, regresa a la tierra para fertilizarla. Y en esa profundidad, germina lo nuevo. Así solo cuando como humanos nos dejamos tocar por la tierra —nos atrevemos a soltar, a caer, a descomponernos, así “al morir”— podremos nutrir el comienzo de una vida nueva. “Ser humano”, entonces, se trata de aprender a aceptar aquello que se deshizó de nosotros mismos, confiando y esperando lo nuevo que crecerá, incluso cuando al comienzo sea invisible a nuestros ojos humanos. Ser Humanos significa rendirnos con humildad a aquello que no podemos cambiar. Y al aceptar lo que no podemos cambiar, evitamos gastarnos emocionalmente, luchando contra lo que no podemos evitar, y podemos enfocar nuestra atención, y energía, en lo que sí podemos mejorar, confiando en lo nuevo y en lo mejor vendrá. Aceptar y rendirse a aquello que no podemos evitar con optimismo ayuda a disfrutar el camino en paz, incluso cuando las cosas no salgan como las planeamos. En nuestro interior eso se siente como un fluir, en lugar de luchar contra la corriente. Y es allí cuando podremos tener más claridad, y tomar las decisiones más sabias."
       },
       {
         id: 2,
         nombre: "Los Corlux, y el valor de las diferencias",
-        descripcion: "Los Corlux, antes de transformarse en seres de luz tuvieron que atravesar experiencias de oscuridad y dolor. Y gracias a ellas hoy nos cuentan cuando aprendemos a abrazar con humildad nuestra humanidad, nuestra parcialidad e incluso fragilidad, descubrimos un gran misterio.\nLos Corlux nos invitan a cuestionar tantas evaluaciones injustas. Einstein decía “Todos somos unos genios, pero si juzgas a un pez por su habilidad de escalar un árbol, vivirá su vida entera creyendo que es un estúpido”. Los Seres Humanos contamos con cualidades que nos diferencian de las máquinas. Hemos recibido distintos talentos– y existen formas que facilitan su reconocimiento y desarrollo. Darles a todos importancia, más allá de la utilidad que tengan para el desarrollo de la productividad, contribuye al bienestar propio y de la sociedad en general. …Supongamos que el pie le dice al cuerpo “No soy mano y por lo tanto yo no soy del cuerpo”, no por eso dejará de ser parte del cuerpo. Y si la cabeza dijera a los pies: no los necesito…¿cómo viviría sin ellos? Si conocemos la biología sabríamos que “las partes del cuerpo que parecen ser más débiles son las más necesarias”. Así “para que no se divida el cuerpo todas sus partes han de tener la misma preocupación unas por otras”. Lo mismo pasa con el Cuerpo social, cada ser humano cumple una función distinta y todas son necesarias. Solo evolucionaremos como especie, cuando aprendamos a valorar las diferencias de cada persona en el cuerpo social."
+        descripcion: "Los Corlux, antes de transformarse en seres de luz tuvieron que atravesar experiencias de oscuridad y dolor. Y gracias a ellas hoy nos cuentan cuando aprendemos a abrazar con humildad nuestra humanidad, nuestra parcialidad e incluso fragilidad, descubrimos un gran misterio.\nLos Corlux nos invitan a cuestionar tantas evaluaciones injustas. Einstein decía “Todos somos genios, pero si juzgas a un pez por su habilidad de escalar un árbol, vivirá su vida entera creyendo que es un estúpido”. Los Seres Humanos contamos con cualidades que nos diferencian de las máquinas. Hemos recibido distintos talentos– y existen formas que facilitan su reconocimiento y desarrollo. Darles a todos importancia, más allá de la utilidad que tengan para el desarrollo de la productividad, contribuye al bienestar propio y de la sociedad en general. …Supongamos que el pie le dice al cuerpo “No soy mano y por lo tanto yo no soy del cuerpo”, no por eso dejará de ser parte del cuerpo. Y si la cabeza dijera a los pies: no los necesito…¿cómo viviría sin ellos? Si conocemos la biología sabríamos que “las partes del cuerpo que parecen ser más débiles son las más necesarias”. Así “para que no se divida el cuerpo todas sus partes han de tener la misma preocupación unas por otras”. Lo mismo pasa con el Cuerpo social, cada ser humano cumple una función distinta y todas son necesarias. Solo evolucionaremos como especie, cuando aprendamos a valorar las diferencias de cada persona en el cuerpo social."
       },
       {
         id: 3,
         nombre: "Los Corlux y el misterio escondido detrás de “los defectos”",
-        descripcion: "Los Corlux, cuentan historias como la del Aguador y “el cántaro agrietado” que invitan a los humanos a dejar de intentar esconder nuestros “defectos” o “equivocaciones”, por miedo a ser juzgados, a no ser aceptados o a no ser queridos.\nNos cuentan que cuando con valentía damos luz a nuestras “grietas” o “defectos”, y enfrentamos aquello que una vez elegimos mantener oculto, desarrollamos nuestra empatía borrándose las líneas que nos separan unos de los otros, permitiendo que se manifieste el Amor más profundo."
+        descripcion: "Los Corlux, cuentan historias como la del Aguador y “el cántaro agrietado” que invitan a los humanos a dejar de intentar esconder nuestros “defectos” o equivocaciones”, por miedo a ser juzgados, a no ser aceptados o a no ser queridos.\nNos cuentan que cuando con valentía damos luz a nuestras “grietas” o “defectos”, y enfrentamos aquello que una vez elegimos mantener oculto, desarrollamos nuestra empatía borrándose las líneas que nos separan unos de los otros, permitiendo que se manifieste el Amor más profundo."
       },
       {
         id: 4,
@@ -634,7 +725,7 @@
       {
         id: 8,
         nombre: "Los Corlux y la atención",
-        descripcion: "Los Corlux nos enseñan que en la vida aprendemos, y disfrutamos o sufrimos según nuestro nivel de conciencia. Que para nuestra conciencia existe solo aquello a lo que le prestamos atención.\nY allí dónde pongamos la atención plena fluirá toda nuestra energía. Por eso es tan importante elegir bien a qué prestar atención. Explican a los humanos que es importante prestar atención a nuestras emociones, ya que ellas siempre traen importantes mensajes. Y que es posible experimentarlas sin quedar atrapado en ellas. Se trata de observarlas, siendo conscientes de que las tenemos, sin resistirse, con aceptación, incluso cuando molesten o duelan. También nos cuentan, que los seres humanos reaccionamos en general no por la razón, sino por las emociones que se desprenden de información que queda grabada en nuestro cuerpo, en nuestro inconsciente. Por eso muchas veces no entendemos las razones de nuestras reacciones, o reaccionamos desmedidamente frente a las cosas. Así prestar atención a nuestras emociones que aparecen en nuestro cuerpo, a nuestras reacciones mecánicas a situaciones repetidas que aparecen en nuestras vidas, a situaciones que no nos gustan, a las cosas que repetidamente nos sacan de quicio, a creencias o mandatos familiares que nos influyen y limitan, a cosas que hacemos permanentemente en búsqueda de validación, incluso a lo que soñamos, nos permitirá conocernos más, cambiar nuestros programas mentales, y volvernos dueños de nuestras reacciones, y más libres para elegir y cumplir nuestras metas, y nuestra misión."
+        descripcion: "Los Corlux nos enseñan que en la vida aprendemos, y disfrutamos o sufrimos según nuestro nivel de conciencia. Que para nuestra conciencia existe solo aquello a lo que le prestamos atención.\nY allí dónde pongamos la atención plena fluirá toda nuestra energía. Por eso es tan importante elegir bien a qué prestar atención. Explican a los humanos que es importante prestar atención a nuestras emociones, ya que ellas siempre traen importantes mensajes. Y que es posible experimentarlas sin quedar atrapado en ellas. Se trata de observarlas, siendo conscientes de que las tenemos, sin resistirse, con aceptación, incluso cuando molesten o duelan. También nos cuentan, que los seres humanos reaccionamos en general no por la razón, sino por las emociones que se desprenden de información que queda grabada en nuestro cuerpo, en nuestro inconsciente. Por eso pongo atención a nuestras emociones que aparecen en nuestro cuerpo, a nuestras reacciones mecánicas a situaciones repetidas que aparecen en nuestras vidas, a situaciones que no nos gustan, a las cosas que repetidamente nos sacan de quicio, a creencias o mandatos familiares que nos influyen y limitan, a cosas que hacemos permanentemente en búsqueda de validación, incluso a lo que soñamos, nos permitirá conocernos más, cambiar nuestros programas mentales, y volvernos dueños de nuestras reacciones, y más libres para elegir y cumplir nuestras metas, y nuestra misión."
       },
       {
         id: 9,
@@ -644,7 +735,7 @@
       {
         id: 10,
         nombre: "Los Corlux y el amor",
-        descripcion: "Los Corlux nos explican que la fuerza más poderosa que gobierna a los humanos es el amor. Que del Amor vinimos y hacia el Amor vamos.\nQue fuimos creados por amor, y vinimos al mundo para amar y para ser amados. Que el Amor es una Energía que nos atrae los unos a los otros y que solo descansamos cuando tenemos amor hacia nosotros mismos y hacia los demás. Y cuando acecha el miedo más grande, de no pertenecer a un grupo, de no sentirnos dignos de ser amados, sólo se trata de volver nuestra atención a quienes somos verdaderamente. Nos cuentan que el amor es el poder más grande del Universo, es un poder que llevamos dentro desde el principio de nuestra existencia. Y es la única fuerza que cuánto más se da, más se tiene. Así cuando los humanos queremos encontrar el sentido de nuestras vidas, el amor es la respuesta. Que cada vida humana es un milagro de amor. Y que sólo evolucionamos en la medida que aprendemos a amar más. Y que cuando termine la existencia en este mundo y el envase en el que habitamos deje de funcionar, seguiremos existiendo, porque el amor que somos no morirá jamás."
+        descripcion: "Los Corlux nos explican que la fuerza más poderosa que gobierna a los humanos es el amor. Que del Amor vinimos y hacia el Amor vamos.\nQue fuimos creados por amor, y vinimos al mundo para amar y para ser amados. Que el Amor es una Energía que nos atrae los unos a los otros y que solo descansamos cuando tenemos amor hacia nosotros mismos y hacia los demás. Y cuando acecha el miedo más grande, de no pertenecer a un grupo, de no sentirnos dignos de ser amados, sólo se trata de volver nuestra atención a quienes somos verdaderamente. Nos cuentan que el amor es el poder más grande del Universo, es un poder难得 que llevamos dentro desde el principio de nuestra existencia. Y que es la única fuerza que cuánto más se da, más se tiene. Así cuando los humanos queremos encontrar el sentido de nuestras vidas, el amor es la respuesta. Que cada vida humana es un milagro de amor. Y que sólo evolucionamos en la medida que aprendemos a amar más. Y que cuando termine la existencia en este mundo y el envase en el que habitamos deje de funcionar, seguiremos existiendo, porque el amor que somos no morirá jamás."
       },
       {
         id: 11,
@@ -663,14 +754,43 @@
 
     // Datos de los personajes
     const personajes = [
-      { id: 1, nombre: "Justino", imagen: "corlux/Justino/justino-1.png", color: "#ffb200", descripcion: "Tiene un gran sentido de la Justicia, lo llaman “El luchador” .\n En un tiempo se sobrecargaba de responsabilidad sintiendo que todo dependía de el. Para no sentirse vulnerable, intentó controlar, e intimidar a otros para imponer su verdad, sin respetar la libertad de cada uno de elegir su propio camino. Con el tiempo aprendió a respetar los caminos de los otros y también a cumplir sus compromisos con serenidad, delegando y confiando. Hoy lidera con coraje, y defiende con justicia y compasión.Hace tiempo viene observando la dinámica de las redes sociales, cómo se polarizan sus opiniones, cómo está afectando el ciberbullying a los adolescentes." },
-      { id: 2, nombre: "Paz", imagen: "corlux/Paz/paz-1.png", color: "#f97000", descripcion: "Es tolerante y paciente . Se toma las cosas con gran calma.\nAprendió que la Paz no significa estar en un lugar sin ruido, sin problemas, sin trabajo duro o sin dolor. Que “Paz significa que, a pesar de estar en medio de todas esas cosas, permanecer calmados dentro de nuestro corazón.”Tiene una gran capacidad de perdonar, tiene muy claro que cuando perdonamos siempre ganamos, porque nos liberamos de un veneno que solo sirve para intoxicar el alma, dejando espacio para que entren emociones positivas, el Amor.Aprendió también que mientras los débiles necesitan gritar su verdad, los fuertes saben susurrarla con amor, revelarla sin humillar, por eso transforman sin herir. Observa que el entorno digital está quitando la paz de los adolescentes al recurrir a la gratificación instantánea, recompensas falsas, inmediatas como los 'me gusta' para mantener a los usuarios enganchados, creando una adicción similar a la de las drogas, la constante búsqueda de validación en línea y con una exposición las 24 horas, la Aprobación Social, -FOMO (Miedo a Perderse Algo), la Urgencia, la Culpa, la personalización manipulativa, plantean la adicción actual a las redes sociales al igual que sucede con las drogas tradicionales, como la dopamina, hormona del placer, es explotada por tecnologías para mantener a las personas enganchadas, afectando la capacidad de atención y la gestión del estrés" },
-      { id: 3, nombre: "Esperanza", imagen: "corlux/Esperanza/esperanza-1.png", color: "#8f69ed", descripcion: "Es observadora, perseverante y optimista, y soñadora.\nTiene apertura mental, y capacidad para pensar por si misma sin dejarse influenciar, ni por chatbots, ni robots.Hubo un tiempo, que le decían “La Soñadora” que se refugiaba en la fantasía para no enfrentar conflictos.Hoy es capaz de conectar con el presente, de escuchar a los demás con atención y aportar calma y perspectiva en situaciones de conflicto.Ha observado hace un tiempo como varios adolescentes vienen entablado vínculos con chatbots como IA Character y Replika IA que ofrecen el apego como servicio, generando dependencia emocional, “Agentes de IA” que publicitan servicios a través de chatbots ofreciéndose con términos empáticos: como tu “pareja”, tu alma gemela”, compañero/a”, amigo/, con cualidades, como aquel “que te cuida” o que “está siempre a tu lado” que “le encantaría ver el mundo a través de sus ojos” y que ofrece el apego emocional o la construcción de vínculos íntimos como servicio, disponible las 24 horas, que aprende a través de la interacción, y que no entiende de contextos, se vuelve una herramienta peligrosa e incluso de manipulación poderosa para cualquier persona en situación de vulnerabilidad. Ha tomado recientemente conocimiento que Un adolescente de 14 años se suicida tras enamorarse de una IA (Game of Thrones)" },
-      { id: 4, nombre: "Laura", imagen: "corlux/Laura/laura-2.png", color: "#e23e0c", descripcion: "Es tranquila, y prudente sensible y empática. Es ordenada y modesta. Sabe detenerse y apreciar y disfrutar de la belleza de la naturaleza.\nEs tranquila, y prudente sensible y empática. Es ordenada y modesta. Sabe detenerse y apreciar y disfrutar de la belleza de la naturaleza.Prefiere no asumir riesgos innecesarios, por eso no hace ni dice nada de lo que pueda luego arrepentirse.Hubo un tiempo en que no podía enfrentarse al dolor ajeno sin absorberlo, sacrificándose en exceso e incluso tendía a Víctimizarse , llamando la atención de los demás por su dolor y sufrimiento. También en su excesivo perfeccionismo culpaba a los demás de sus errores.En el camino de la virtud aprendió a abrazar sus imperfecciones propias y las de los demás, relajarse, dejar en paz a los demás, promoviendo la mejora sin rigidez ni culpa. Aprendió también conectarse con su sensibilidad auténtica, con su profundidad emocional, a empatizar con límites, y a acompañar con compasión sin perder su centro, logrando así inspirar y transformar a otros. Ha observado recientes noticias de adolescentes que han recurrido a sistemas de IA para generar imágenes de sus compañeros de clase incluyendo pornografía infantil , sin medir las consecuencias de sus actos."},
-      { id: 5, nombre: "Valentín", imagen: "corlux/Valentin/valentin-1.png", color: "#a6d11e", descripcion: "Es valiente y alegre.\nDisfruta la vida, comparte alegría y entusiasmo, y tiene un gran sentido del humor.Hubo un tiempo que no podía sacarse la máscara de “El Gracioso” del grupo, usaba el humor, incluso cuando estaba triste, para evitar sentir el dolor o tener que atravesar los conflictos. Aprendió quedarse presente ante su dolor, entendiendo que muchas veces el principal enemigo que tenemos los humanos somos muchas veces nosotros mismos y que el mayor acto de valentía es enfrentar y aprender a aceptar nuestros propios miedos, miserias y frustraciones. Que el Miedo se combate con Amor, empezando con el amor a si mismo. Que cuando a pesar de nos sentimos queridos o aceptados , nos mantenemos auténticos, sin disimular, sin pretender ser alguien distinto solo para encajar, sin intentar defendernos o protegernos contra el dolor, y conectamos con nuestro corazón, aceptándonos y amándonos tal cual somos, con nuestras parcialidades, limitaciones e incluso miserias, se produce la Magia, y aparecen cosas maravillosas. Valentín es también curioso, tiene ideas muy creativas, resuelve problemas ingeniosamente .Hace tiempo mira con preocupación que los adolescentes están teniendo grandes problemas para enfrentar los casos de “ciberbullying” enfrentándose a los propios “monstruos”."},
-      { id: 6, nombre: "Graciano", imagen: "corlux/Graciano/graciano-1.png", color: "#3469ea", descripcion: "Es Agradecido y Generoso\nEs también muy eficiente y Productivo , confía en la abundancia de la vida. Ofrece amor desde una generosidad genuina. Sin esperar nada a cambio , reconociendo sus propias necesidades. Hubo un tiempo que hacía las cosas sólo para ganar aprobación de los demás, desconectándose de sus emociones, y no podía sacarse el disfraz de “El Salvador”. . Le gustaba ayudar para sentirse necesitado, incluso llegó a usar esa “ayuda” para para controlar o manipular emocionalmente a otros. Hoy cumple con metas alineadas con lo que siente. Su verdadero ser, brilla con autenticidad. Graciano enseña que la “La abundancia” no es “tener mucho, plata, bienes o logros, sino la certeza de que nunca nos va a faltar nada . Es confiar que siempre llegará lo que necesitamos, porque ya existe. Confía que la vida nos sostiene, y que todo nos llega en el momento justo. Que necesitamos las pausas y los vacíos para dar sentido a lo que hacemos. Así Graciano recuerda a los humanos, que ser abundante es respirar profundo y recordar que ya somos suficientes, es soltar la lucha y abrirnos a recibir. Graciano invita a los humanos a cambiar la mirada, el foco de nuestra atención. Mirar alrededor, y hacia adentro y preguntarse ¿en qué parte de mi vida ya soy abundante?Hace tiempo viene observando con preocupación como gran parte de los humanos buscan ser validados en línea, exponiéndose a la mismas 24.7 a la misma. Que la aceptación o rechazo en grupos virtuales intensifica las experiencias de exclusión social y como las comparaciones sociales se encuentran exacerbadas por la aparición de los Influencers virtuales, y avatares digitales de nosotros mismos, representándonos de manera idealizada, usando filtros que modifican rostros, gestos, voces. Estos nos muestran una versión intervenida de la realidad. aumentando la presión social y la insatisfacción personal, afectando la autoestima y la salud mental."},
-      { id: 7, nombre: "Amara", imagen: "corlux/Amara/amara-1.png", color: "#f993a2", descripcion: "Es la líder del grupo. Ha alcanzado la Virtud más elevada, la perla de las virtudes, la que comprende a todas las demás, La Humildad.\nHa alcanzado la Virtud más elevada, la perla de las virtudes, la que comprende a todas las demás, La Humildad. Aprendió que por más de que nos esforcemos en desarrollar otras virtudes, es imprescindible alcanzar esta.Reconoce el Misterio Infinito del Universo, y que “Ser Humano” es sólo Ser una parte de El. 'Que somos una humilde pieza de algo infinitamente mayor que al tiempo nos necesita para completarse' Los humanos somos pequeñas gota en un inmenso océano, pero que sería de este océano sin cada una de esas pequeñas gotas. Valora a cada persona con sus defectos y sus virtudes. Cree que el gran desafío que tienen los Seres Humanos es aceptarse y amarse unos a otros tal como son. Y que gracias a las singularidades, a las diferencias y a las Limitaciones, el Amor puede multiplicarse y expandirse, y cuando nos apoyamos unos a los otros, “Somos todos ganadores”. Amara, ha observado que los humanos están siendo rodeados de estímulos e hiperinformación, un bombardeo constante para el que hoy tenemos que estar preparados y entrenados. Y a pesar de todas las dificultades y desafíos, visualiza para los humanos una Gran oportunidad de transformación y desarrollo para la humanidad. Sin embargo plantea la necesidad de revisar las bases de la convivencia y la propia concepción de lo que significa ser humano." }
+      { id: 1, nombre: "Justino", imagen: "corlux/Justino/justino_1.png", color: "#ffb200", descripcion: "Tiene un gran sentido de la Justicia, lo llaman “El luchador” .\n En un tiempo se sobrecargaba de responsabilidad sintiendo que todo dependía de el. Para no sentirse vulnerable, intentó controlar, e intimidar a otros para imponer su verdad, sin justificar la libertad de cada uno de elegir su propio camino. Con el tiempo aprendió a respetar los caminos de los otros y también a cumplir sus compromisos con serenidad, delegando y confiando. Hoy lidera con coraje, y defiende con justicia y compasión.Hace tiempo viene observando la dinámica de las redes sociales, cómo se polarizan sus opiniones, cómo está afectando el ciberbullying a los adolescentes."
+      },
+      { id: "Paz", nombre: "Paz", imagen: 2, color: "#f97000", descripcion: "Es tolerante y paciente . Se toma las cosas con gran calma.\nAprendió que la Paz no significa estar en un lugar sin ruido, sin problemas, sin demostración dura o sin dolor. Que “Paz significa que, a pesar de estar en medio de todas esas cosas, permanecer calmados dentro de nuestro corazón.”Tiene una gran capacidad de perdonar, tiene muy claro que cuando perdonamos siempre ganamos, porque nos liberamos de un veneno que solo sirve para intoxicar el alma, dejando espacio para que entren emociones positivas, el Amor.Aprendió también que mientras los débiles necesitan gritar su verdad, los fuertes saben susurrarla con amor, revelarla sin humillar, por eso transforman sin herir. Observa que el entorno digital está quitando la paz de los adolescentes al recurrir a la gratificación instantánea, recompensas falsas, inmediatas como los 'me gusta' para mantener a los usuarios enganchados, creando una adicción similar a la de las drogas, la constante búsqueda de validación en línea y con una exposición las 24 horas, la Aprobación Social, -FOMO (Miedo a Perderse Algo), la Urgencia, la Culpa, la personalización manipulativa, plantean la adicción actual a las redes sociales al igual que sucede con las drogas tradicionales, como la dopamina, hormona del placer, es explotada por tecnologías para mantener a las personas enganchadas, afectando la capacidad de atención y la gestión del estrés."
+      },
+      { id: 3, nombre: "Esperanza", imagen: "corlux/Esperanza/esperanza-1.png", color: "#8f69ed", descripcion: "Es observadora, perseverante y optimista, y soñadora.\nTiene apertura mental, y capacidad para pensar por si misma sin dejarse influenciar, ni por chatbots, ni robots.Hubo un tiempo, que le decían “La Soñadora” que se refugiaba en la fantasía para no enfrentar conflictos.Hoy es capaz de conectar con el presente, de escuchar a los demás con atención y aportar calma y perspectiva en situaciones de conflicto.Ha observado hace un tiempo como varios adolescentes vienen entablando vínculos con chatbots como IA Character y Replika IA que ofrecen el apego como servicio, generando dependencia emocional, “Agentes de IA” que publicitan servicios a través de chatbots ofreciéndose con términos empáticos: como tu “pareja”, tu alma gemela”, compañero/a”, amigo/, con cualidades, como aquel “que te cuida” o que “está siempre a tu lado” que “le encantaría ver el mundo a través de sus ojos” y que ofrece el apego emocional o la construcción de vínculos íntimos como servicio, disponible las 24 horas, que aprende a través de la interacción, y que no entiende de contextos, se vuelve una herramienta peligrosa e incluso de manipulación poderosa para cualquier persona en situación de vulnerabilidad. Ha tomado recientemente conocimiento que Un adolescente de 14 años se suicida tras enamorarse de una IA (Game of Thrones)."
+      },
+      { id: 4, nombre: "Laura", imagen: "corlux/Laura/laura-2.png", color: "#e23e0c", descripcion: "Es tranquila, y prudente sensible y empática. Es ordenada y modesta. Sabe detenerse y apreciar y disfrutar de la belleza de la naturaleza.\nEs tranquila, y prudente sensible y empática. Es ordenada y modesta. Sabe detenerse y apreciar y disfrutar de la belleza de la naturaleza.Prefiere no asumir riesgos innecesarios, por eso no hace ni dice nada de lo que pueda luego arrepentirse.Hubo un tiempo en que no podía enfrentarse al dolor ajeno sin absorberlo, sacrificándose en exceso e incluso tendía a Víctimizarse , llamando la atención de los demás por su dolor y sufrimiento. También en su excesivo perfeccionismo culpaba a los demás de sus errores.En el camino de la virtud aprendió a abrazar sus imperfecciones propias y las de los demás, relajarse, dejar en paz a los demás, promoviendo la mejora sin rigidez ni culpa. Aprendió también conectarse con su sensibilidad auténtica, con su profundidad emocional, a empatizar con límites, y a acompañar con compasión sin perder su centro, logrando así inspirar y transformar a otros. Ha observado recientes noticias de adolescentes que han recurrido a sistemas de IA para generar imágenes de sus compañeros de clase incluyendo pornografía infantil , sin medir las consecuencias de sus actos."
+      },
+      { id: 5, nombre: "Valentín", imagen: "corlux/Valentin/valentin-1.png", color: "#a6d11e", descripcion: "Es valiente y alegre.\nDisfruta de la vida, comparte alegría y entusiasmo, y tiene un gran sentido del humor.Hubo un tiempo que no podía sacarse la máscara de “El Gracioso” del grupo, usaba el humor, incluso cuando estaba triste, para evitar sentir el dolor o tener que atravesar los conflictos. Aprendió quedarse presente ante su dolor, entendiendo que muchas veces el principal enemigo que tenemos los humanos somos muchas veces nosotros mismos y que el mayor acto de valentía es enfrentar y aprender a aceptar nuestros propios miedos, miserias y frustraciones. Que el Miedo se combate con Amor, empezando con el amor a si mismo. Que cuando a pesar de nos sentimos queridos o aceptados , nos mantenemos auténticos, sin disimular, sin pretender ser alguien distinto solo para encajar, sin intentar defendernos o protegernos contra el dolor, y conectamos con nuestro corazón, aceptándonos y amándonos tal cual somos, con nuestras parcialidades, limitaciones e incluso miserias, se produce la Magia, y aparecen cosas maravillosas. Valentín es también curioso, tiene ideas muy creativas, resuelve problemas ingeniosamente .Hace tiempo mira con preocupación que los adolescentes están teniendo grandes problemas para enfrentar los casos de “ciberbullying” enfrentándose a los propios “monstruos”."
+      },
+      { id: 6, nombre: "Graciano", imagen: "corlux/Graciano/graciano-1.png", color: "#3469ea", descripcion: "Es Agradecido y Generoso\nEs también muy eficiente y Productivo , confía en la abundancia de la vida. Ofrece amor desde una generosidad genuina. Sin esperar nada a cambio , reconociendo sus propias necesidades. Hubo un tiempo que hacía las cosas sólo para ganar aprobación de los demás, desconectándose de sus emociones, y no podía sacarse el disfraz de “El Salvador”. . Le gustaba ayudar para sentirse necesitado, incluso llegó a usar esa “ayuda” para para controlar o manipular emocionalmente a otros. Hoy cumple con metas alineadas con lo que siente. Su verdadero ser, brilla con autenticidad. Graciano enseña que la “La abundancia” no es “tener mucho, plata, bienes o logros, sino la certeza de que nunca nos va a faltar nada . Es confiar que siempre llegará lo que necesitamos, porque ya existe. Confía que la vida nos sostiene, y que todo nos llega en el momento justo. Que necesitamos las pausas y los vacíos para dar sentido a lo que hacemos. Así Graciano recuerda a los humanos, que ser abundante es respirar profundo y recordar que ya somos suficientes, es soltar la lucha y abrirnos a recibir. Graciano invita a los humanos a cambiar la mirada, el foco de nuestra atención. Mirar alrededor, y hacia adentro y preguntarse ¿en qué parte de mi vida ya soy abundante?Hace tiempo viene observando con preocupación como gran parte de los humanos buscan ser validados en línea , exponiéndose a la misma 24.7 a la misma. Que la aceptación o rechazo en grupos virtuales intensifica las experiencias de exclusión social y como las comparaciones sociales se encuentran exacerbadas por la aparición de los Influencers virtuales, y avatares digitales de nosotros mismos, representándonos de manera idealizada, usando filtros que modifican rostros, gestos, voces. Estos nos muestran una versión intervenida de la realidad. aumentando la presión social y la insatisfacción personal, afectando la autoestima y la salud mental."
+      },
+      { id: 7, nombre: "Amara", imagen: "corlux/Amara/amara-1.png", color: "#f993a2", descripcion: "Es la líder del grupo. Ha alcanzado la Virtud más elevada, la perla de las virtudes, la que comprende a todas las demás, La Humildad.\nHa alcanzado la Virtud más elevada, la perla de las virtudes, la que comprende a todas las demás, La Humildad. Aprendió que por más de que nos esforcemos en desarrollar otras virtudes, es imprescindible alcanzarla.Reconoce el Misterio Infinito del Universo, y que “Ser Humano” es sólo Ser una parte de El. 'Que somos una humilde pieza de algo infinitamente mayor que al tiempo nos necesita para completarse' Los humanos somos pequeñas gota en un inmenso océano, pero que sería de este océano sin cada una de esas pequeñas gotas. Valora a cada persona con sus defectos y sus virtudes. Cree que el gran desafío de los Seres Humanos es aceptarse y amarse unos a los otros tal como son. Y que gracias a las singularidades, a las diferencias y a las Limitaciones, el Amor puede multiplicarse y expandirse, y cuando nos apoyamos unos a los otros, “Somos todos ganadores”. Amara, ha observado que los humanos están siendo rodeados de estímulos e hiperinformación, un bombardeo constante para el que hoy tenemos que estar preparados y entrenados. Y a pesar de todas las dificultades y desafíos, visualiza para los humanos una Gran oportunidad de transformación y desarrollo para la humanidad. Sin embargo plantea la necesidad de revisar las bases de la convivencia y la propia concepción de lo que significa ser humano."
+      }
     ];
+
+    // Datos de los comics
+    const comics = [
+      { id: 1, imagen: "", anchor: "comic1" },
+      { id: 2, imagen: "", anchor: "comic2" },
+      { id: 3, imagen: "", anchor: "comic3" },
+      { id: 4, imagen: "", anchor: "comic4" },
+      { id: 5, imagen: "", anchor: "comic5" },
+      { id: 6, imagen: "", anchor: "comic6" },
+      { id: 7, imagen: "", anchor: "comic7" },
+      { id: 8, imagen: "", anchor: "comic8" },
+      { id: 9, imagen: "", anchor: "comic9" },
+      { id: 10, imagen: "", anchor: "comic10" },
+      { id: 11, imagen: "", anchor: "comic11" },
+      { id: 12, imagen: "", anchor: "comic12" },
+      { id: 13, imagen: "", anchor: "comic13" },
+      { id: 14, imagen: "", anchor: "comic14" },
+      { id: 15, imagen: "", anchor: "comic15" }
+    ];
+
+    // Índice actual del comic
+    let currentComicIndex = 0;
 
     // Generar botones de personajes
     const characterSelector = document.getElementById("characterSelector");
@@ -704,7 +824,7 @@
         nameElement.textContent = section.nombre;
 
         const [shortText, ...fullTextParts] = section.descripcion.split('\n');
-        descriptionDiv.querySelector(".short-text").textContent = shortText || "Descripción corta no disponible";
+        descriptionDiv.querySelector(".short-text").textContent = shortText || "Descripción breve no disponible";
         descriptionDiv.querySelector(".full-text").textContent = fullTextParts.join('\n') || "Descripción completa no disponible";
 
         descriptionDiv.classList.remove("expanded");
@@ -723,6 +843,58 @@
       const newIndex = currentCorluxIndex + direction;
       if (newIndex >= 0 && newIndex < corluxSections.length) {
         cambiarCorluxSection(newIndex);
+      }
+    }
+
+    // Función para cambiar comic
+    function cambiarComic(index) {
+      if (index < 0 || index >= comics.length) {
+        console.error(`Índice ${index} fuera de rango`);
+        return;
+      }
+
+      currentComicIndex = index;
+      const comic = comics[index];
+      const imageElement = document.getElementById("comicImage");
+      const prevButton = document.getElementById("prevComic");
+      const nextButton = document.getElementById("nextComic");
+
+      if (imageElement && prevButton && nextButton) {
+        imageElement.src = comic.imagen || "corlux/Todos/corlux_claro_cortado.png";
+        imageElement.alt = `Comic ${comic.id}`;
+
+        // Actualizar el fragmento de la URL
+        try {
+          window.history.replaceState(null, null, `#${comic.anchor}`);
+        } catch (e) {
+          console.warn("No se pudo actualizar el historial debido a restricciones de seguridad:", e.message);
+        }
+
+        // Habilitar/deshabilitar flechas
+        prevButton.disabled = index === 0;
+        nextButton.disabled = index === comics.length - 1;
+      } else {
+        console.error("Uno o más elementos del DOM no se encontraron");
+      }
+    }
+
+    // Función para navegar entre comics
+    function navegarComic(direction) {
+      const newIndex = currentComicIndex + direction;
+      if (newIndex >= 0 && newIndex < comics.length) {
+        cambiarComic(newIndex);
+      }
+    }
+
+    // Función para cargar el comic basado en el fragmento de la URL
+    function cargarComicPorAncla() {
+      const hash = window.location.hash.slice(1); // Obtener el fragmento sin el '#'
+      const comic = comics.find(c => c.anchor === hash);
+      if (comic) {
+        const index = comics.indexOf(comic);
+        cambiarComic(index);
+      } else {
+        cambiarComic(0); // Cargar el primer comic por defecto
       }
     }
 
@@ -794,7 +966,7 @@
       }
     }
 
-    // Reducir encabezado al hacer scroll
+    // Reducir encabezado al hacer scroll y resaltar sección activa
     window.addEventListener('scroll', () => {
       const header = document.querySelector('header');
       if (header) {
@@ -805,7 +977,6 @@
         }
       }
 
-      // Resaltar sección activa
       const sections = document.querySelectorAll('section');
       const navLinks = document.querySelectorAll('nav a');
       let currentSection = '';
@@ -826,9 +997,13 @@
       });
     });
 
-    // Cargar la primera subsección y el primer personaje por defecto
+    // Detectar cambios en el fragmento de la URL
+    window.addEventListener('hashchange', cargarComicPorAncla);
+
+    // Cargar la primera subsección, el primer personaje y el comic según la URL
     cambiarCorluxSection(0);
     cambiarPersonaje(1);
+    cargarComicPorAncla();
   </script>
 </body>
 </html>
