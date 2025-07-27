@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Humanos S.O.S - Conciencia IA</title>
+  <style>
+    /* Estilos generales */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f2f1eb;
+      color: #383838;
+    }
+
+    /* Encabezado */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #383838;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+    }
+
+    .logo img {
+      width: 200px;
+      height: auto;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #f2f1eb;
+      font-weight: bold;
+      font-size: 14px;
+      padding: 5px 10px;
+    }
+
+    nav a:hover, nav a.active {
+      color: #26d1c8;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #383838;
+      min-width: 150px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 8px 10px;
+      color: #f2f1eb;
+      font-size: 12px;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #26d1c8;
+      color: #383838;
+    }
+
+    /* Secciones */
+    section {
+      padding: 80px 20px 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+      background-color: #f2f1eb;
+    }
+
+    section h2 {
+      font-size: 20px;
+      color: #383838;
+      margin-bottom: 10px;
+    }
+
+    section h3 {
+      font-size: 18px;
+      color: #383838;
+      margin: 20px 0 10px;
+    }
+
+    section p, section li {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    section ul {
+      margin: 0 0 20px 20px;
+      padding-left: 10px;
+    }
+
+    .comic-intro {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      max-width: 750px;
+    }
+
+    /* Viñetas */
+    .vinetas-container {
+      max-width: 1000px;
+      margin: 0 auto 20px;
+      padding: 20px;
+      background-color: #383838;
+      border-radius: 5px;
+    }
+
+    .vinetas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .vineta-image {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: #383838;
+      padding: 10px 0;
+      background-color: #f2f1eb;
+    }
+
+    /* Responsividad */
+    @media (max-width: 768px) {
+      header {
+        padding: 10px;
+      }
+
+      .logo img {
+        width: 150px;
+      }
+
+      nav {
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        font-size: 12px;
+        padding: 5px;
+      }
+
+      .dropdown-content {
+        min-width: 120px;
+      }
+
+      section {
+        padding: 60px 10px 20px;
+      }
+
+      .vinetas-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+
+      .vineta-image {
+        max-height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/Imagenes/logo_verde_b.png" alt="Logo">
+    </div>
+    <nav>
+      <div class="dropdown">
+        <a href="index.html#introduccion">Nuestro Proyecto</a>
+        <div class="dropdown-content">
+          <a href="index.html#introduccion">Alcance</a>
+          <a href="index.html#marco-conceptual">Marco Conceptual</a>
+          <a href="index.html#objetivos">Objetivos</a>
+          <a href="index.html#metodologia">Metodología</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="corlux.html#historia">Corlux</a>
+        <div class="dropdown-content">
+          <a href="corlux.html#historia">Historia</a>
+          <a href="corlux.html#personajes">Personajes</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#humanosSOS">Humanos S.O.S</a>
+        <div class="dropdown-content">
+          <a href="#humanosSOS">Comics</a>
+          <a href="#vinetas">Viñetas</a>
+          <a href="#tu-voz-crea-conciencia">Tu voz Crea Conciencia</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="juego.html#reglas">Juego</a>
+        <div class="dropdown-content">
+          <a href="juego.html#reglas">Reglas</a>
+          <a href="juego.html#cartas">Cartas</a>
+        </div>
+      </div>
+      <a href="Audios.html#espacio-pausa">Pausa Conexión</a>
+    </nav>
+  </header>
+
+  <section id="humanosSOS">
+    <h2>Humanos S.O.S</h2>
+    <div class="comic-intro">
+      <p>El programa incluye imágenes de historias de adolescentes que atraviesan conflictos que necesitan resolver. A continuación se muestra viñetas que introducen conflictos que atraviesan adolescentes en el entorno digital.</p>
+      <p>Los estudiantes deberán analizar:</p>
+      <ul>
+        <li>¿Qué pensamientos y emociones tienen los personajes de las historietas?</li>
+        <li>¿Cómo influye el entorno digital en el conflicto?</li>
+        <li>¿Cómo influyen las prácticas de cada personaje en dicho entorno?</li>
+        <li>¿Cómo aportaría el recorrer el camino de las virtudes en la solución del conflicto?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="vinetas">
+    <h2>Viñetas</h2>
+    <div class="vinetas-container">
+      <h3>Cómic 1</h3>
+      <div class="vinetas-grid">
+        <img src="comicsIMG/1.png" alt="Viñeta 1 del Cómic 1" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/2.png" alt="Viñeta 2 del Cómic 1" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/3.png" alt="Viñeta 3 del Cómic 1" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/4.png" alt="Viñeta 4 del Cómic 1" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/5.png" alt="Viñeta 5 del Cómic 1" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/6.png" alt="Viñeta 6 del Cómic 1" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/7.png" alt="Viñeta 7 del Cómic 1" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/8.png" alt="Viñeta 8 del Cómic 1" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+      </div>
+    </div>
+    <div class="vinetas-container">
+      <h3>Cómic 2</h3>
+      <div class="vinetas-grid">
+        <img src="comicsIMG/9.png" alt="Viñeta 1 del Cómic 2" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/10.png" alt="Viñeta 2 del Cómic 2" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/11.png" alt="Viñeta 3 del Cómic 2" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/12.png" alt="Viñeta 4 del Cómic 2" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/13.png" alt="Viñeta 5 del Cómic 2" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/14.png" alt="Viñeta 6 del Cómic 2" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/15.png" alt="Viñeta 7 del Cómic 2" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/16.png" alt="Viñeta 8 del Cómic 2" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+      </div>
+    </div>
+    <div class="vinetas-container">
+      <h3>Cómic 3</h3>
+      <div class="vinetas-grid">
+        <img src="comicsIMG/17.png" alt="Viñeta 1 del Cómic 3" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/18.png" alt="Viñeta 2 del Cómic 3" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/19.png" alt="Viñeta 3 del Cómic 3" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/20.png" alt="Viñeta 4 del Cómic 3" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/21.png" alt="Viñeta 5 del Cómic 3" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/22.png" alt="Viñeta 6 del Cómic 3" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/23.png" alt="Viñeta 7 del Cómic 3" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/24.png" alt="Viñeta 8 del Cómic 3" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+      </div>
+    </div>
+    <div class="vinetas-container">
+      <h3>Cómic 4</h3>
+      <div class="vinetas-grid">
+        <img src="comicsIMG/25.png" alt="Viñeta 1 del Cómic 4" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/26.png" alt="Viñeta 2 del Cómic 4" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/27.png" alt="Viñeta 3 del Cómic 4" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/28.png" alt="Viñeta 4 del Cómic 4" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/29.png" alt="Viñeta 5 del Cómic 4" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/30.png" alt="Viñeta 6 del Cómic 4" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+      </div>
+    </div>
+    <div class="vinetas-container">
+      <h3>Cómic 5</h3>
+      <div class="vinetas-grid">
+        <img src="comicsIMG/31.png" alt="Viñeta 1 del Cómic 5" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/32.png" alt="Viñeta 2 del Cómic 5" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/33.png" alt="Viñeta 3 del Cómic 5" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/34.png" alt="Viñeta 4 del Cómic 5" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/35.png" alt="Viñeta 5 del Cómic 5" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/36.png" alt="Viñeta 6 del Cómic 5" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+      </div>
+    </div>
+    <div class="vinetas-container">
+      <h3>Cómic 6</h3>
+      <div class="vinetas-grid">
+        <img src="comicsIMG/37.png" alt="Viñeta 1 del Cómic 6" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/38.png" alt="Viñeta 2 del Cómic 6" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/39.png" alt="Viñeta 3 del Cómic 6" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="comicsIMG/40.png" alt="Viñeta 4 del Cómic 6" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+      </div>
+    </div>
+  </section>
+
+  <section id="tu-voz-crea-conciencia">
+    <h2>Tu voz Crea Conciencia</h2>
+    <p>Invitamos a las personas a subir contenidos que cuentan sus historias S.O.S generando narrativas de experiencias de conflictos en el entorno digital (personales o de terceros) y como lograron resolverlo gracias a la otra IA (inteligencia amorosa), transformando los conflictos en oportunidades de crecimiento.</p>
+    <p>En las instituciones educativas, cada equipo deberá identificar las formas de resolver los conflictos, a través del descubrimiento de nuevas revelaciones, y explicando cómo la capacidad de hacer pausas, ejercer su espíritu crítico, el camino de las virtudes, y la confianza en los miembros de su equipo, les llevó a descubrirse en su individualidad, a desarrollar su creatividad, así como sus habilidades y talentos.</p>
+  </section>
+
+  <footer>
+    <p>© Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    // Navegación activa
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('nav a');
+      let current = '';
+
+      sections.forEach(section => {
+        const top = section.offsetTop - 80;
+        const height = section.offsetHeight;
+        if (window.scrollY >= top && window.scrollY < top + height) {
+          current = section.id;
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').includes(`#${current}`)) {
+          link.classList.add('active');
+        }
+        if (['humanosSOS', 'vinetas', 'tu-voz-crea-conciencia'].includes(current) && link.getAttribute('href') === '#humanosSOS') {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Inicialización
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.location.hash) {
+        const section = document.getElementById(window.location.hash.substring(1));
+        if (section) section.scrollIntoView();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -163,6 +163,7 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       position: relative;
       z-index: 1;
+      scroll-margin-top: 120px;
     }
 
     section:hover {
@@ -345,7 +346,7 @@
 <body>
   <header>
     <div class="logo">
-      <img src="Imagenes/logo_verde_b.png" alt="Logo">
+      <img src="/Imagenes/logo_verde_b.png" alt="Logo">
     </div>
     <nav>
       <div class="dropdown">
@@ -358,12 +359,18 @@
         </div>
       </div>
       <div class="dropdown">
-        <a href="comic.html#historia">Comics</a>
+        <a href="corlux.html#historia">Corlux</a>
         <div class="dropdown-content">
-          <a href="comic.html#historia">Historia</a>
-          <a href="comic.html#personajes">Personajes</a>
-          <a href="comic.html#humanosSOS">Humanos S.O.S</a>
-          <a href="#tu-voz-crea-conciencia">Tu voz Crea Conciencia</a>
+          <a href="corlux.html#historia">Historia</a>
+          <a href="corlux.html#personajes">Personajes</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="comics.html#humanosSOS">Humanos S.O.S</a>
+        <div class="dropdown-content">
+          <a href="comics.html#humanosSOS">Comics</a>
+          <a href="comics.html#vinetas">Viñetas</a>
+          <a href="comics.html#tu-voz-crea-conciencia">Tu voz Crea Conciencia</a>
         </div>
       </div>
       <div class="dropdown">
@@ -400,6 +407,12 @@
       </div>
     </div>
   </section>
+
+  <footer>
+    <p style="text-align: center; font-size: 14px; color: #383838; padding: 20px 0; margin: 0; background-color: #f2f1eb;">
+      © Todos los derechos reservados.
+    </p>
+  </footer>
 
   <script>
     // Lista de audios
@@ -479,7 +492,7 @@
     }
 
     // Leer parámetro de la URL y reproducir audio automáticamente
-    window.onload = () => {
+    window.addEventListener('load', () => {
       const urlParams = new URLSearchParams(window.location.search);
       const id = parseInt(urlParams.get('id')) - 1;
 
@@ -488,7 +501,7 @@
         document.getElementById("espacio-pausa").scrollIntoView({ behavior: 'smooth' });
       }
 
-      // Resaltar sección activa en el menú
+      // Resaltar sección activa en el menú al cargar
       const navLinks = document.querySelectorAll('nav a');
       navLinks.forEach(link => {
         link.classList.remove('active');
@@ -496,17 +509,13 @@
           link.classList.add('active');
         }
       });
-    };
+    });
 
-    // Reducir encabezado al hacer scroll
+    // Reducir encabezado y manejar navegación activa al hacer scroll
     window.addEventListener('scroll', () => {
       const header = document.querySelector('header');
       if (header) {
-        if (window.scrollY > 50) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
+        header.classList.toggle('scrolled', window.scrollY > 50);
       }
 
       // Resaltar sección activa
@@ -516,23 +525,25 @@
 
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        if (window.scrollY >= sectionTop - 100) {
+        const sectionHeight = section.offsetHeight;
+        if (window.scrollY >= sectionTop - 120 && window.scrollY < sectionTop + sectionHeight - 120) {
           currentSection = section.getAttribute('id');
         }
       });
 
       navLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href').slice(1) === currentSection) {
+        const href = link.getAttribute('href').toLowerCase();
+        if (href === `#${currentSection.toLowerCase()}`) {
           link.classList.add('active');
         }
       });
+
+      // No marcar ningún enlace si estamos arriba del todo
+      if (sections.length > 0 && window.scrollY < sections[0].offsetTop - 120) {
+        navLinks.forEach(link => link.classList.remove('active'));
+      }
     });
   </script>
-  <footer>
-    <p style="text-align: center; font-size: 14px; color: #383838; padding: 20px 0; margin: 0; background-color: #f2f1eb;">
-      © Todos los derechos reservados.
-    </p>
-  </footer>
 </body>
 </html>

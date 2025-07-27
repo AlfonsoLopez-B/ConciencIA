@@ -71,19 +71,6 @@
       width: 170px;
     }
 
-    .titulo {
-      position: absolute;
-      left: 150px;
-      font-size: 24px;
-      font-weight: bold;
-      color: #f2f1eb;
-      transition: font-size 0.3s ease;
-    }
-
-    header.scrolled .titulo {
-      font-size: 18px;
-    }
-
     nav {
       display: flex;
       align-items: center;
@@ -176,6 +163,7 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       position: relative;
       z-index: 1;
+      scroll-margin-top: 120px;
     }
 
     section:hover {
@@ -221,10 +209,6 @@
     }
 
     @media (max-width: 768px) {
-      .titulo {
-        left: 120px;
-      }
-
       nav {
         margin-right: 10px;
         flex-wrap: wrap;
@@ -249,21 +233,27 @@
     </div>
     <nav>
       <div class="dropdown">
-        <a href="proyecto.html#alcance">Nuestro Proyecto</a>
+        <a href="index.html#alcance">Nuestro Proyecto</a>
         <div class="dropdown-content">
-          <a href="index.html">Alcance</a>
+          <a href="index.html#alcance">Alcance</a>
           <a href="index.html#marco-conceptual">Marco Conceptual</a>
-          <a href="index.html">Objetivos</a>
-          <a href="index.html">Metodología</a>
+          <a href="index.html#objetivos">Objetivos</a>
+          <a href="index.html#metodologia">Metodología</a>
         </div>
       </div>
       <div class="dropdown">
-        <a href="comic.html#historia">Comics</a>
+        <a href="corlux.html#historia">Corlux</a>
         <div class="dropdown-content">
-          <a href="comic.html#historia">Historia</a>
-          <a href="comic.html#personajes">Personajes</a>
-          <a href="comic.html#humanosSOS">Humanos S.O.S</a>
-          <a href="#tu-voz-crea-conciencia">Tu voz Crea Conciencia</a>
+          <a href="corlux.html#historia">Historia</a>
+          <a href="corlux.html#personajes">Personajes</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="comics.html#humanosSOS">Humanos S.O.S</a>
+        <div class="dropdown-content">
+          <a href="comics.html#humanosSOS">Comics</a>
+          <a href="comics.html#vinetas">Viñetas</a>
+          <a href="comics.html#tu-voz-crea-conciencia">Tu voz Crea Conciencia</a>
         </div>
       </div>
       <div class="dropdown">
@@ -273,7 +263,7 @@
           <a href="#cartas">Cartas</a>
         </div>
       </div>
-      <a href="Audios.html#espacio-pausa">Pausa Conexion</a>
+      <a href="Audios.html#espacio-pausa">Pausa Conexión</a>
     </nav>
   </header>
 
@@ -320,16 +310,18 @@
     <p>Las cartas combinan preguntas de conocimiento (con opciones múltiples) y preguntas de empatía (basadas en emociones y experiencias personales), representadas por personajes que encarnan virtudes como la autenticidad, la resiliencia y la empatía. Algunas cartas están vinculadas a actividades de "Pausa y Conexión", que promueven la reflexión grupal y el respeto mutuo.</p>
   </section>
 
+  <footer>
+    <p style="text-align: center; font-size: 14px; color: #383838; padding: 20px 0; margin: 0; background-color: #f2f1eb;">
+      © Todos los derechos reservados.
+    </p>
+  </footer>
+
   <script>
-    // Reducir encabezado al hacer scroll
+    // Reducir encabezado y manejar navegación activa al hacer scroll
     window.addEventListener('scroll', () => {
       const header = document.querySelector('header');
       if (header) {
-        if (window.scrollY > 50) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
+        header.classList.toggle('scrolled', window.scrollY > 50);
       }
 
       // Resaltar sección activa
@@ -339,24 +331,43 @@
 
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        if (window.scrollY >= sectionTop - 100) {
+        const sectionHeight = section.offsetHeight;
+        if (window.scrollY >= sectionTop - 120 && window.scrollY < sectionTop + sectionHeight - 120) {
           currentSection = section.getAttribute('id');
         }
       });
 
       navLinks.forEach(link => {
         link.classList.remove('active');
-        const href = link.getAttribute('href');
-        if (href.startsWith('#') && href.slice(1) === currentSection) {
+        const href = link.getAttribute('href').toLowerCase();
+        if (href.includes(`#${currentSection.toLowerCase()}`)) {
           link.classList.add('active');
         }
       });
+
+      // Asegurar que el enlace principal de "Juego" esté activo si estamos en una de sus subsecciones
+      if (['reglas', 'cartas'].includes(currentSection)) {
+        navLinks.forEach(link => {
+          if (link.getAttribute('href') === '#reglas') {
+            link.classList.add('active');
+          }
+        });
+      } else if (window.scrollY < sections[0].offsetTop - 120) {
+        // No marcar ningún enlace si estamos arriba del todo
+        navLinks.forEach(link => link.classList.remove('active'));
+      }
+    });
+
+    // Inicialización al cargar la página
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.location.hash) {
+        const sectionId = window.location.hash.substring(1);
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView();
+        }
+      }
     });
   </script>
-  <footer>
-    <p style="text-align: center; font-size: 14px; color: #383838; padding: 20px 0; margin: 0; background-color: #f2f1eb;">
-      © Todos los derechos reservados.
-    </p>
-  </footer>
 </body>
 </html>
