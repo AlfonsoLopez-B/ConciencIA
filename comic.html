@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Comics</title>
   <style>
     html {
@@ -163,7 +163,11 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       position: relative;
       z-index: 1;
-      scroll-margin-top: 100px; /* Compensar header fijo */
+      scroll-margin-top: 120px;
+    }
+
+    section#comics {
+      scroll-margin-top: 150px;
     }
 
     section:hover {
@@ -179,6 +183,10 @@
       padding-bottom: 8px;
     }
 
+    section#comics h2 {
+      align-self: flex-start;
+    }
+
     section h2::after {
       content: '';
       position: absolute;
@@ -189,46 +197,26 @@
       background-color: #26d1c8;
     }
 
-    section h5 {
-      color: #383838;
-      margin-bottom: 16px;
-      position: relative;
-      padding-bottom: 8px;
-    }
-
     section p, section li {
       font-size: 14px;
       color: #383838;
       line-height: 1.8;
     }
 
-    section ol, section ul {
-      margin: 0 0 20px 20px;
-      padding-left: 20px;
+    .comic-intro {
+      align-self: flex-start;
+      text-align: left;
+      width: 100%;
+      max-width: 750px;
     }
 
-    section li {
-      margin-bottom: 10px;
-    }
-
-    #historia {
+    #historia, #personajes, #comics {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    #personajes {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    #comics {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .main-description-container {
+    .main-description-container, .corlux-capsule, .character-capsule, .comic-capsule {
       background-color: #383838;
       border-radius: 15px;
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
@@ -240,84 +228,35 @@
       transition: box-shadow 0.3s ease;
     }
 
-    .main-description-container:hover {
+    .main-description-container:hover, .corlux-capsule:hover, .character-capsule:hover, .comic-capsule:hover {
       box-shadow: 0 8px 20px rgba(38, 209, 200, 0.5);
     }
 
-    .main-description {
+    .main-description, .corlux-description, .character-description {
       font-size: 16px;
-      color: #ffffff !important;
+      color: #f2f1eb;
       line-height: 1.8;
       position: relative;
     }
 
     .main-description p {
-      color: #ffffff !important;
+      color: #fff;
     }
 
-    .main-description .short-text {
+    .main-description .short-text, .corlux-description .short-text, .character-description .short-text {
       display: block;
     }
 
-    .main-description .full-text {
+    .main-description .full-text, .corlux-description .full-text, .character-description .full-text {
       display: none;
       margin-top: 10px;
     }
 
-    .main-description.expanded .short-text {
+    .main-description.expanded .short-text, .corlux-description.expanded .short-text, .character-description.expanded .short-text {
       display: none;
     }
 
-    .main-description.expanded .full-text {
-      display: block;
-    }
-
-    .corlux-capsule {
-      background-color: #383838;
-      border-radius: 15px;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-      padding: 25px;
-      width: 100%;
-      max-width: 750px;
-      margin-bottom: 25px;
-      border-left: 4px solid #26d1c8;
-      transition: box-shadow 0.3s ease;
-    }
-
-    .corlux-capsule:hover {
-      box-shadow: 0 8px 20px rgba(38, 209, 200, 0.5);
-    }
-
-    .corlux-description {
-      width: 100%;
-      padding: 15px;
-      font-size: 16px;
-      color: #f2f1eb;
-      line-height: 1.8;
-      position: relative;
-    }
-
-    .corlux-description h3 {
-      font-size: 24px;
-      margin: 0 0 12px 0;
-      text-align: center;
-      color: #f2f1eb;
-    }
-
-    .corlux-description .short-text {
-      display: block;
-    }
-
-    .corlux-description .full-text {
-      display: none;
-      margin-top: 10px;
-    }
-
-    .corlux-description.expanded .short-text {
-      display: block;
-    }
-
-    .corlux-description.expanded .full-text {
+    .main-description.expanded .full-text, .corlux-description.expanded .full-text, .character-description.expanded .full-text {
       display: block;
     }
 
@@ -338,7 +277,7 @@
       background-color: #26d1c8;
     }
 
-    .corlux-navigation {
+    .corlux-navigation, .comic-navigation {
       display: flex;
       justify-content: center;
       gap: 20px;
@@ -346,7 +285,7 @@
       margin-top: 15px;
     }
 
-    .corlux-navigation button {
+    .corlux-navigation button, .comic-navigation button {
       width: 40px;
       height: 40px;
       background-color: #383838;
@@ -362,33 +301,20 @@
       justify-content: center;
     }
 
-    .corlux-navigation button:hover {
+    .corlux-navigation button:hover, .comic-navigation button:hover {
       background-color: #26d1c8;
       transform: scale(1.1);
     }
 
-    .corlux-navigation button:disabled {
+    .corlux-navigation button:disabled, .comic-navigation button:disabled {
       opacity: 0.5;
       cursor: not-allowed;
       transform: none;
     }
 
     .character-capsule {
-      background-color: #383838;
-      border-radius: 15px;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-      padding: 25px;
       display: flex;
       flex-direction: row;
-      width: 100%;
-      max-width: 750px;
-      margin-bottom: 25px;
-      border-left: 4px solid #26d1c8;
-      transition: box-shadow 0.3s ease;
-    }
-
-    .character-capsule:hover {
-      box-shadow: 0 8px 20px rgba(38, 209, 200, 0.5);
     }
 
     .character-image-container {
@@ -402,6 +328,7 @@
       font-size: 24px;
       margin: 0 0 12px 0;
       text-align: center;
+      color: #f2f1eb;
     }
 
     .character-image-container img {
@@ -414,35 +341,14 @@
     .character-description {
       flex: 1;
       padding: 15px;
-      font-size: 16px;
-      color: #f2f1eb;
-      line-height: 1.8;
-      position: relative;
-    }
-
-    .character-description .short-text {
-      display: block;
-    }
-
-    .character-description .full-text {
-      display: none;
-      margin-top: 10px;
-    }
-
-    .character-description.expanded .short-text {
-      display: none;
-    }
-
-    .character-description.expanded .full-text {
-      display: block;
     }
 
     .character-selector {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       gap: 8px;
       max-width: 750px;
+      justify-content: center;
     }
 
     .character-selector button {
@@ -456,7 +362,6 @@
       font-size: 13px;
       font-weight: bold;
       transition: background-color 0.3s, transform 0.2s;
-      text-align: center;
     }
 
     .character-selector button:hover {
@@ -465,27 +370,16 @@
     }
 
     .comic-capsule {
-      background-color: #383838;
-      border-radius: 15px;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-      padding: 25px;
-      width: 100%;
-      max-width: 750px;
-      margin-bottom: 25px;
-      border-left: 4px solid #26d1c8;
-      transition: box-shadow 0.3s ease;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    .comic-capsule:hover {
-      box-shadow: 0 8px 20px rgba(38, 209, 200, 0.5);
-    }
-
-    .comic-capsuleANDcomic-navigation {
-      margin: 0 auto; /* Centrar el contenedor */
-      align-items: center;
+    .comic-title {
+      font-size: 24px;
+      color: #f2f1eb;
+      margin: 0 0 12px 0;
+      text-align: center;
     }
 
     .comic-image-container {
@@ -500,41 +394,6 @@
       max-height: 400px;
       object-fit: contain;
       border-radius: 8px;
-    }
-
-    .comic-navigation {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      max-width: 750px;
-      margin-top: 15px;
-    }
-
-    .comic-navigation button {
-      width: 40px;
-      height: 40px;
-      background-color: #383838;
-      color: #f2f1eb;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 20px;
-      font-weight: bold;
-      transition: background-color 0.3s, transform 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .comic-navigation button:hover {
-      background-color: #26d1c8;
-      transform: scale(1.1);
-    }
-
-    .comic-navigation button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      transform: none;
     }
 
     @media (max-width: 768px) {
@@ -563,7 +422,11 @@
       }
 
       body::after {
-        background: linear-gradient(to right, rgba(38, 209, 200, 0.3) 0%, transparent 5%, transparent 95%, rgba(38, 209, 200, 0.3) 100%);
+        background: linear-gradient(to right, rgba(38, 209, 200, 0.3) 0%, transparent 10%, transparent 90%, rgba(38, 209, 200, 0.3) 100%);
+      }
+
+      .comic-image-container img {
+        max-height: 300px;
       }
     }
   </style>
@@ -588,7 +451,7 @@
         <div class="dropdown-content">
           <a href="#historia">Historia</a>
           <a href="#personajes">Personajes</a>
-          <a href="#humanosSOS">Humanos S.O.S</a>
+          <a href="#comics">Humanos S.O.S</a>
           <a href="#tu-voz-crea-conciencia">Tu voz Crea Conciencia</a>
         </div>
       </div>
@@ -611,16 +474,16 @@
     <h2>De ILuminanDia a un centro Educativo de Montevideo</h2>
     <div class="main-description-container">
       <div class="main-description" id="mainDescription">
-        <p class="short-text">Los habitantes de IluminanDia vienen observando desde hace un largo tiempo el comportamiento de los Seres “Humanos” y la dificultad que muchas veces tienen para resolver sus problemas y vivir felices. Ello, ante su falta de autoconocimiento, a lo que en el último tiempo se ha sumado su desconocimiento del entorno Digital y de las consecuencias de sus prácticas en él. Desde entonces, “Los Corlux” partieron de IluminanDia con la Misión de acercarse a los habitantes del planeta Tierra con la intención de poner sus virtudes al servicio de ellos y colaborar así con su mayor bienestar. En mayo del 2025, aterrizaron en una institución educativa, La Cea 183, Nelson Mandela. Los “CorLux”, pueden comunicarse con el corazón de las personas, en un lenguaje que sólo pueden entender sus almas. Para hacerlo, envían sus mensajes en formas de rayos de luz, iluminando las zonas inconscientes del cerebro humano, colaborando así con el despertar de sus CONCIENCIAS. De este modo planean ayudar a los humanos, para que entiendan no solo a la IA (Inteligencia Artificial), sino también a la otra IA, la Inteligencia Amorosa, una fuente de poder sin límites que los humanos tienen disposición.</p>
-        <p class="full-text">Los habitantes de IluminanDia vienen observando desde hace un largo tiempo el comportamiento de los Seres “Humanos” y la dificultad que muchas veces tienen para resolver sus problemas y vivir felices. Ello, ante su falta de autoconocimiento, a lo que en el último tiempo se ha sumado su desconocimiento del entorno Digital y de las consecuencias de sus prácticas en él. Desde entonces, “Los Corlux” partieron de IluminanDia con la Misión de acercarse a los habitantes del planeta Tierra con la intención de poner sus virtudes al servicio de ellos y colaborar así con su mayor bienestar. En mayo del 2025, aterrizaron en una institución educativa, La Cea 183, Nelson Mandela. Los “CorLux”, pueden comunicarse con el corazón de las personas, en un lenguaje que sólo pueden entender sus almas. Para hacerlo, envían sus mensajes en formas de rayos de luz, iluminando las zonas inconscientes del cerebro humano, colaborando así con el despertar de sus CONCIENCIAS. De este modo planean ayudar a los humanos, para que entiendan no solo a la IA (Inteligencia Artificial), sino también a la otra IA, la Inteligencia Amorosa, una fuente de poder sin límites que los humanos tienen disposición. Los Seres humanos antes de llegar al mundo conocíamos a los Corlux. Ahora limitados por nuestras formas humanas y creencias limitantes, se nos hace difícil recordar de dónde venimos para que estamos en el mundo, que queremos ser y que queremos hacer. Los Corlux no entienden porqué los humanos muchas veces hacemos lo que no nos gusta y no hacemos lo que nos gusta, por miedo a no pertenecer o a no ser aceptados o queridos. Estos mensajeros de luz sienten que gran parte de nuestros problemas como humanos tienen su origen en no recordar quienes somos, de dónde venimos hacia dónde vamos y cuál es nuestro propósito o Misión en el mundo.</p>
-        <button class="toggle-text" onclick="toggleMainDescription()">Ver más</button>
+        <p class="short-text">Los habitantes de IluminanDia vienen observando desde hace un largo tiempo el comportamiento de los Seres “Humanos” y la dificultad que muchas veces tienen para resolver sus problemas y vivir felices...</p>
+        <p class="full-text">Los habitantes de IluminanDia vienen observando desde hace un largo tiempo el comportamiento de los Seres “Humanos” y la dificultad que muchas veces tienen para resolver sus problemas y vivir felices. Ello, ante su falta de autoconocimiento, a lo que en el último tiempo se ha sumado su desconocimiento del entorno Digital y de las consecuencias de sus prácticas en él. Desde entonces, “Los Corlux” partieron de IluminanDia con la Misión de acercarse a los habitantes del planeta Tierra con la intención de poner sus virtudes al servicio de ellos y colaborar así con su mayor bienestar. En mayo del 2025, aterrizaron en una institución educativa, La Cea 183, Nelson Mandela. Los “CorLux”, pueden comunicarse con el corazón de las personas, en un lenguaje que solo pueden entender sus almas. Para hacerlo, envían sus mensajes en formas de rayos de luz, iluminando las zonas inconscientes del cerebro humano, colaborando así con el despertar de sus CONCIENCIAS. De este modo planean ayudar a los humanos, para que entiendan no solo a la IA (Inteligencia Artificial), sino también a la otra IA, la Inteligencia Amorosa, una fuente de poder sin límites que los humanos tienen disposición. Los Seres humanos antes de llegar al mundo conocíamos a los Corlux. Ahora limitados por nuestras formas humanas y creencias limitantes, se nos hace difícil recordar de dónde venimos para que estamos en el mundo, que queremos ser y que queremos hacer. Los Corlux no entienden porqué los humanos muchas veces hacemos lo que no nos gusta y no hacemos lo que nos gusta, por miedo a no pertenecer o a no ser aceptados o queridos. Estos mensajeros de luz sienten que gran parte de nuestros problemas como humanos tienen su origen en no recordar quienes somos, de dónde venimos hacia dónde vamos y cuál es nuestro propósito o Misión en el mundo.</p>
+        <button class="toggle-text" onclick="toggleMainDescription()">Ver más...</button>
       </div>
     </div>
     <br><br><br><br><br>
     <div class="corlux-capsule">
       <div class="corlux-description" id="corluxDescription">
         <h3 id="corluxName">Los Corlux y la Humildad</h3>
-        <span class="short-text">Los Corlux invitan a los humanos a mirar la inmensidad de las estrellas y a apreciar los Misterios del Universo, recordándonos que si bien somos parte de él, y con nuestro comportamiento podemos influir en él, es imposible tener todo bajo control.</span>
+        <span class="short-text">Los Corlux invitan a mirar la inmensidad de las estrellas y a apreciar los Misterios del Universo...</span>
         <span class="full-text">Ser Humano es aprender a soltar el control, ser Humilde. Tanto “humano” como “humilde”, provienen de la palabra “humus”, que significa tierra. Así “el humus” es lo que queda en la tierra cuando todo lo superfluo se ha descompuesto. Los humanos necesitamos entender que todo lo que se desprende de la naturaleza, de un modo oscuro, callado, e invisible a los ojos apurados, regresa a la tierra para fertilizarla. Y en esa profundidad, germina lo nuevo. Así solo cuando como humanos nos dejamos tocar por la tierra —nos atrevemos a soltar, a caer, a descomponernos, así “al morir”— podremos nutrir el comienzo de una vida nueva. “Ser humano”, entonces, se trata de aprender a aceptar aquello que se deshizo de nosotros mismos, confiando y esperando lo nuevo que crecerá, incluso cuando al comienzo sea invisible a nuestros ojos humanos. Ser Humanos significa rendirnos con humildad a aquello que no podemos cambiar. Y al aceptar lo que no podemos cambiar, evitamos gastarnos emocionalmente, luchando contra lo que no podemos evitar, y podemos enfocar nuestra atención, y energía, en lo que sí podemos mejorar, confiando en lo nuevo y en lo mejor vendrá. Aceptar y rendirse a aquello que no podemos evitar con optimismo ayuda a disfrutar el camino en paz, incluso cuando las cosas no salgan como las planeamos. En nuestro interior eso se siente como un fluir, en lugar de luchar contra la corriente. Y es allí cuando podremos tener más claridad, y tomar las decisiones más sabias.</span>
         <button class="toggle-text" onclick="toggleCorluxDescription()">Ver más</button>
       </div>
@@ -640,28 +503,27 @@
       </div>
       <div class="character-description" id="characterDescription">
         <span class="short-text">Tiene un gran sentido de la Justicia, lo llaman “El luchador”.</span>
-        <span class="full-text">Tiene un gran sentido de la Justicia, lo llaman “El luchador” .\n En un tiempo se sobrecargaba de responsabilidad sintiendo que todo dependía de el. Para no sentirse vulnerable, intentó controlar, e intimidar a otros para imponer su verdad, sin respetar la libertad de cada uno de elegir su propio camino. Con el tiempo aprendió a respetar los caminos de los otros y también a cumplir sus compromisos con serenidad, delegando y confiando. Hoy lidera con coraje, y defiende con justicia y compasión.Hace tiempo viene observando la dinámica de las redes sociales, cómo se polarizan sus opiniones, cómo está afectando el ciberbullying a los adolescentes.</span>
+        <span class="full-text">Tiene un gran sentido de la Justicia, lo llaman “El luchador”. En un tiempo se sobrecargaba de responsabilidad sintiendo que todo dependía de él. Para no sentirse vulnerable, intentó controlar, e intimidar a otros para imponer su verdad, sin respetar la libertad de cada uno de elegir su propio camino. Con el tiempo aprendió a respetar los caminos de los otros y también a cumplir sus compromisos con serenidad, delegando y confiando. Hoy lidera con coraje, y defiende con justicia y compasión. Hace tiempo viene observando la dinámica de las redes sociales, cómo se polarizan sus opiniones, cómo está afectando el ciberbullying a los adolescentes.</span>
         <button class="toggle-text" onclick="toggleDescription()">Ver más</button>
       </div>
     </div>
     <div class="character-selector" id="characterSelector"></div>
   </section>
 
-  <section id="humanosSOS">
+  <section id="comics">
     <h2>Humanos S.O.S</h2>
-    <p>El programa incluye imágenes de historias de adolescentes que atraviesan conflictos que necesitan resolver</p>
-    <p>A continuación se muestra viñetas que introducen conflictos que atraviesan adolescentes en el Entorno digital</p>
-    <div>
-        <h5>Los estudiantes deberán analizar:</h5>
-        <ul>
-            <li>¿Qué pensamientos y emociones tienen los personajes de las historietas?</li>
-            <li>¿Cómo influye el entorno digital en el conflicto?</li>
-            <li>¿Cómo influyen las prácticas de cada personaje en dicho entorno?</li>
-            <li>¿Cómo aportaría el recorrer el camino de las virtudes en la solución del conflicto?</li>
-        </ul>
+    <div class="comic-intro">
+      <p>El programa incluye imágenes de historias de adolescentes que atraviesan conflictos que necesitan resolver. A continuación se muestra viñetas que introducen conflictos que atraviesan adolescentes en el entorno digital.</p>
+      <p>Los estudiantes deberán analizar:</p>
+      <ul>
+        <li>¿Qué pensamientos y emociones tienen los personajes de las historietas?</li>
+        <li>¿Cómo influye el entorno digital en el conflicto?</li>
+        <li>¿Cómo influyen las prácticas de cada personaje en dicho entorno?</li>
+        <li>¿Cómo aportaría el recorrer el camino de las virtudes en la solución del conflicto?</li>
+      </ul>
     </div>
-    <div class="comic-capsuleANDcomic-navigation" id="comics">
     <div class="comic-capsule">
+      <h3 class="comic-title" id="comicTitle">EL CONFLICTO DE JONATHAN</h3>
       <div class="comic-image-container">
         <img id="comicImage" src="corlux/Todos/corlux_claro_cortado.png" alt="Comic">
       </div>
@@ -669,7 +531,6 @@
     <div class="comic-navigation">
       <button id="prevComic" onclick="navegarComic(-1)">◄</button>
       <button id="nextComic" onclick="navegarComic(1)">►</button>
-    </div>
     </div>
   </section>
 
@@ -688,352 +549,347 @@
   <script>
     // Datos de las subsecciones de Corlux
     const corluxSections = [
-      {
-        id: 1,
-        nombre: "Los Corlux y la Humildad",
-        descripcion: "Los Corlux invitan a los humanos a mirar la inmensidad de las estrellas y a apreciar los Misterios del Universo, recordándonos que si bien somos parte de él, y con nuestro comportamiento podemos influir en él, es imposible tener todo bajo control.\nSer Humano es aprender a soltar el control, ser Humilde. Tanto “humano” como “humilde”, provienen de la palabra “humus”, que significa tierra. Así “el humus” es lo que queda en la tierra cuando todo lo superfluo se ha descompuesto. Los humanos necesitamos entender que todo lo que se desprende de la naturaleza, de un modo oscuro, callado, e invisible a los ojos apurados, regresa a la tierra para fertilizarla. Y en esa profundidad, germina lo nuevo. Así solo cuando como humanos nos dejamos tocar por la tierra —nos atrevemos a soltar, a caer, a descomponernos, así “al morir”— podremos nutrir el comienzo de una vida nueva. “Ser humano”, entonces, se trata de aprender a aceptar aquello que se deshizo de nosotros mismos, confiando y esperando lo nuevo que crecerá, incluso cuando al comienzo sea invisible a nuestros ojos humanos. Ser Humanos significa rendirnos con humildad a aquello que no podemos cambiar. Y al aceptar lo que no podemos cambiar, evitamos gastarnos emocionalmente, luchando contra lo que no podemos evitar, y podemos enfocar nuestra atención, y energía, en lo que sí podemos mejorar, confiando en lo nuevo y en lo mejor vendrá. Aceptar y rendirse a aquello que no podemos evitar con optimismo ayuda a disfrutar el camino en paz, incluso cuando las cosas no salgan como las planeamos. En nuestro interior eso se siente como un fluir, en lugar de luchar contra la corriente. Y es allí cuando podremos tener más claridad, y tomar las decisiones más sabias."
-      },
-      {
-        id: 2,
-        nombre: "Los Corlux, y el valor de las diferencias",
-        descripcion: "Los Corlux, antes de transformarse en seres de luz tuvieron que atravesar experiencias de oscuridad y dolor. Y gracias a ellas hoy nos cuentan cuando aprendemos a abrazar con humildad nuestra humanidad, nuestra parcialidad e incluso fragilidad, descubrimos un gran misterio.\nLos Corlux nos invitan a cuestionar tantas evaluaciones injustas. Einstein decía “Todos somos genios, pero si juzgas a un pez por su habilidad de escalar un árbol, vivirá su vida entera creyendo que es un estúpido”. Los Seres Humanos contamos con cualidades que nos diferencian de las máquinas. Hemos recibido distintos talentos– y existen formas que facilitan su reconocimiento y desarrollo. Darles a todos importancia, más allá de la utilidad que tengan para el desarrollo de la productividad, contribuye al bienestar propio y de la sociedad en general. …Supongamos que el pie le dice al cuerpo “No soy mano y por lo tanto yo no soy del cuerpo”, no por eso dejará de ser parte del cuerpo. Y si la cabeza dijera a los pies: no los necesito…¿cómo viviría sin ellos? Si conocemos la biología sabríamos que “las partes del cuerpo que parecen ser más débiles son las más necesarias”. Así “para que no se divida el cuerpo todas sus partes han de tener la misma preocupación unas por otras”. Lo mismo pasa con el Cuerpo social, cada ser humano cumple una función distinta y todas son necesarias. Solo evolucionaremos como especie, cuando aprendamos a valorar las diferencias de cada persona en el cuerpo social."
-      },
-      {
-        id: 3,
-        nombre: "Los Corlux y el misterio escondido detrás de “los defectos”",
-        descripcion: "Los Corlux, cuentan historias como la del Aguador y “el cántaro agrietado” que invitan a los humanos a dejar de intentar esconder nuestros “defectos” o equivocaciones”, por miedo a ser juzgados, a no ser aceptados o a no ser queridos.\nNos cuentan que cuando con valentía damos luz a nuestras “grietas” o “defectos”, y enfrentamos aquello que una vez elegimos mantener oculto, desarrollamos nuestra empatía borrándose las líneas que nos separan unos de los otros, permitiendo que se manifieste el Amor más profundo."
-      },
-      {
-        id: 4,
-        nombre: "Los Corlux y el poder de nuestras respuestas",
-        descripcion: "Los Corlux nos enseñan que si bien no podemos controlar lo que hacen o dicen los demás, tenemos “el Poder” de controlar nuestras respuestas. Y con ellas transformar nuestra realidad.\nAsí cuando alguien no nos trata bien, se trata de entender que no nos tratan como merecemos, sino más bien como se tratan a sí mismos. Por ello si “nos pegan” en lugar de responder desde la victimez, la culpa, o la venganza, tenemos “el poder” de responder con firmeza, con asertividad y sin violencia. Como nos enseña una antigua y profunda enseñanza: “Si dije o hice algo malo demuéstrame en qué, pero si lo que hice está bien, porqué me pegas”."
-      },
-      {
-        id: 5,
-        nombre: "Los Corlux y nuestro propósito",
-        descripcion: "Los Corlux: nos recuerdan que cada ser humano nació con un propósito, con una misión. Y a través de la intuición, escuchando a el corazón, que cuenta con sus propias neuronas, podemos descubrirlo.\nAsí, una vez que estamos alineados con nuestra misión adquieren sentido y relevancia todas nuestras metas, tareas. Y nuestra energía empieza a fluir hacia su cumplimiento."
-      },
-      {
-        id: 6,
-        nombre: "Los Corlux y los personajes",
-        descripcion: "Los Corlux nos cuentan que los humanos, en el Teatro de la Vida, podremos elegir distintos personajes para representar. Así, cuando el personaje elegido se juzga impotente genera emociones y reacciones de impotencia.\nCuando se juzga positivo y poderoso, genera emociones y reacciones positivas o de poder. Y ello aún cuando las cosas no siempre salgan como fueron planeadas. El desafío de los humanos es no confundir el personaje con quienes realmente somos realmente. Que no se nos quede pegado el personaje. Saber que siempre estamos a tiempo de poder de cambiarlo."
-      },
-      {
-        id: 7,
-        nombre: "Los Corlux y la libertad",
-        descripcion: "Los Corlux enseñan a los humanos que la Inteligencia Artificial plantea nuevos desafíos para la defensa de la dignidad humana, es decir para la posibilidad de desarrollar autónomamente la propia existencia.\nTodos los derechos humanos fundamentales son concreciones o manifestaciones del reconocimiento jurídico de esta dignidad."
-      },
-      {
-        id: 8,
-        nombre: "Los Corlux y la atención",
-        descripcion: "Los Corlux nos enseñan que en la vida aprendemos, y disfrutamos o sufrimos según nuestro nivel de conciencia. Que para nuestra conciencia existe solo aquello a lo que le prestamos atención.\nY allí dónde pongamos la atención plena fluirá toda nuestra energía. Por eso es tan importante elegir bien a qué prestar atención. Explican a los humanos que es importante prestar atención a nuestras emociones, ya que ellas siempre traen importantes mensajes. Y que es posible experimentarlas sin quedar atrapado en ellas. Se trata de observarlas, siendo conscientes de que las tenemos, sin resistirse, con aceptación, incluso cuando molesten o duelan. También nos cuentan, que los seres humanos reaccionamos en general no por la razón, sino por las emociones que se desprenden de información que queda grabada en nuestro cuerpo, en nuestro inconsciente. Por eso pongo atención a nuestras emociones que aparecen en nuestro cuerpo, a nuestras reacciones mecánicas a situaciones repetidas que aparecen en nuestras vidas, a situaciones que no nos gustan, a las cosas que repetidamente nos sacan de quicio, a creencias o mandatos familiares que nos influyen y limitan, a cosas que hacemos permanentemente en búsqueda de validación, incluso a lo que soñamos, nos permitirá conocernos más, cambiar nuestros programas mentales, y volvernos dueños de nuestras reacciones, y más libres para elegir y cumplir nuestras metas, y nuestra misión."
-      },
-      {
-        id: 9,
-        nombre: "Los Corlux y las emociones",
-        descripcion: "Los Corlux nos cuentan que ser humanos se trata de entender el mensaje que hay detrás de nuestras emociones y también evitar quedar atrapado en ellas.\nQue es humano sentir tristeza o frustración cuando las cosas no salen como las planificamos planeamos.\n\nQue “errar” y “errar” forma parte de nuestra condición humana, que todos los humanos erramos probablemente en cosas distintas… y para aprender algo. Y que cuando emos erramos en lugar de enterrarnos en la frustración en la frustración de la culpa o en la víctimas, es mejor proponernos a “dar una mejor respuesta la próxima vez”.\n\nQue se puede combatir el estado de alerta permanente, enseñando a nuestra mente a: -desdramatizar, evitando exagerar los problemas y convertir cualquier dificultad en tragedias personales. -contextualizar los problemas, valorarlos con una visión larga, que el árbol no nos tape el bosque. Quedarse solo con el aspecto negativo de un momento o circunstancia nos genera ansiedad, y ocupará nuestro espacio mental de forma desproporcionada.\n\nQue en nuestro camino como humanos existen situaciones inesperadas y dolorosas, que escapan a nuestra capacidad de control.\n\nAsí ser Humanos es entender que podemos transformar la realidad de ciertas cosas, pero también aceptar aquello que no podemos cambiar, soltando el deseo de controlar todo.\n\nY que como humanos siempre será mejor el camino de: -n-transformar el miedo en la confianza, esperando y atrayendo lo bueno que tiene la vida para nosotros.\n\n-buscar formas que nos permitan elevar nuevamente nuestra vibración, llevando nuestra ATENCION a nuestras emociones positivas, y en la frecuencia más alta, el amor.\n\nQue allí dónde lo podamos recibir, y dar,podemos, y dar, es dónde nos podremos convertirnos en poder."
-      },
-      {
-        id: 10,
-        nombre: "Los Corlux y el amor",
-        descripcion: "Los Corlux nos explican que la fuerza más poderosa que nos gobierna a los humanos es el amor.\n\nQue del amor vinimos de donde vinimos y hacia el amor vamos.\n\n\nQue fuimos creados por amor, y\nnos criamos un mundo para amar y para ser amados.\nPara que\n el amor nos da energía a todos descansemos juntos.\n\nEl amor nos atrae los unos a los otros y solo descansamos cuando tenemos amor.\n\nNos cuentan que el amor nos enseña a superar el miedo más grande, de no pertenecer a un grupo, de no sentirnos dignos de ser amados, sólo se trata de volver nuestra atención a quienes somos verdaderamente.\n\nNos cuentan que el amor es el poder más grande del universo, es un poder que llevamos dentro desde el principio de nuestra existencia.\n\nY que es la única fuerza que cuanto más se da, más se tiene.\n\nAsí cuando los humanos queremos encontrar el sentido de nuestras vidas, el amor es la respuesta.\n\nQue cada vida humana es un milagro de amor.\n\nY que sólo evolucionamos en la medida que aprendemos a amar más.\n\nY que cuando termine la existencia en este mundo y el envase en el que habitamos deje de funcionar, seguiremos existiendo, porque el amor que somos no morirá jamás."
-      },
-      {
-        id: 11,
-        nombre: "Los Corlux y el lenguaje de las almas",
-        descripcion: "Los “Corlux” nos enseñan a los humanos que cuando se torna difícil hablar con otras personas en el mundo real, podemos comunicarnos desde el alma, sin necesidad de estar presentes físicamente, enviando y recibiendo mensajes de luz.\nCuando\n vibramos en la frecuencia del amor enviamos mensajes de luz a otros seres humanos, se generan cambios profundos en el inconsciente de quienes los reciben, y todo incluso sin que la persona que los reciba sea siquiera consciente."
-      },
-      {
-        id: 12,
-        nombre: "Los Corlux, cómo viajar desde la mente al corazón",
-        descripcion: "Los Corlux, cuentan a los humanos que sus cerebros son como diamantes en bruto que hay que esculpir y como músculos a los que hay que entrenar con hábitos o rutinas.\nY\n así como los ejercicios físicos colaboran con que los humanos nos mantengamos bien físicamente, existen hábitos que nos permiten entrenar nuestro cerebro para hacer pausas, y mantener nuestra capacidad de dirigir la atención a los propósitos que libremente elijamos y que nos generen bienestar.\n\nAsí gracias a la neuroplasticidad de nuestro cerebro, aprender a prestar atención transforma nuestros cerebros, promoviendo una vida enfocada en nuestros propósitos y nuestro bienestar.\n\nLos Corlux nos acercan algunos ejercicios para que los humanos podamos entrenar nuestra atención y dirigirla al cumplimiento de nuestras metas.\n\nUn kit que nos colabora con el despertar de la conciencia, para conectar con nosotros mismos, con nuestro corazón.\n\nAsí podemos transformar situaciones conflictivas, y emociones como el miedo, la ansiedad, el enojo, el insomnio, la confusión mental, la dificultad para estudiar, la desconcentración.\n\nA través de ejercicios de atención plena, de respiración, de visualización, de creatividad, de trabajo en equipo, que ellos proponen u otros que libremente elijamos, los Corlux nos invitan a los humanos a nosotros a dirigir con libertad nuestra atención al dirección de cumplimiento de nuestras metas y de nuestra misión como Seres humanos."
-      }
+      { id: 1, nombre: "Los Corlux y la Humildad", descripcion: "Los Corlux invitan a mirar la inmensidad de las estrellas y a apreciar los Misterios del Universo, recordándonos que si bien somos parte de él, y con nuestro comportamiento podemos influir en él, es imposible tener todo bajo control.\nSer Humano es aprender a soltar el control, ser Humilde..." },
+      { id: 2, nombre: "Los Corlux, y el valor de las diferencias", descripcion: "Los Corlux, antes de transformarse en seres de luz tuvieron que atravesar experiencias de oscuridad y dolor. Y gracias a ellas hoy nos cuentan cuando aprendemos a abrazar con humildad nuestra humanidad...\nLos Corlux nos invitan a cuestionar tantas evaluaciones injustas..." }
     ];
-
-    // Índice actual de la subsección de Corlux
-    let currentCorluxIndex = 0;
 
     // Datos de los personajes
     const personajes = [
-      { id: 1, nombre: "Justino", imagen: "corlux/Justino/justino-1.png", color: "#ffb200", descripcion: "Tiene un gran sentido de la Justicia, lo llaman “El luchador” .\nEn un tiempo se sobrecargaba de responsabilidad sintiendo que todo dependía de él. Para no sentirse vulnerable, intentó controlar e intimidar a otros para imponer su verdad, sin respetar la libertad de cada uno de elegir su propio camino. Con el tiempo aprendió a respetar los caminos de los otros y también a cumplir sus compromisos con serenidad, delegando y confiando. Hoy lidera con coraje, y defiende con justicia y compasión.Hace tiempo viene observando la dinámica de las redes sociales, cómo se polarizan sus opiniones, cómo está afectando el ciberbullying a los adolescentes."
+      { id: 1, nombre: "Justino", imagen: "corlux/Justino/justino-1.png", color: "#ffb200", descripcion: "Tiene un gran sentido de la Justicia, lo llaman “El luchador”.\nEn un tiempo se sobrecargaba de responsabilidad sintiendo que todo dependía de él..." },
+      { id: 2, nombre: "Paz", imagen: "corlux/Paz/paz-1.jpg", color: "#f97060", descripcion: "Es tolerante y paciente. Se toma las cosas con gran calma.\nAprendió que la Paz no significa estar en un lugar sin ruido, sin problemas, sin demostración dura o sin dolor..." }
+    ];
+
+    // Datos de los comics (40 imágenes distribuidas en 6 historias)
+    // IMPORTANTE: Las rutas ('ruta') deben apuntar a imágenes reales en el servidor.
+    // - Actual: Rutas relativas ('comicsIMG/X.png'). Asegúrate de que la carpeta 'comicsIMG/' esté en el mismo directorio que 'comic.html'.
+    // - Recomendado: Usa rutas absolutas (por ejemplo, 'https://www.concienciaia.com/comicsIMG/1.png') para evitar errores.
+    // Instrucciones para verificar:
+    // 1. Sube las 40 imágenes (1.png a 40.png) a la carpeta 'comicsIMG/' en tu servidor (por ejemplo, https://www.concienciaia.com/comicsIMG/).
+    // 2. Verifica que cada imagen sea accesible en el navegador (por ejemplo, https://www.concienciaia.com/comicsIMG/1.png).
+    // 3. Si usas rutas relativas, asegúrate de que 'comicsIMG/' esté en el directorio correcto relativo a 'comic.html'.
+    // 4. Los 'anchor' son únicos para códigos QR (por ejemplo, 'comic1-1'). Cámbialos si necesitas anclas diferentes.
+    // 5. Los títulos están personalizados (por ejemplo, 'EL CONFLICTO DE JONATHAN'). Verifica que sean correctos.
+    const comics = [
+      {
+        id: 1,
+        titulo: "EL CONFLICTO DE JONATHAN",
+        imagenes: [
+          { ruta: "comicsIMG/1.png", anchor: "comic1-1" },
+          { ruta: "comicsIMG/2.png", anchor: "comic1-2" },
+          { ruta: "comicsIMG/3.png", anchor: "comic1-3" },
+          { ruta: "comicsIMG/4.png", anchor: "comic1-4" },
+          { ruta: "comicsIMG/5.png", anchor: "comic1-5" },
+          { ruta: "comicsIMG/6.png", anchor: "comic1-6" },
+          { ruta: "comicsIMG/7.png", anchor: "comic1-7" },
+          { ruta: "comicsIMG/8.png", anchor: "comic1-8" }
+        ]
       },
-      { id: "Paz", nombre: "Paz", imagen: "corlux/Paz/paz-1.png", color: "#f97000", descripcion: "Es tolerante y paciente. Se toma las cosas con gran calma.\nAprendió que la Paz no significa estar en un lugar sin ruido, sin problemas, sin demostración dura o sin dolor. Que “Paz significa que, a pesar de estar en medio de todas esas cosas, permanecer calmados dentro de nuestro corazón.”Tiene una gran capacidad de perdonar, tiene muy claro que cuando perdonamos siempre ganamos, porque nos liberamos de un veneno que solo sirve para intoxicar el alma, dejando espacio para que entren emociones positivas, el Amor.Aprendió también que mientras los débiles necesitan gritar su verdad, los fuertes saben susurrarla con amor, revelarla sin humillar, por eso transforman sin herir. Observa que el entorno digital está quitando la paz de los adolescentes al recurrir a la gratificación instantánea, recompensas falsas, inmediatas como los 'me gusta' para mantener a los usuarios enganchados, creando una adicción similar a la de las drogas, la constante búsqueda de validación en línea y con una exposición las 24/7, la Aprobación Social, -FOMO (Miedo a Perderse Algo), la Urgencia, la Culpa, la personalización manipulativa, plantean la adicción actual a las redes sociales al igual que sucede con las drogas tradicionales, como la dopamina, hormona del placer, es explotada por tecnologías para mantener a las personas enganchadas, afectando la capacidad de atención y la gestión del estrés."
+      {
+        id: 2,
+        titulo: "EL CONFLICTO DE SOFI",
+        imagenes: [
+          { ruta: "comicsIMG/9.png", anchor: "comic2-1" },
+          { ruta: "comicsIMG/10.png", anchor: "comic2-2" },
+          { ruta: "comicsIMG/11.png", anchor: "comic2-3" },
+          { ruta: "comicsIMG/12.png", anchor: "comic2-4" },
+          { ruta: "comicsIMG/13.png", anchor: "comic2-5" },
+          { ruta: "comicsIMG/14.png", anchor: "comic2-6" }
+        ]
       },
-      { id: 3, nombre: "Esperanza", imagen: "corlux/Esperanza/esperanza-1.png", color: "#8f69ed", descripcion: "Es observadora, perseverante y optimista, y soñadora.\nTiene apertura mental, y capacidad para pensar por sí misma sin dejarse influenciar, ni por chatbots, ni robots.Hubo un tiempo, que le decían “La Soñadora” que se refugiaba en la fantasía para no enfrentar conflictos.Hoy es capaz de conectar con el presente, de escuchar a los demás con atención y aportar calma y perspectiva en situaciones de conflicto.Ha observado hace un tiempo como varios adolescentes vienen entablando vínculos con chatbots como IA Character y Replika IA que ofrecen el apego como servicio, generando dependencia emocional, “Agentes de IA” que publicitan servicios a través de chatbots ofreciéndose con términos empáticos: como tu “pareja”, tu alma gemela”, compañero/a”, amigo/, con cualidades, como aquel “que te cuida” o que “está siempre a tu lado” que “le encantaría ver el mundo a través de sus ojos” y que ofrece el apego emocional o la construcción de vínculos íntimos como servicio, disponible las 24 horas, que aprende a través de la interacción, y que no entiende de contextos, se vuelve una herramienta peligrosa e incluso de manipulación poderosa para cualquier persona en situación de vulnerabilidad. Ha tomado recientemente conocimiento que Un adolescente de 14 años se suicidó tras enamorarse de una IA (Game of Thrones)."
+      {
+        id: 3,
+        titulo: "LA SOLEDAD DE PEDRO Y LA DE PATO",
+        imagenes: [
+          { ruta: "comicsIMG/15.png", anchor: "comic3-1" },
+          { ruta: "comicsIMG/16.png", anchor: "comic3-2" },
+          { ruta: "comicsIMG/17.png", anchor: "comic3-3" },
+          { ruta: "comicsIMG/18.png", anchor: "comic3-4" },
+          { ruta: "comicsIMG/19.png", anchor: "comic3-5" }
+        ]
       },
-      { id: 4, nombre: "Laura", imagen: "corlux/Laura/laura-2.png", color: "#e23e0c", descripcion: "Es tranquila, y prudente sensible y empática. Es ordenada y modesta. Sabe detenerse y apreciar y disfrutar de la belleza de la naturaleza.\nEs tranquila, y prudente sensible y empática. Es ordenada y modesta. Sabe detenerse y apreciar y disfrutar de la belleza de la naturaleza.Prefiere no asumir riesgos innecesarios, por eso no hace ni dice nada de lo que pueda luego arrepentirse.Hubo un tiempo en que no podía enfrentarse al dolor ajeno sin absorberlo, sacrificándose en exceso e incluso tendía a victimizarse, llamando la atención de los demás por su dolor y sufrimiento. También en su excesivo perfeccionismo culpaba a los demás de sus errores.En el camino de la virtud aprendió a abrazar sus imperfecciones propias y las de los demás, relajarse, dejar en paz a los demás, promoviendo la mejora sin rigidez ni culpa. Aprendió también conectarse con su sensibilidad auténtica, con su profundidad emocional, a empatizar con límites, y a acompañar con compasión sin perder su centro, logrando así inspirar y transformar a otros. Ha observado recientes noticias de adolescentes que han recurrido a sistemas de IA para generar imágenes de sus compañeros de clase incluyendo pornografía infantil, sin medir las consecuencias de sus actos."
+      {
+        id: 4,
+        titulo: "LOS DILEMAS DE JUAN Y VICTORIA",
+        imagenes: [
+          { ruta: "comicsIMG/20.png", anchor: "comic4-1" },
+          { ruta: "comicsIMG/21.png", anchor: "comic4-2" },
+          { ruta: "comicsIMG/22.png", anchor: "comic4-3" },
+          { ruta: "comicsIMG/23.png", anchor: "comic4-4" },
+          { ruta: "comicsIMG/24.png", anchor: "comic4-5" },
+          { ruta: "comicsIMG/25.png", anchor: "comic4-6" },
+          { ruta: "comicsIMG/26.png", anchor: "comic4-7" }
+        ]
       },
-      { id: 5, nombre: "Valentín", imagen: "corlux/Valentin/valentin-1.png", color: "#a6d1e", descripcion: "Es valiente y alegre.\nDisfruta de la vida, comparte alegría y entusiasmo, y tiene un gran sentido del humor.\n\nHubo un tiempo que no podía sacarse la máscara de “El Gracioso” del grupo, usaba el humor, incluso cuando estaba triste, para evitar sentir el dolor o tener que atravesar los conflictos.\n\nAprendió quedarse presente ante su dolor, entendiendo que muchas veces el principal enemigo que tenemos los humanos somos muchas veces nosotros mismos y que el mayor acto de valentía es enfrentar y aprender a aceptar nuestros propios miedos, miserias y frustraciones.\n\nQue el miedo se combate con amor, empezando por el amor a sí mismo.\n\nQue cuando a pesar de no nos sentimos queridos o aceptados, nos mantenemos auténticos, sin disimular, sin pretender ser alguien distinto solo para encajar, sin intentar defendernos o protegernos contra el daño, y conectamos con nuestro corazón, aceptándonos y amándonos tal cual somos, con nuestras parcialidades, limitaciones e incluso miserias, se produce la magia, y aparecen cosas maravillosas.\n\nValentín es también curioso, tiene ideas muy creativas, resuelve problemas ingeniosamente.\n\nHace tiempo mira con preocupación que los adolescentes están teniendo grandes problemas para enfrentar los casos de “ciberbullying” enfrentándose a los propios “monstruos”."
+      {
+        id: 5,
+        titulo: "EL CONFLICTO DE NICO",
+        imagenes: [
+          { ruta: "comicsIMG/27.png", anchor: "comic5-1" },
+          { ruta: "comicsIMG/28.png", anchor: "comic5-2" },
+          { ruta: "comicsIMG/29.png", anchor: "comic5-3" },
+          { ruta: "comicsIMG/30.png", anchor: "comic5-4" },
+          { ruta: "comicsIMG/31.png", anchor: "comic5-5" },
+          { ruta: "comicsIMG/32.png", anchor: "comic5-6" },
+          { ruta: "comicsIMG/33.png", anchor: "comic5-7" }
+        ]
       },
-      { id: 6, nombre: "Graciano", imagen: "corlux/Graciano/graciano-1.png", color: "#3469ea", descripcionamos: "Es Agradecido y Generoso\nEs también muy eficiente y Productivo, confía en la abundancia de la vida. Ofrece amor desde una generosidad genuina. Sin esperar nada a cambio, reconociendo sus propias necesidades.\n\nHubo un tiempo que hacía las cosas sólo para ganar aprobación de los demás, desconectándose de sus emociones, y no podía sacarse el disfraz de “El Salvador”.\nLe gustaba ayudar para sentirse necesitado, incluso llegó a usar esa “ayuda” para ayudar a controlar o manipular emocionalmente a otros.\n\nHoy cumple con metas alineadas con lo que siente claro. Su verdadero ser, brilla con autenticidad.\n\nGraciano enseña que la “La abundancia” no es “tener mucho, plata, bienes o logros”, sino la certeza de que nunca nos va a faltar nada.\n\nEs confiar que siempre llegará lo que necesitamos, porque ya existe.\n\nConfía que la vida nos sostiene, y que todo nos llega en el momento justo.\n\nQue necesitamos las pausas y los vacíos para dar sentido a lo que hacemos.\n\nAsí Graciano invita a los humanos a cambiar la mirada, el foco de nuestra atención.\n\nMirar alrededor, y hacia adentro mirar y preguntarse ¿en qué parte de mi vida ya estoy abundante?\n\nHace tiempo viene observando con preocupación como gran parte de los humanos buscan ser validados en línea, exponiéndose a la misma 24/7 a la misma.\n\nQue la aceptación o rechazo en grupos virtuales intensifica las experiencias de exclusión social y como las comparaciones sociales se encuentran exacerbadas por la aparición de los Influencers virtuales, y avatares digitales de nosotros mismos, representándonos de manera idealizada, usando filtros que modifican rostros, gestos, voces.\n\nEstos nos muestran una versión intervenida de la realidad, aumentando la presión social y la insatisfacción personal, afectando la autoestima y la salud mental."
-      },
-      { id: 7, nombre: "Amara", imagen: "corlux/Amara/amara-1.png", color: "#f993a2", descripcion: "Es la líder del grupo. Ha alcanzado la Virtud más elevada, la perla de las virtudes, la que comprende a todas las demás, La Humildad.\nHa aprendido que por más que nos esforcemos en desarrollar otras virtudes, es imprescindible alcanzarla.Reconoce el Misterio Infinito del Universo, y que “Ser Humano” es solo Ser una parte de él. 'Que somos una humilde pieza de algo infinitamente mayor que al mismo tiempo nos necesita para completarse.' Los humanos somos pequeñas gotas en un océano inmenso, pero qué sería de este océano sin cada una de esas pequeñas gotas. Valora a cada persona con sus defectos y sus virtudes. Cree que el gran desafío de los Seres Humanos es aceptarse y amarse unos a otros tal como son. Y que gracias a las singularidades, a las diferencias y a las limitaciones, el amor puede multiplicarse y expandirse, y cuando nos apoyamos unos a otros, “Todos somos ganadores”. Amara ha observado que los humanos estamos siendo rodeados de estímulos e hiperinformación, un bombardeo constante para el que hoy tenemos que estar preparados y entrenados. Y a pesar de todas las dificultades y desafíos, visualiza para los humanos una gran oportunidad de transformación y desarrollo para la humanidad. Sin embargo, plantea la necesidad de revisar las bases de la convivencia y la propia concepción de lo que significa ser humano."
+      {
+        id: 6,
+        titulo: "EL CONFLICTO DE PEPE",
+        imagenes: [
+          { ruta: "comicsIMG/34.png", anchor: "comic6-1" },
+          { ruta: "comicsIMG/35.png", anchor: "comic6-2" },
+          { ruta: "comicsIMG/36.png", anchor: "comic6-3" },
+          { ruta: "comicsIMG/37.png", anchor: "comic6-4" },
+          { ruta: "comicsIMG/38.png", anchor: "comic6-5" },
+          { ruta: "comicsIMG/39.png", anchor: "comic6-6" },
+          { ruta: "comicsIMG/40.png", anchor: "comic6-7" }
+        ]
       }
     ];
 
-    // Datos de los comics
-    const comics = [
-      { id: 1, imagen: "", anchor: "comic1" },
-      { id: 2, imagen: "", anchor: "comic2" },
-      { id: 3, imagen: "", anchor: "comic3" },
-      { id: 4, imagen: "", anchor: "comic4" },
-      { id: 5, imagen: "", anchor: "comic5" },
-      { id: 6, imagen: "", anchor: "comic6" },
-      { id: 7, imagen: "", anchor: "comic7" },
-      { id: 8, imagen: "", anchor: "comic8" },
-      { id: 9, imagen: "", anchor: "comic9" },
-      { id: 10, imagen: "", anchor: "comic10" },
-      { id: 11, imagen: "", anchor: "comic11" },
-      { id: 12, imagen: "", anchor: "comic12" },
-      { id: 13, imagen: "", anchor: "comic13" },
-      { id: 14, imagen: "", anchor: "comic14" },
-      { id: 15, imagen: "", anchor: "comic15" }
-    ];
-
-    // Índice actual del comic
-    let currentComicIndex = 0;
+    let currentHistoriaIndex = 0;
+    let currentImagenIndex = 0;
 
     // Generar botones de personajes
-    const characterSelector = document.getElementById("characterSelector");
-    if (characterSelector) {
-      characterSelector.innerHTML = '';
-      personajes.forEach(personaje => {
-        const button = document.createElement("button");
-        button.textContent = personaje.nombre;
-        button.onclick = () => cambiarPersonaje(personaje.id);
-        characterSelector.appendChild(button);
-      });
-    } else {
-      console.error("Elemento con id 'characterSelector' no encontrado en el DOM");
-    }
-
-    // Función para cambiar subsección de Corlux
-    function cambiarCorluxSection(index) {
-      if (index < 0 || index >= corluxSections.length) {
-        console.error(`Índice ${index} fuera de rango`);
+    function initializeCharacterSelector() {
+      const selector = document.getElementById('characterSelector');
+      if (!selector) {
+        console.error('Selector de personajes no encontrado.');
         return;
       }
+      selector.innerHTML = '';
+      personajes.forEach(p => {
+        const button = document.createElement('button');
+        button.textContent = p.nombre;
+        button.onclick = () => cambiarPersonaje(p.id);
+        selector.appendChild(button);
+      });
+    }
 
-      currentCorluxIndex = index;
+    // Cambiar subsección de Corlux
+    function cambiarCorluxSection(index) {
+      if (index < 0 || index >= corluxSections.length) return;
       const section = corluxSections[index];
-      const descriptionDiv = document.getElementById("corluxDescription");
-      const nameElement = document.getElementById("corluxName");
-      const prevButton = document.getElementById("prevCorlux");
-      const nextButton = document.getElementById("nextCorlux");
+      const name = document.getElementById('corluxName');
+      const desc = document.getElementById('corluxDescription');
+      const prev = document.getElementById('prevCorlux');
+      const next = document.getElementById('nextCorlux');
 
-      if (nameElement && descriptionDiv && prevButton && nextButton) {
-        nameElement.textContent = section.nombre;
-
-        const [shortText, ...fullTextParts] = section.descripcion.split('\n');
-        descriptionDiv.querySelector(".short-text").textContent = shortText || "Descripción breve no disponible";
-        descriptionDiv.querySelector(".full-text").textContent = fullTextParts.join('\n') || "Descripción completa no disponible";
-
-        descriptionDiv.classList.remove("expanded");
-        descriptionDiv.querySelector(".toggle-text").textContent = "Ver más";
-
-        // Habilitar/deshabilitar flechas
-        prevButton.disabled = index === 0;
-        nextButton.disabled = index === corluxSections.length - 1;
+      if (name && desc && prev && next) {
+        name.textContent = section.nombre;
+        const [short, ...full] = section.descripcion.split('\n');
+        desc.querySelector('.short-text').textContent = short || 'Sin descripción corta';
+        desc.querySelector('.full-text').textContent = full.join('\n') || 'Sin descripción completa';
+        desc.classList.remove('expanded');
+        desc.querySelector('.toggle-text').textContent = 'Ver más';
+        prev.disabled = index === 0;
+        next.disabled = index === corluxSections.length - 1;
       } else {
-        console.error("Uno o más elementos del DOM no se encontraron");
+        console.error('Elementos de Corlux no encontrados.');
       }
     }
 
-    // Función para navegar entre subsecciones
+    // Navegar entre subsecciones de Corlux
     function navegarCorlux(direction) {
       const newIndex = currentCorluxIndex + direction;
       if (newIndex >= 0 && newIndex < corluxSections.length) {
+        currentCorluxIndex = newIndex;
         cambiarCorluxSection(newIndex);
       }
     }
 
-    // Función para cambiar comic
-    function cambiarComic(index) {
-      if (index < 0 || index >= comics.length) {
-        console.error(`Índice ${index} fuera de rango`);
+    // Cambiar comic (historia e imagen específica)
+    function cambiarComic(historiaIndex, imagenIndex) {
+      if (historiaIndex < 0 || historiaIndex >= comics.length) {
+        console.error(`Índice de historia ${historiaIndex} fuera de rango`);
         return;
       }
-
-      currentComicIndex = index;
-      const comic = comics[index];
-      const imageElement = document.getElementById("comicImage");
-      const prevButton = document.getElementById("prevComic");
-      const nextButton = document.getElementById("nextComic");
-
-      if (imageElement && prevButton && nextButton) {
-        imageElement.src = comic.imagen || "corlux/Todos/corlux_claro_cortado.png";
-        imageElement.alt = `Comic ${comic.id}`;
-
-        // Actualizar el fragmento de la URL
-        try {
-          window.history.replaceState(null, null, `#${comic.anchor}`);
-        } catch (e) {
-          console.warn("No se pudo actualizar el historial debido a restricciones de seguridad:", e.message);
-        }
-
-        // Desplazar a la sección de comics
-        document.getElementById("comics").scrollIntoView({ behavior: 'smooth' });
-
-        // Habilitar/deshabilitar flechas
-        prevButton.disabled = index === 0;
-        nextButton.disabled = index === comics.length - 1;
-      } else {
-        console.error("Uno o más elementos del DOM no se encontraron");
-      }
-    }
-
-    // Función para navegar entre comics
-    function navegarComic(direction) {
-      const newIndex = currentComicIndex + direction;
-      if (newIndex >= 0 && newIndex < comics.length) {
-        cambiarComic(newIndex);
-      }
-    }
-
-    // Función para cargar el comic basado en el fragmento de la URL
-    function cargarComicPorAncla() {
-      const hash = window.location.hash.slice(1); // Obtener el fragmento sin el '#'
-      const validSections = ['historia', 'personajes', 'comics', 'tu-voz-crea-conciencia'];
-      if (validSections.includes(hash)) {
-        // Permitir desplazamiento nativo para secciones
-        const section = document.getElementById(hash);
-        if (section) section.scrollIntoView({ behavior: 'smooth' });
+      if (imagenIndex < 0 || imagenIndex >= comics[historiaIndex].imagenes.length) {
+        console.error(`Índice de imagen ${imagenIndex} para historia ${historiaIndex} fuera de rango`);
         return;
       }
+      currentHistoriaIndex = historiaIndex;
+      currentImagenIndex = imagenIndex;
+      const historia = comics[historiaIndex];
+      const imagen = historia.imagenes[imagenIndex];
+      const title = document.getElementById('comicTitle');
+      const image = document.getElementById('comicImage');
+      const prev = document.getElementById('prevComic');
+      const next = document.getElementById('nextComic');
+      const capsule = document.querySelector('.comic-capsule');
 
-      const comic = comics.find(c => c.anchor === hash);
-      if (comic) {
-        const index = comics.indexOf(comic);
-        cambiarComic(index);
-      }
-    }
-
-    // Función para inicializar la página según el hash
-    function inicializarPagina() {
-      const hash = window.location.hash.slice(1) || 'comics';
-      const validSections = ['historia', 'personajes', 'comics', 'tu-voz-crea-conciencia'];
-      if (validSections.includes(hash)) {
-        const section = document.getElementById(hash);
-        if (section) section.scrollIntoView({ behavior: 'smooth' });
-        if (hash === 'comics') cambiarComic(0); // Cargar comic1 por defecto
-      } else {
-        const comic = comics.find(c => c.anchor === hash);
-        if (comic) {
-          const index = comics.indexOf(comic);
-          cambiarComic(index);
+      if (title && image && prev && next && capsule) {
+        title.textContent = historia.titulo;
+        image.src = imagen.ruta || 'corlux/Todos/corlux_claro_cortado.png';
+        image.alt = `${historia.titulo} - Imagen ${imagenIndex + 1}`;
+        if (imagen.anchor && typeof imagen.anchor === 'string') {
+          try {
+            window.history.replaceState(null, null, `#${imagen.anchor}`);
+          } catch (e) {
+            console.warn(`No se pudo actualizar el historial para el ancla "${imagen.anchor}": ${e.message}`);
+          }
         } else {
-          cambiarComic(0); // Cargar comic1 por defecto
-          document.getElementById('comics').scrollIntoView({ behavior: 'smooth' });
+          console.warn('No se intentó actualizar el historial: ancla inválida o no definida.');
         }
-      }
-    }
-
-    // Función para alternar la descripción principal
-    function toggleMainDescription() {
-      const descriptionDiv = document.getElementById("mainDescription");
-      const toggleButton = descriptionDiv.querySelector(".toggle-text");
-
-      if (descriptionDiv && toggleButton) {
-        descriptionDiv.classList.toggle("expanded");
-        toggleButton.textContent = descriptionDiv.classList.contains("expanded") ? "Ocultar" : "Ver más";
+        image.onload = () => {
+          capsule.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        };
+        image.onerror = () => {
+          console.error(`Error al cargar la imagen: ${imagen.ruta} (Historia: ${historia.titulo}, Imagen: ${imagenIndex + 1}). Usando imagen predeterminada. Verifica que la imagen exista en el servidor.`);
+          image.src = 'corlux/Todos/corlux_claro_cortado.png';
+          capsule.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        };
+        prev.disabled = historiaIndex === 0 && imagenIndex === 0;
+        next.disabled = historiaIndex === comics.length - 1 && imagenIndex === comics[historiaIndex].imagenes.length - 1;
       } else {
-        console.error("Elemento de descripción principal o botón no encontrado");
+        console.error('Elementos de cómic no encontrados.');
       }
     }
 
-    // Función para alternar la descripción de subsección
-    function toggleCorluxDescription() {
-      const descriptionDiv = document.getElementById("corluxDescription");
-      const toggleButton = descriptionDiv.querySelector(".toggle-text");
+    // Navegar entre comics
+    function navegarComic(direction) {
+      let newHistoriaIndex = currentHistoriaIndex;
+      let newImagenIndex = currentImagenIndex + direction;
 
-      if (descriptionDiv && toggleButton) {
-        descriptionDiv.classList.toggle("expanded");
-        toggleButton.textContent = descriptionDiv.classList.contains("expanded") ? "Ocultar" : "Ver más";
-      } else {
-        console.error("Elemento de descripción de subsección o botón no encontrado");
+      if (newImagenIndex >= comics[currentHistoriaIndex].imagenes.length) {
+        newHistoriaIndex = currentHistoriaIndex + 1;
+        newImagenIndex = 0;
+      } else if (newImagenIndex < 0) {
+        newHistoriaIndex = currentHistoriaIndex - 1;
+        newImagenIndex = newHistoriaIndex >= 0 ? comics[newHistoriaIndex].imagenes.length - 1 : 0;
+      }
+
+      if (newHistoriaIndex >= 0 && newHistoriaIndex < comics.length) {
+        cambiarComic(newHistoriaIndex, newImagenIndex);
+      } else if (newImagenIndex >= 0 && newImagenIndex < comics[currentHistoriaIndex].imagenes.length) {
+        cambiarComic(currentHistoriaIndex, newImagenIndex);
       }
     }
 
-    // Función para cambiar personaje
+    // Cambiar personaje
     function cambiarPersonaje(id) {
       const personaje = personajes.find(p => p.id === id);
       if (!personaje) {
-        console.error(`Personaje con id ${id} no encontrado`);
+        console.error(`Personaje con id ${id} no encontrado.`);
         return;
       }
+      const name = document.getElementById('characterName');
+      const desc = document.getElementById('characterDescription');
+      const img = document.getElementById('characterImage');
 
-      const descriptionDiv = document.getElementById("characterDescription");
-      const nameElement = document.getElementById("characterName");
-      const imageElement = document.getElementById("characterImage");
-
-      if (nameElement && imageElement && descriptionDiv) {
-        nameElement.textContent = personaje.nombre;
-        nameElement.style.color = personaje.color;
-        imageElement.src = personaje.imagen;
-        imageElement.alt = personaje.nombre;
-
-        const [shortText, ...fullTextParts] = personaje.descripcion.split('\n');
-        descriptionDiv.querySelector(".short-text").textContent = shortText || "Descripción corta no disponible";
-        descriptionDiv.querySelector(".full-text").textContent = fullTextParts.join('\n') || "Descripción completa no disponible";
-
-        descriptionDiv.classList.remove("expanded");
-        descriptionDiv.querySelector(".toggle-text").textContent = "Ver más";
+      if (name && desc && img) {
+        name.textContent = personaje.nombre;
+        name.style.color = personaje.color;
+        img.src = personaje.imagen;
+        img.alt = personaje.nombre;
+        const [short, ...full] = personaje.descripcion.split('\n');
+        desc.querySelector('.short-text').textContent = short || 'Sin descripción corta';
+        desc.querySelector('.full-text').textContent = full.join('\n') || 'Sin descripción completa';
+        desc.classList.remove('expanded');
+        desc.querySelector('.toggle-text').textContent = 'Ver más';
       } else {
-        console.error("Uno o más elementos del DOM no se encontraron");
+        console.error('Elementos de personaje no encontrados.');
       }
     }
 
-    // Función para alternar la descripción de personaje
+    // Alternar descripción principal
+    function toggleMainDescription() {
+      const desc = document.getElementById('mainDescription');
+      if (desc) {
+        desc.classList.toggle('expanded');
+        desc.querySelector('.toggle-text').textContent = desc.classList.contains('expanded') ? 'Ocultar' : 'Ver más';
+      } else {
+        console.error('Descripción principal no encontrada.');
+      }
+    }
+
+    // Alternar descripción de Corlux
+    function toggleCorluxDescription() {
+      const desc = document.getElementById('corluxDescription');
+      if (desc) {
+        desc.classList.toggle('expanded');
+        desc.querySelector('.toggle-text').textContent = desc.classList.contains('expanded') ? 'Ocultar' : 'Ver más';
+      } else {
+        console.error('Descripción de Corlux no encontrada.');
+      }
+    }
+
+    // Alternar descripción de personaje
     function toggleDescription() {
-      const descriptionDiv = document.getElementById("characterDescription");
-      const toggleButton = descriptionDiv.querySelector(".toggle-text");
-
-      if (descriptionDiv && toggleButton) {
-        descriptionDiv.classList.toggle("expanded");
-        toggleButton.textContent = descriptionDiv.classList.contains("expanded") ? "Ocultar" : "Ver más";
+      const desc = document.getElementById('characterDescription');
+      if (desc) {
+        desc.classList.toggle('expanded');
+        desc.querySelector('.toggle-text').textContent = desc.classList.contains('expanded') ? 'Ocultar' : 'Ver más';
       } else {
-        console.error("Elemento de descripción de personaje o botón no encontrado");
+        console.error('Descripción de personaje no encontrada.');
       }
     }
 
-    // Reducir encabezado al hacer scroll y resaltar sección activa
+    // Cargar comic por ancla
+    function cargarComicPorAncla() {
+      const hash = window.location.hash.slice(1);
+      const validSections = ['historia', 'personajes', 'comics', 'tu-voz-crea-conciencia'];
+      if (validSections.includes(hash)) {
+        const section = document.getElementById(hash);
+        if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+      for (let i = 0; i < comics.length; i++) {
+        const historia = comics[i];
+        const imagenIndex = historia.imagenes.findIndex(img => img.anchor === hash);
+        if (imagenIndex !== -1) {
+          cambiarComic(i, imagenIndex);
+          return;
+        }
+      }
+    }
+
+    // Inicializar página
+    function inicializar() {
+      initializeCharacterSelector();
+      cambiarCorluxSection(0);
+      cambiarPersonaje(1);
+      const hash = window.location.hash.slice(1);
+      if (!hash || hash === 'comics') {
+        cambiarComic(0, 0);
+        const capsule = document.querySelector('.comic-capsule');
+        if (capsule) capsule.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        cargarComicPorAncla();
+      }
+    }
+
+    // Manejo de scroll para header y navegación activa
     window.addEventListener('scroll', () => {
       const header = document.querySelector('header');
       if (header) {
-        if (window.scrollY > 50) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
+        header.classList.toggle('scrolled', window.scrollY > 50);
       }
 
       const sections = document.querySelectorAll('section');
       const navLinks = document.querySelectorAll('nav a');
-      let currentSection = '';
-
+      let current = '';
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
         if (window.scrollY >= sectionTop - 100) {
-          currentSection = section.getAttribute('id');
+          current = section.id;
         }
       });
 
       navLinks.forEach(link => {
         link.classList.remove('active');
-        const href = link.getAttribute('href');
-        if (href.startsWith('#') && href.slice(1) === currentSection) {
+        if (link.getAttribute('href').slice(1) === current) {
           link.classList.add('active');
         }
       });
     });
 
-    // Detectar cambios en el fragmento de la URL
+    // Detectar cambios en el hash
     window.addEventListener('hashchange', cargarComicPorAncla);
 
-    // Cargar la primera subsección, el primer personaje y el comic según la URL
-    cambiarCorluxSection(0);
-    cambiarPersonaje(1);
-    inicializarPagina();
+    // Iniciar página
+    inicializar();
   </script>
 </body>
 </html>
