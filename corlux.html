@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Corlux - Conciencia IA</title>
+  <!-- Precarga de imágenes de personajes -->
+  <link rel="preload" as="image" href="corlux/Justino/justino-1.png">
+  <link rel="preload" as="image" href="corlux/Paz/paz-1.png">
+  <link rel="preload" as="image" href="corlux/Esperanza/esperanza-1.png">
+  <link rel="preload" as="image" href="corlux/Laura/laura-2.png">
+  <link rel="preload" as="image" href="corlux/Valentin/valentin-1.png">
+  <link rel="preload" as="image" href="corlux/Graciano/graciano-1.png">
+  <link rel="preload" as="image" href="corlux/Amara/amara-1.png">
   <style>
     html {
       scroll-behavior: smooth;
@@ -330,11 +338,49 @@
       max-height: 350px;
       object-fit: contain;
       border-radius: 8px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .character-image-container img.loaded {
+      opacity: 1;
     }
 
     .character-description {
       flex: 1;
       padding: 15px;
+    }
+
+    .character-navigation {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      max-width: 750px;
+      margin: 15px auto 0;
+    }
+
+    .character-navigation button {
+      background-color: #383838;
+      color: #f2f1eb;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 15px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .character-navigation button:hover {
+      background-color: var(--hover-color);
+      transform: scale(1.05);
+    }
+
+    .character-navigation button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
     }
 
     @media (max-width: 768px) {
@@ -347,8 +393,13 @@
         padding: 10px 0;
       }
 
-      .corlux-navigation {
+      .corlux-navigation, .character-navigation {
         margin-top: 15px;
+      }
+
+      .character-navigation button {
+        font-size: 12px;
+        padding: 6px 12px;
       }
 
       nav {
@@ -395,10 +446,10 @@
         </div>
       </div>
       <div class="dropdown">
-        <a href="comics.html#humanosSOS">Humanos S.O.S</a>
+        <a href="comics.html#humanosSOS">S.O.S</a>
         <div class="dropdown-content">
-          <a href="comics.html#humanosSOS">Comics</a>
-          <a href="comics.html#vinetas">Viñetas</a>
+          <a href="comics.html#humanosSOS">Humanos S.O.S</a>
+          <a href="comics.html#vinetas">Comics</a>
           <a href="comics.html#tu-voz-crea-conciencia">Tu voz Crea Conciencia</a>
         </div>
       </div>
@@ -454,9 +505,14 @@
         <button class="toggle-text" onclick="toggleDescription()">Datos</button>
       </div>
     </div>
-    <div class="corlux-navigation">
-      <button id="prevCharacter" onclick="navegarPersonaje(-1)">◄</button>
-      <button id="nextCharacter" onclick="navegarPersonaje(1)">►</button>
+    <div class="character-navigation">
+      <button data-character-id="0" data-color="#ffb200">Justino</button>
+      <button data-character-id="1" data-color="#f97000">Paz</button>
+      <button data-character-id="2" data-color="#8f69ed">Esperanza</button>
+      <button data-character-id="3" data-color="#e23e0c">Laura</button>
+      <button data-character-id="4" data-color="#a6d11e">Valentín</button>
+      <button data-character-id="5" data-color="#3469ea">Graciano</button>
+      <button data-character-id="6" data-color="#f993a2">Amara</button>
     </div>
   </section>
 
@@ -550,17 +606,23 @@
       const name = document.getElementById('characterName');
       const desc = document.getElementById('characterDescription');
       const img = document.getElementById('characterImage');
-      const prev = document.getElementById('prevCharacter');
-      const next = document.getElementById('nextCharacter');
+      const buttons = document.querySelectorAll('.character-navigation button');
 
-      if (name && desc && img && prev && next) {
+      if (name && desc && img && buttons) {
         name.textContent = personaje.nombre;
         name.style.color = personaje.color;
+        img.style.opacity = '0'; // Ocultar imagen antes de cambiar
         img.src = personaje.imagen;
         img.alt = personaje.nombre;
+        img.onload = () => {
+          img.classList.add('loaded');
+          img.style.opacity = '1';
+        };
         img.onerror = () => {
           console.error(`Error al cargar la imagen: ${personaje.imagen}`);
           img.src = 'corlux/Todos/corlux_claro_cortado.png';
+          img.classList.add('loaded');
+          img.style.opacity = '1';
         };
         const [short, ...full] = personaje.descripcion.split('\n');
         desc.querySelector('.short-text').textContent = short || 'Sin descripción corta';
@@ -568,19 +630,14 @@
         desc.classList.remove('expanded');
         desc.querySelector('.toggle-text').textContent = 'Datos';
         currentCharacterIndex = index;
-        prev.disabled = index === 0;
-        next.disabled = index === personajes.length - 1;
+
+        // Actualizar estado de los botones
+        buttons.forEach((button, i) => {
+          button.disabled = i === index;
+          button.style.setProperty('--hover-color', personajes[i].color);
+        });
       } else {
         console.error('Elementos de personaje no encontrados.');
-      }
-    }
-
-    // Navegar entre personajes
-    function navegarPersonaje(direction) {
-      const newIndex = currentCharacterIndex + direction;
-      if (newIndex >= 0 && newIndex < personajes.length) {
-        currentCharacterIndex = newIndex;
-        cambiarPersonaje(newIndex);
       }
     }
 
@@ -643,7 +700,6 @@
         }
       });
 
-      // Asegurar que solo el enlace principal de "Corlux" esté activo si estamos en una de sus subsecciones
       if (['historia', 'personajes'].includes(current)) {
         navLinks.forEach(link => {
           if (link.getAttribute('href') === '#historia') {
@@ -651,7 +707,6 @@
           }
         });
       } else if (window.scrollY < sections[0].offsetTop - 120) {
-        // No marcar ningún enlace si estamos arriba del todo
         navLinks.forEach(link => link.classList.remove('active'));
       }
     });
@@ -660,6 +715,16 @@
     document.addEventListener('DOMContentLoaded', () => {
       cambiarCorluxSection(currentCorluxIndex);
       cambiarPersonaje(currentCharacterIndex);
+
+      // Añadir eventos a los botones de personajes
+      const buttons = document.querySelectorAll('.character-navigation button');
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          const index = parseInt(button.getAttribute('data-character-id'), 10);
+          cambiarPersonaje(index);
+        });
+      });
+
       if (window.location.hash) {
         const sectionId = window.location.hash.substring(1);
         const section = document.getElementById(sectionId);
