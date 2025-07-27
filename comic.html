@@ -232,6 +232,10 @@
       transition: box-shadow 0.3s ease;
     }
 
+    .character-capsule {
+      min-height: 400px; /* Asegura que la cápsula no se achique demasiado */
+    }
+
     .main-description-container:hover, .corlux-capsule:hover, .character-capsule:hover, .comic-capsule:hover {
       box-shadow: 0 8px 20px rgba(38, 209, 200, 0.5);
     }
@@ -241,6 +245,10 @@
       color: #f2f1eb;
       line-height: 1.8;
       position: relative;
+    }
+
+    .character-description {
+      overflow: auto; /* Maneja desbordes en textos largos */
     }
 
     .main-description p {
@@ -432,6 +440,10 @@
       .comic-image-container img {
         max-height: 300px;
       }
+
+      .character-capsule {
+        min-height: auto; /* En móvil, dejar que se ajuste al contenido */
+      }
     }
   </style>
 </head>
@@ -529,7 +541,7 @@
     <div class="comic-capsule">
       <h3 class="comic-title" id="comicTitle">EL CONFLICTO DE JONATHAN</h3>
       <div class="comic-image-container">
-        <img id="comicImage" src="corlux/Todos/corlux_claro_cortado.png" alt="Comic">
+        <img id="comicImage" src="comicsIMG/1.png" alt="Comic">
       </div>
     </div>
     <div class="comic-navigation">
@@ -564,7 +576,7 @@
       { id: 3, nombre: "Esperanza", imagen: "corlux/Esperanza/esperanza-1.png", color: "#8f69ed", descripcion: "Es observadora, perseverante y optimista, y soñadora.\nTiene apertura mental, y capacidad para pensar por sí misma sin dejarse influenciar, ni por chatbots, ni robots. Hubo un tiempo, que le decían “La Soñadora” que se refugiaba en la fantasía para no enfrentar conflictos. Hoy es capaz de conectar con el presente, de escuchar a los demás con atención y aportar calma y perspectiva en situaciones de conflicto. Ha observado hace un tiempo como varios adolescentes vienen entablando vínculos con chatbots como IA Character y Replika IA que ofrecen el apego como servicio, generando dependencia emocional, “Agentes de IA” que publicitan servicios a través de chatbots ofreciéndose con términos empáticos: como tu “pareja”, tu alma gemela”, compañero/a”, amigo/, con cualidades, como aquel “que te cuida” o que “está siempre a tu lado” que “le encantaría ver el mundo a través de sus ojos” y que ofrece el apego emocional o la construcción de vínculos íntimos como servicio, disponible las 24 horas, que aprende a través de la interacción, y que no entiende de contextos, se vuelve una herramienta peligrosa e incluso de manipulación poderosa para cualquier persona en situación de vulnerabilidad. Ha tomado recientemente conocimiento que un adolescente de 14 años se suicida tras enamorarse de una IA (Game of Thrones)." },
       { id: 4, nombre: "Laura", imagen: "corlux/Laura/laura-2.png", color: "#e23e0c", descripcion: "Es tranquila, y prudente sensible y empática. Es ordenada y modesta. Sabe detenerse y apreciar y disfrutar de la belleza de la naturaleza.\nEs tranquila, y prudente sensible y empática. Es ordenada y modesta. Sabe detenerse y apreciar y disfrutar de la belleza de la naturaleza. Prefiere no asumir riesgos innecesarios, por eso no hace ni dice nada de lo que pueda luego arrepentirse. Hubo un tiempo en que no podía enfrentarse al dolor ajeno sin absorberlo, sacrificándose en exceso e incluso tendía a victimizarse, llamando la atención de los demás por su dolor y sufrimiento. También en su excesivo perfeccionismo culpaba a los demás de sus errores. En el camino de la virtud aprendió a abrazar sus imperfecciones propias y las de los demás, relajarse, dejar en paz a los demás, promoviendo la mejora sin rigidez ni culpa. Aprendió también conectarse con su sensibilidad auténtica, con su profundidad emocional, a empatizar con límites, y a acompañar con compasión sin perder su centro, logrando así inspirar y transformar a otros. Ha observado recientes noticias de adolescentes que han recurrido a sistemas de IA para generar imágenes de sus compañeros de clase incluyendo pornografía infantil, sin medir las consecuencias de sus actos." },
       { id: 5, nombre: "Valentín", imagen: "corlux/Valentin/valentin-1.png", color: "#a6d11e", descripcion: "Es valiente y alegre.\nDisfruta la vida, comparte alegría y entusiasmo, y tiene un gran sentido del humor. Hubo un tiempo que no podía sacarse la máscara de “El Gracioso” del grupo, usaba el humor, incluso cuando estaba triste, para evitar sentir el dolor o tener que atravesar los conflictos. Aprendió quedarse presente ante su dolor, entendiendo que muchas veces el principal enemigo que tenemos los humanos somos muchas veces nosotros mismos y que el mayor acto de valentía es enfrentar y aprender a aceptar nuestros propios miedos, miserias y frustraciones. Que el Miedo se combate con Amor, empezando con el amor a sí mismo. Que cuando a pesar de no sentirnos queridos o aceptados, nos mantenemos auténticos, sin disimular, sin pretender ser alguien distinto solo para encajar, sin intentar defendernos o protegernos contra el dolor, y conectamos con nuestro corazón, aceptándonos y amándonos tal cual somos, con nuestras parcialidades, limitaciones e incluso miserias, se produce la Magia, y aparecen cosas maravillosas. Valentín es también curioso, tiene ideas muy creativas, resuelve problemas ingeniosamente. Hace tiempo mira con preocupación que los adolescentes están teniendo grandes problemas para enfrentar los casos de “ciberbullying” enfrentándose a los propios “monstruos”." },
-      { id: 6, nombre: "Graciano", imagen: "corlux/Graciano/graciano-1.png", color: "#3469ea", descripcion: "Es Agradecido y Generoso.\nEs también muy eficiente y productivo, confía en la abundancia de la vida. Ofrece amor desde una generosidad genuina, sin esperar nada a cambio, reconociendo sus propias necesidades. Hubo un tiempo que hacía las cosas sólo para ganar aprobación de los demás, desconectándose de sus emociones, y no podía sacarse el disfraz de “El Salvador”. Le gustaba ayudar para sentirse necesitado, incluso llegó a usar esa “ayuda” para controlar o manipular emocionalmente a otros. Hoy cumple con metas alineadas con lo que siente. Su verdadero ser, brilla con autenticidad. Graciano enseña that “la abundancia” no es “tener mucho, plata, bienes o logros, sino la certeza de que nunca nos va a faltar nada. Es confiar que siempre llegará lo que necesitamos, porque ya existe. Confía que la vida nos sostiene, y que todo nos llega en el momento justo. Que necesitamos las pausas y los vacíos para dar sentido a lo que hacemos. Así Graciano recuerda a los humanos, que ser abundante es respirar profundo y recordar que ya somos suficientes, es soltar la lucha y abrirnos a recibir. Graciano invita a los humanos a cambiar la mirada, el foco de nuestra atención. Mirar alrededor, y hacia adentro y preguntarse ¿en qué parte de mi vida ya soy abundante? Hace tiempo viene observando con preocupación como gran parte de los humanos buscan ser validados en línea, exponiéndose a la misma 24/7 a la misma. Que la aceptación o rechazo en grupos virtuales intensifica las experiencias de exclusión social y como las comparaciones sociales se encuentran exacerbadas por la aparición de los Influencers virtuales, y avatares digitales de nosotros mismos, representándonos de manera idealizada, usando filtros que modifican rostros, gestos, voces. Estos nos muestran una versión intervenida de la realidad, aumentando la presión social y la insatisfacción personal, afectando la autoestima y la salud mental." },
+      { id: 6, nombre: "Graciano", imagen: "corlux/Graciano/graciano-1.png", color: "#3469ea", descripcion: "Es Agradecido y Generoso.\nEs también muy eficiente y productivo, confía en la abundancia de la vida. Ofrece amor desde una generosidad genuina, sin esperar nada a cambio, reconociendo sus propias necesidades. Hubo un tiempo que hacía las cosas sólo para ganar aprobación de los demás, desconectándose de sus emociones, y no podía sacarse el disfraz de “El Salvador”. Le gustaba ayudar para sentirse necesitado, incluso llegó a usar esa “ayuda” para controlar o manipular emocionalmente a otros. Hoy cumple con metas alineadas con lo que siente. Su verdadero ser, brilla con autenticidad. Graciano enseña que “la abundancia” no es “tener mucho, plata, bienes o logros, sino la certeza de que nunca nos va a faltar nada. Es confiar que siempre llegará lo que necesitamos, porque ya existe. Confía que la vida nos sostiene, y que todo nos llega en el momento justo. Que necesitamos las pausas y los vacíos para dar sentido a lo que hacemos. Así Graciano recuerda a los humanos, que ser abundante es respirar profundo y recordar que ya somos suficientes, es soltar la lucha y abrirnos a recibir. Graciano invita a los humanos a cambiar la mirada, el foco de nuestra atención. Mirar alrededor, y hacia adentro y preguntarse ¿en qué parte de mi vida ya soy abundante? Hace tiempo viene observando con preocupación como gran parte de los humanos buscan ser validados en línea, exponiéndose a la misma 24/7 a la misma. Que la aceptación o rechazo en grupos virtuales intensifica las experiencias de exclusión social y como las comparaciones sociales se encuentran exacerbadas por la aparición de los Influencers virtuales, y avatares digitales de nosotros mismos, representándonos de manera idealizada, usando filtros que modifican rostros, gestos, voces. Estos nos muestran una versión intervenida de la realidad, aumentando la presión social y la insatisfacción personal, afectando la autoestima y la salud mental." },
       { id: 7, nombre: "Amara", imagen: "corlux/Amara/amara-1.png", color: "#f993a2", descripcion: "Es la líder del grupo. Ha alcanzado la Virtud más elevada, la perla de las virtudes, la que comprende a todas las demás, La Humildad.\nHa alcanzado la Virtud más elevada, la perla de las virtudes, la que comprende a todas las demás, La Humildad. Aprendió que por más de que nos esforcemos en desarrollar otras virtudes, es imprescindible alcanzar esta. Reconoce el Misterio Infinito del Universo, y que “Ser Humano” es sólo Ser una parte de El. 'Que somos una humilde pieza de algo infinitamente mayor que al tiempo nos necesita para completarse' Los humanos somos pequeñas gotas en un inmenso océano, pero qué sería de este océano sin cada una de esas pequeñas gotas. Valora a cada persona con sus defectos y sus virtudes. Cree que el gran desafío que tienen los Seres Humanos es aceptarse y amarse unos a otros tal como son. Y que gracias a las singularidades, a las diferencias y a las Limitaciones, el Amor puede multiplicarse y expandirse, y cuando nos apoyamos unos a los otros, “Somos todos ganadores”. Amara, ha observado que los humanos están siendo rodeados de estímulos e hiperinformación, un bombardeo constante para el que hoy tenemos que estar preparados y entrenados. Y a pesar de todas las dificultades y desafíos, visualiza para los humanos una Gran oportunidad de transformación y desarrollo para la humanidad. Sin embargo plantea la necesidad de revisar las bases de la convivencia y la propia concepción de lo que significa ser humano." }
     ];
 
@@ -722,7 +734,7 @@
 
       if (title && image && prev && next && capsule) {
         title.textContent = historia.titulo;
-        image.src = imagen.ruta || 'corlux/Todos/corlux_claro_cortado.png';
+        image.src = imagen.ruta;
         image.alt = `${historia.titulo} - Imagen ${imagenIndex + 1}`;
         if (imagen.anchor && typeof imagen.anchor === 'string') {
           try {
@@ -757,14 +769,16 @@
         newHistoriaIndex = currentHistoriaIndex + 1;
         newImagenIndex = 0;
       } else if (newImagenIndex < 0) {
+        newHistoriaIndex = currentHistoriaIndex;
+      } else if (currentHistoriaIndex > 0) {
         newHistoriaIndex = currentHistoriaIndex - 1;
-        newImagenIndex = newHistoriaIndex >= 0 ? comics[newHistoriaIndex].imagenes.length - 1 : 0;
+        newImagenIndex = comics[newHistoriaIndex].imagenes.length - 1;
+      } else {
+        newImagenIndex = 0;
       }
 
       if (newHistoriaIndex >= 0 && newHistoriaIndex < comics.length) {
         cambiarComic(newHistoriaIndex, newImagenIndex);
-      } else if (newImagenIndex >= 0 && newImagenIndex < comics[currentHistoriaIndex].imagenes.length) {
-        cambiarComic(currentHistoriaIndex, newImagenIndex);
       }
     }
 
@@ -857,7 +871,7 @@
       cambiarPersonaje(1);
       const hash = window.location.hash.slice(1);
       if (!hash || hash === 'comics') {
-        cambiarComic(0, 0);
+        cambiarComic(0, 0); // Carga la primera imagen del primer comic
         const capsule = document.querySelector('.comic-capsule');
         if (capsule) capsule.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } else {
