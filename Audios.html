@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Pausa Conexión - Audios de meditación y mindfulness para Conciencia IA">
   <meta name="keywords" content="audio, meditación, mindfulness, pausa, conexión, conciencia">
   <title>Pausa Conexión - Conciencia IA</title>
@@ -11,7 +11,6 @@
   <link rel="preload" href="Imagenes/logo_verde_b.png" as="image">
   
   <style>
-    /* Variables CSS para consistencia de colores */
     :root {
       --primary-bg: #f2f1eb;
       --primary-text: #26134b;
@@ -50,7 +49,6 @@
       font-weight: 400;
     }
 
-    /* Fondo animado */
     body::before {
       content: '';
       position: fixed;
@@ -71,7 +69,6 @@
       50% { transform: translateY(-10px) rotate(1deg); }
     }
 
-    /* Header */
     header {
       display: flex;
       justify-content: space-between;
@@ -117,7 +114,6 @@
       width: 180px;
     }
 
-    /* Navegación */
     nav {
       display: flex;
       align-items: center;
@@ -171,7 +167,6 @@
       to { width: 80%; }
     }
 
-    /* Dropdown */
     .dropdown {
       position: relative;
     }
@@ -222,16 +217,13 @@
       padding-left: 1.5rem;
     }
 
-    /* Secciones */
     section {
-      padding: 6rem 3rem 4rem;
+      padding: 4rem 2rem 3rem;
       max-width: 1200px;
       margin: 2rem auto;
       background: linear-gradient(135deg, rgba(242, 241, 235, 0.95) 0%, rgba(242, 241, 235, 0.98) 100%);
       border-radius: var(--border-radius);
-      box-shadow: 
-        0 8px 25px var(--shadow-light),
-        0 0 0 1px rgba(38, 209, 200, 0.1);
+      box-shadow: 0 6px 15px var(--shadow-light);
       transition: all var(--transition-medium);
       position: relative;
       z-index: 1;
@@ -241,9 +233,7 @@
 
     section:hover {
       transform: translateY(-8px);
-      box-shadow: 
-        0 15px 35px var(--shadow-medium),
-        0 0 0 1px rgba(38, 209, 200, 0.2);
+      box-shadow: 0 10px 20px var(--shadow-medium);
     }
 
     section::before {
@@ -258,7 +248,7 @@
     }
 
     section h2 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       color: var(--secondary-bg);
       margin-bottom: 1.5rem;
       position: relative;
@@ -281,20 +271,22 @@
 
     section p, section li {
       font-size: 1.1rem;
-      color: var(--secondary-bg);
-      line-height: 1.8;
+      color: var(--primary-text);
+      line-height: 2;
       margin-bottom: 1rem;
+      text-align: center;
     }
 
     section ul {
-      margin: 1.5rem 0 2rem 2rem;
-      padding-left: 1rem;
+      margin: 1.5rem auto 2rem;
+      padding: 0 1rem;
+      list-style: none;
+      max-width: 800px;
     }
 
     section li {
       margin-bottom: 0.75rem;
-      position: relative;
-      padding-left: 0.5rem;
+      padding-left: 0;
     }
 
     .audio-list {
@@ -312,12 +304,11 @@
       content: none;
     }
 
-    /* Contenedor principal */
     .main-container {
       display: grid;
-      grid-template-columns: 1fr 300px;
-      gap: 2rem;
-      max-width: 1200px;
+      grid-template-columns: 1fr 250px;
+      gap: 1.5rem;
+      max-width: 800px;
       width: 100%;
       margin: 0 auto;
     }
@@ -326,11 +317,12 @@
       background: linear-gradient(135deg, var(--secondary-bg) 0%, #2a2a2a 100%);
       padding: 2rem;
       border-radius: var(--border-radius);
-      box-shadow: 0 8px 25px var(--shadow-dark);
+      box-shadow: 0 6px 15px var(--shadow-light);
       display: flex;
       flex-direction: column;
       backdrop-filter: blur(10px);
       border: 1px solid rgba(38, 209, 200, 0.2);
+      max-width: 550px;
     }
 
     .image-container {
@@ -339,15 +331,15 @@
       justify-content: center;
       align-items: center;
       margin-bottom: 2rem;
-      min-height: 300px;
+      min-height: 250px;
     }
 
     .image-container img {
       max-width: 100%;
-      max-height: 400px;
+      max-height: 300px;
       object-fit: contain;
       border-radius: var(--border-radius);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
       transition: transform var(--transition-medium);
     }
 
@@ -359,7 +351,6 @@
       width: 100%;
     }
 
-    /* Reproductor de audio */
     audio {
       width: 100%;
       outline: none;
@@ -370,19 +361,19 @@
     }
 
     audio:hover {
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 6px 20px var(--shadow-medium);
     }
 
-    /* Selector de audio */
     .audio-selector {
       max-height: 500px;
       overflow-y: auto;
       background: linear-gradient(135deg, rgba(242, 241, 235, 0.95) 0%, rgba(242, 241, 235, 0.98) 100%);
       border-radius: var(--border-radius);
       padding: 1.5rem;
-      box-shadow: 0 8px 25px var(--shadow-light);
+      box-shadow: 0 6px 15px var(--shadow-light);
       backdrop-filter: blur(5px);
       border: 1px solid rgba(38, 209, 200, 0.1);
+      max-width: 250px;
     }
 
     .audio-selector::-webkit-scrollbar {
@@ -406,10 +397,10 @@
 
     .audio-list button {
       width: 100%;
-      padding: 1rem;
-      font-size: 1rem;
+      padding: 0.75rem;
+      font-size: 0.95rem;
       background: linear-gradient(135deg, rgba(242, 241, 235, 0.95) 0%, rgba(242, 241, 235, 0.98) 100%);
-      color: var(--secondary-bg);
+      color: var(--primary-text);
       border: none;
       border-radius: var(--border-radius-small);
       cursor: pointer;
@@ -434,9 +425,9 @@
 
     .audio-list button:hover {
       background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
-      color: var(--secondary-bg);
+      color: var(--white);
       transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(38, 209, 200, 0.4);
+      box-shadow: 0 4px 15px var(--shadow-medium);
     }
 
     .audio-list button:hover::before {
@@ -445,8 +436,8 @@
 
     .audio-list button.active {
       background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
-      color: var(--secondary-bg);
-      box-shadow: 0 4px 15px rgba(38, 209, 200, 0.4);
+      color: var(--white);
+      box-shadow: 0 4px 15px var(--shadow-medium);
     }
 
     .error-message {
@@ -461,12 +452,10 @@
       border: 1px solid rgba(255, 77, 77, 0.3);
     }
 
-    /* Spacer */
     .spacer {
       height: 160px;
     }
 
-    /* Footer */
     footer {
       background: linear-gradient(135deg, var(--primary-bg) 0%, #e8e7e1 100%);
       padding: 2rem 0;
@@ -477,26 +466,26 @@
     footer p {
       text-align: center;
       font-size: 0.95rem;
-      color: var(--secondary-bg);
+      color: var(--primary-text);
       margin: 0;
-      line-height: 1.6;
+      line-height: 2;
       font-weight: 500;
+      padding: 0 1rem;
     }
 
-    /* Responsive */
     @media (max-width: 1024px) {
       .main-container {
-        grid-template-columns: 1fr 250px;
-        gap: 1.5rem;
+        grid-template-columns: 1fr 200px;
+        gap: 1rem;
       }
       
       section {
         margin: 1.5rem;
-        padding: 4rem 2rem 3rem;
+        padding: 3rem 1.5rem 2rem;
       }
       
       section h2 {
-        font-size: 2rem;
+        font-size: 2.2rem;
       }
     }
 
@@ -538,12 +527,12 @@
       }
 
       section {
-        padding: 3rem 1.5rem 2rem;
+        padding: 2.5rem 1rem 1.5rem;
         margin: 1rem;
       }
 
       section h2 {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
       }
 
       section p, section li {
@@ -586,12 +575,12 @@
       }
 
       section {
-        padding: 2.5rem 1rem 1.5rem;
+        padding: 2rem 0.75rem 1rem;
         margin: 0.5rem;
       }
 
       section h2 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
       }
 
       .content-container {
@@ -608,7 +597,6 @@
       }
     }
 
-    /* Animaciones de entrada */
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -624,7 +612,6 @@
       animation: fadeInUp 0.8s ease-out;
     }
 
-    /* Mejoras de accesibilidad */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -633,7 +620,6 @@
       }
     }
 
-    /* Focus visible para accesibilidad */
     nav a:focus-visible,
     .dropdown-content a:focus-visible,
     .audio-list button:focus-visible {
@@ -694,11 +680,11 @@
     <div class="main-container">
       <div class="content-container">
         <div class="image-container">
-          <img id="audioImage" src="corlux/Todos/corlux_claro_cortado.png" alt="Imagen del audio">
+          <img id="audioImage" src="" alt="Imagen del audio" loading="lazy">
         </div>
         <div class="audio-container">
-          <audio id="audioPlayer" controls>
-            <source src="audios/1.mp3" type="audio/mpeg">
+          <audio id="audioPlayer" controls preload="metadata">
+            <source src="" type="audio/mpeg">
             Tu navegador no soporta la reproducción de audio. Prueba con Chrome, Firefox o un navegador actualizado.
           </audio>
           <div id="errorMessage" class="error-message"></div>
@@ -717,39 +703,39 @@
   </footer>
 
   <script>
-    // Lista de audios
     const audios = [
-      { nombre: "Calma", audio: "audios/1.mp3", imagen: "corlux/Amara/amara-1.png" },
-      { nombre: "Dolor físico y emocional", audio: "audios/2.mp3", imagen: "corlux/Esperanza/esperanza-1.png" },
-      { nombre: "Limpieza energética", audio: "audios/3.mp3", imagen: "corlux/Graciano/graciano-1.png" },
-      { nombre: "Sueño", audio: "audios/4.mp3", imagen: "corlux/Justino/justino-1.png" },
-      { nombre: "Creatividad", audio: "audios/5.mp3", imagen: "corlux/Paz/paz-1.png" },
-      { nombre: "Calma y enfoque", audio: "audios/6.mp3", imagen: "corlux/Valentin/valentin-1.png" },
-      { nombre: "Activación", audio: "audios/7.mp3", imagen: "corlux/Amara/amara-2.png" },
-      { nombre: "Intuición", audio: "audios/8.mp3", imagen: "corlux/Graciano/graciano-2.png" },
-      { nombre: "Claridad y aprendizaje", audio: "audios/9.mp3", imagen: "corlux/Justino/justino-2.png" },
-      { nombre: "Foco y Concentración", audio: "audios/10.mp3", imagen: "corlux/Valentin/valentin-1.png" },
-      { nombre: "Sanando heridas", audio: "audios/11.mp3", imagen: "corlux/Paz/paz-3.png" },
-      { nombre: "Punto quieto", audio: "audios/12.mp3", imagen: "corlux/Laura/laura-2.png" },
-      { nombre: "Grounding", audio: "audios/13.mp3", imagen: "corlux/Amara/amara-3.png" },
-      { nombre: "Espejo energético", audio: "audios/14.mp3", imagen: "corlux/Graciano/graciano-3.png" },
-      { nombre: "Visualizo mi meta", audio: "audios/15.mp3", imagen: "corlux/Justino/justino-3.png" },
-      { nombre: "El poder de la palabra", audio: "audios/16.mp3", imagen: "corlux/Paz/paz-2.png" },
-      { nombre: "Afinando cuerdas", audio: "audios/17.mp3", imagen: "corlux/Valentin/valentin-3.png" },
-      { nombre: "Construyendo confianza", audio: "audios/18.mp3", imagen: "corlux/Laura/laura-3.png" },
-      { nombre: "Mi frase poderosa", audio: "audios/19.mp3", imagen: "corlux/Amara/amara-1.png" },
-      { nombre: "Un cuerpo una sinfonía", audio: "audios/20.mp3", imagen: "corlux/Graciano/graciano-1.png" },
-      { nombre: "Fortaleza interior", audio: "audios/21.mp3", imagen: "corlux/Justino/justino-1.png" },
-      { nombre: "Visualización pantalla mental 1", audio: "audios/22.mp3", imagen: "corlux/Paz/paz-1.png" },
-      { nombre: "Visualización pantalla mental 2", audio: "audios/23.mp3", imagen: "corlux/Valentin/valentin-1.png" },
-      { nombre: "Visualización pantalla mental 3", audio: "audios/24.mp3", imagen: "corlux/Laura/laura-1.png" },
-      { nombre: "Cápsula de movimiento y energía", audio: "audios/25.mp3", imagen: "corlux/Amara/amara-2.png" },
-      { nombre: "Sonidos Cuencos", audio: "audios/sonidos cuencos.mp3", imagen: "corlux/Graciano/graciano-1.png" }
+      { nombre: "Calma", audio: "./audios/1.mp3", imagen: "./corlux/Amara/amara-1.png" },
+      { nombre: "Dolor físico y emocional", audio: "./audios/2.mp3", imagen: "./corlux/Esperanza/esperanza-1.png" },
+      { nombre: "Limpieza energética", audio: "./audios/3.mp3", imagen: "./corlux/Graciano/graciano-1.png" },
+      { nombre: "Sueño", audio: "./audios/4.mp3", imagen: "./corlux/Justino/justino-1.png" },
+      { nombre: "Creatividad", audio: "./audios/5.mp3", imagen: "./corlux/Paz/paz-1.png" },
+      { nombre: "Calma y enfoque", audio: "./audios/6.mp3", imagen: "./corlux/Valentin/valentin-1.png" },
+      { nombre: "Activación", audio: "./audios/7.mp3", imagen: "./corlux/Amara/amara-2.png" },
+      { nombre: "Intuición", audio: "./audios/8.mp3", imagen: "./corlux/Graciano/graciano-2.png" },
+      { nombre: "Claridad y aprendizaje", audio: "./audios/9.mp3", imagen: "./corlux/Justino/justino-2.png" },
+      { nombre: "Foco y Concentración", audio: "./audios/10.mp3", imagen: "./corlux/Valentin/valentin-1.png" },
+      { nombre: "Sanando heridas", audio: "./audios/11.mp3", imagen: "./corlux/Paz/paz-3.png" },
+      { nombre: "Punto quieto", audio: "./audios/12.mp3", imagen: "./corlux/Laura/laura-2.png" },
+      { nombre: "Grounding", audio: "./audios/13.mp3", imagen: "./corlux/Amara/amara-3.png" },
+      { nombre: "Espejo energético", audio: "./audios/14.mp3", imagen: "./corlux/Graciano/graciano-3.png" },
+      { nombre: "Visualizo mi meta", audio: "./audios/15.mp3", imagen: "./corlux/Justino/justino-3.png" },
+      { nombre: "El poder de la palabra", audio: "./audios/16.mp3", imagen: "./corlux/Paz/paz-2.png" },
+      { nombre: "Afinando cuerdas", audio: "./audios/17.mp3", imagen: "./corlux/Valentin/valentin-3.png" },
+      { nombre: "Construyendo confianza", audio: "./audios/18.mp3", imagen: "./corlux/Laura/laura-3.png" },
+      { nombre: "Mi frase poderosa", audio: "./audios/19.mp3", imagen: "./corlux/Amara/amara-1.png" },
+      { nombre: "Un cuerpo una sinfonía", audio: "./audios/20.mp3", imagen: "./corlux/Graciano/graciano-1.png" },
+      { nombre: "Fortaleza interior", audio: "./audios/21.mp3", imagen: "./corlux/Justino/justino-1.png" },
+      { nombre: "Visualización pantalla mental 1", audio: "./audios/22.mp3", imagen: "./corlux/Paz/paz-1.png" },
+      { nombre: "Visualización pantalla mental 2", audio: "./audios/23.mp3", imagen: "./corlux/Valentin/valentin-1.png" },
+      { nombre: "Visualización pantalla mental 3", audio: "./audios/24.mp3", imagen: "./corlux/Laura/laura-1.png" },
+      { nombre: "Cápsula de movimiento y energía", audio: "./audios/25.mp3", imagen: "./corlux/Amara/amara-2.png" },
+      { nombre: "Sonidos Cuencos", audio: "./audios/sonidos cuencos.mp3", imagen: "./corlux/Graciano/graciano-1.png" }
     ];
 
     class AudioManager {
       constructor() {
         this.audioPlayer = document.getElementById("audioPlayer");
+        this.audioSource = this.audioPlayer.querySelector("source");
         this.image = document.getElementById("audioImage");
         this.errorMessage = document.getElementById("errorMessage");
         this.audioList = document.getElementById("audioList");
@@ -777,12 +763,10 @@
       }
 
       setupEventListeners() {
-        // Audio player events
         this.audioPlayer.addEventListener('loadstart', () => this.showLoading());
         this.audioPlayer.addEventListener('canplay', () => this.hideLoading());
         this.audioPlayer.addEventListener('error', () => this.handleError());
         
-        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
           if (e.key === 'ArrowUp' && e.ctrlKey) {
             e.preventDefault();
@@ -795,7 +779,6 @@
       }
 
       loadInitialAudio() {
-        // Check URL parameters for specific audio
         const urlParams = new URLSearchParams(window.location.search);
         const id = parseInt(urlParams.get('id')) - 1;
 
@@ -805,7 +788,6 @@
           this.changeAudio(0);
         }
 
-        // Scroll to section if coming from another page
         if (window.location.hash === '#espacio-pausa') {
           document.getElementById("espacio-pausa").scrollIntoView({ behavior: 'smooth' });
         }
@@ -817,37 +799,31 @@
         this.currentAudioIndex = index;
         const audioData = audios[index];
 
-        // Update active button
         this.updateActiveButton(index);
-
-        // Clear previous state
         this.clearPreviousState();
 
-        // Update audio and image
-        this.audioPlayer.src = audioData.audio;
-        this.image.src = audioData.imagen;
+        this.audioSource.src = audioData.audio;
+        this.image.src = audioData.audio;
         this.image.alt = `Imagen de ${audioData.nombre}`;
 
-        // Handle image error
         this.image.onerror = () => {
-          this.image.src = 'corlux/Todos/corlux_claro_cortado.png';
+          this.image.style.display = 'none';
           this.showError('No se pudo cargar la imagen.');
+          console.error('Error cargando imagen:', audioData.imagen);
         };
 
-        // Load and play audio
         this.audioPlayer.load();
-        this.audioPlayer.play().catch(() => {
-          this.showError('No se pudo cargar el audio.');
+        this.audioPlayer.play().catch((error) => {
+          this.showError('No se pudo cargar el audio. Verifica que el archivo existe.');
+          console.error('Error cargando audio:', audioData.audio, error);
         });
       }
 
       updateActiveButton(index) {
-        // Remove active class from all buttons
         document.querySelectorAll('.audio-list button').forEach(btn => {
           btn.classList.remove('active');
         });
 
-        // Add active class to current button
         const currentButton = document.querySelector(`[data-index="${index}"]`);
         if (currentButton) {
           currentButton.classList.add('active');
@@ -857,18 +833,21 @@
 
       clearPreviousState() {
         this.audioPlayer.pause();
-        this.audioPlayer.src = '';
+        this.audioSource.src = '';
         this.image.src = '';
+        this.image.style.display = 'block';
         this.image.onerror = null;
         this.hideError();
       }
 
       showLoading() {
         this.image.style.opacity = '0.7';
+        this.audioPlayer.style.opacity = '0.7';
       }
 
       hideLoading() {
         this.image.style.opacity = '1';
+        this.audioPlayer.style.opacity = '1';
       }
 
       showError(message) {
@@ -896,10 +875,10 @@
       }
     }
 
-    // Navigation Manager
     class NavigationManager {
       constructor() {
         this.header = document.querySelector('header');
+        this.sections = document.querySelectorAll('section');
         this.navLinks = document.querySelectorAll('nav a');
         this.init();
       }
@@ -907,6 +886,7 @@
       init() {
         this.setupScrollHandler();
         this.setupActiveNavigation();
+        this.setupSmoothScrolling();
       }
 
       setupScrollHandler() {
@@ -926,26 +906,107 @@
       handleScroll() {
         const scrollY = window.scrollY;
         
-        // Header scroll effect
         if (this.header) {
           this.header.classList.toggle('scrolled', scrollY > 50);
         }
+
+        this.updateActiveSection(scrollY);
+      }
+
+      updateActiveSection(scrollY) {
+        let currentSection = '';
+        const offset = 150;
+
+        this.sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          
+          if (scrollY >= sectionTop - offset && scrollY < sectionTop + sectionHeight - offset) {
+            currentSection = section.getAttribute('id');
+          }
+        });
+
+        this.navLinks.forEach(link => {
+          link.classList.remove('active');
+          const href = link.getAttribute('href').toLowerCase();
+          
+          if (href.includes(`#${currentSection.toLowerCase()}`)) {
+            link.classList.add('active');
+          }
+        });
       }
 
       setupActiveNavigation() {
-        // Set active state for current page
         this.navLinks.forEach(link => {
           if (link.getAttribute('href') === '#espacio-pausa') {
             link.classList.add('active');
           }
         });
       }
+
+      setupSmoothScrolling() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = document.querySelector(anchor.getAttribute('href'));
+            if (target) {
+              target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          });
+        });
+      }
     }
 
-    // Initialize when DOM is ready
+    class AnimationManager {
+      constructor() {
+        this.observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+          }
+        );
+        
+        this.init();
+      }
+
+      init() {
+        this.sections.forEach(section => {
+          section.style.opacity = '0';
+          section.style.transform = 'translateY(30px)';
+          section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+          this.observer.observe(section);
+        });
+
+        setTimeout(() => {
+          this.sections.forEach(section => {
+            if (section.style.opacity === '0') {
+              section.style.opacity = '1';
+              section.style.transform = 'translateY(0)';
+            }
+          });
+        }, 1000);
+      }
+
+      get sections() {
+        return document.querySelectorAll('section');
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       new AudioManager();
       new NavigationManager();
+      new AnimationManager();
     });
   </script>
 </body>

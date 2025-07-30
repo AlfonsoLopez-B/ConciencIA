@@ -224,14 +224,12 @@
 
     /* Secciones */
     section {
-      padding: 6rem 3rem 4rem;
+      padding: 4rem 2rem 3rem;
       max-width: 1200px;
       margin: 2rem auto;
       background: linear-gradient(135deg, rgba(242, 241, 235, 0.95) 0%, rgba(242, 241, 235, 0.98) 100%);
       border-radius: var(--border-radius);
-      box-shadow: 
-        0 8px 25px var(--shadow-light),
-        0 0 0 1px rgba(38, 209, 200, 0.1);
+      box-shadow: 0 6px 15px var(--shadow-light);
       transition: all var(--transition-medium);
       position: relative;
       z-index: 1;
@@ -241,9 +239,7 @@
 
     section:hover {
       transform: translateY(-8px);
-      box-shadow: 
-        0 15px 35px var(--shadow-medium),
-        0 0 0 1px rgba(38, 209, 200, 0.2);
+      box-shadow: 0 10px 20px var(--shadow-medium);
     }
 
     section::before {
@@ -258,8 +254,8 @@
     }
 
     section h2 {
-      font-size: 2.5rem;
-      color: rgba(56, 56, 56, 0.95);
+      font-size: 2.8rem;
+      color: var(--secondary-bg);
       margin-bottom: 1.5rem;
       position: relative;
       padding-bottom: 1rem;
@@ -280,7 +276,7 @@
     }
 
     section h3 {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       color: var(--white);
       margin: 2rem 0 1.5rem;
       text-align: center;
@@ -290,15 +286,17 @@
 
     section p, section li {
       font-size: 1.1rem;
-      color: rgba(56, 56, 56, 0.95);
-      line-height: 1.8;
+      color: var(--primary-text);
+      line-height: 2;
       margin-bottom: 1rem;
+      text-align: center;
     }
 
     section ul {
-      margin: 1.5rem 0 2rem 2rem;
-      padding-left: 1rem;
+      margin: 1.5rem auto 2rem;
+      padding: 0 1rem;
       list-style: none;
+      max-width: 800px;
     }
 
     section li {
@@ -310,23 +308,22 @@
     /* Contenido de comics */
     .comic-intro {
       font-size: 1.1rem;
-      line-height: 1.8;
+      line-height: 2;
       margin-bottom: 2rem;
       max-width: 800px;
       margin-left: auto;
       margin-right: auto;
       text-align: center;
-      color: rgba(56, 56, 56, 0.95);
+      color: var(--primary-text);
     }
 
     .vinetas-container {
       background: linear-gradient(135deg, var(--secondary-bg) 0%, #2a2a2a 100%);
       border-radius: var(--border-radius);
-      box-shadow: 0 8px 25px var(--shadow-dark);
-      padding: 2.5rem;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto 3rem;
+      box-shadow: 0 6px 15px var(--shadow-light);
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
       border-left: 4px solid var(--accent-color);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(38, 209, 200, 0.2);
@@ -334,19 +331,19 @@
     }
 
     .vinetas-container:hover {
-      box-shadow: 0 12px 30px var(--shadow-medium);
+      box-shadow: 0 10px 20px var(--shadow-medium);
       transform: translateY(-5px);
     }
 
     .vinetas-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
     }
 
     .vineta-image {
       width: 100%;
-      max-height: 400px;
+      max-height: 300px;
       object-fit: cover;
       border-radius: var(--border-radius);
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
@@ -370,11 +367,12 @@
       height: 100%;
       background-color: rgba(0, 0, 0, 0.9);
       backdrop-filter: blur(5px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .modal-content {
-      margin: auto;
-      display: block;
       max-width: 90%;
       max-height: 90%;
       object-fit: contain;
@@ -441,29 +439,30 @@
     footer p {
       text-align: center;
       font-size: 0.95rem;
-      color: rgba(56, 56, 56, 0.95);
+      color: var(--primary-text);
       margin: 0;
-      line-height: 1.6;
+      line-height: 2;
       font-weight: 500;
+      padding: 0 1rem;
     }
 
     /* Responsive */
     @media (max-width: 1024px) {
       section {
         margin: 1.5rem;
-        padding: 4rem 2rem 3rem;
+        padding: 3rem 1.5rem 2rem;
       }
       
       section h2 {
-        font-size: 2rem;
+        font-size: 2.2rem;
       }
 
       section h3 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
       }
 
       .vinetas-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 1rem;
       }
     }
@@ -506,12 +505,12 @@
       }
 
       section {
-        padding: 3rem 1.5rem 2rem;
+        padding: 2.5rem 1rem 1.5rem;
         margin: 1rem;
       }
 
       section h2 {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
       }
 
       section h3 {
@@ -524,11 +523,11 @@
 
       .vinetas-container {
         padding: 1.5rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
       }
 
       .vinetas-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         gap: 1rem;
       }
 
@@ -572,12 +571,12 @@
       }
 
       section {
-        padding: 2.5rem 1rem 1.5rem;
+        padding: 2rem 0.75rem 1rem;
         margin: 0.5rem;
       }
 
       section h2 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
       }
 
       section h3 {
@@ -670,7 +669,7 @@
           <a href="juego.html#cartas">Cartas</a>
         </div>
       </div>
-      <a href="Audios.html#espacio-pausa">Pausa & Conexión</a>
+      <a href="Audios.html#espacio-pausa">Pausa & Conciencia</a>
     </nav>
   </header>
 
@@ -695,69 +694,69 @@
     <div class="vinetas-container">
       <h3>El conflicto de Jonathan</h3>
       <div class="vinetas-grid">
-        <img src="ComicsIMG/2.png" alt="Viñeta 2 del Cómic 1" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/3.png" alt="Viñeta 3 del Cómic 1" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/4.png" alt="Viñeta 4 del Cómic 1" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/5.png" alt="Viñeta 5 del Cómic 1" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/6.png" alt="Viñeta 6 del Cómic 1" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/7.png" alt="Viñeta 7 del Cómic 1" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/8.png" alt="Viñeta 8 del Cómic 1" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="./ComicsIMG/2.png" alt="Viñeta 2 del Cómic 1" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/3.png" alt="Viñeta 3 del Cómic 1" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/4.png" alt="Viñeta 4 del Cómic 1" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/5.png" alt="Viñeta 5 del Cómic 1" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/6.png" alt="Viñeta 6 del Cómic 1" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/7.png" alt="Viñeta 7 del Cómic 1" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/8.png" alt="Viñeta 8 del Cómic 1" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
       </div>
     </div>
     <div class="vinetas-container">
       <h3>El conflicto de Sofi y el error de Tincho</h3>
       <div class="vinetas-grid">
-        <img src="ComicsIMG/10.png" alt="Viñeta 2 del Cómic 2" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/11.png" alt="Viñeta 3 del Cómic 2" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/12.png" alt="Viñeta 4 del Cómic 2" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/13.png" alt="Viñeta 5 del Cómic 2" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/14.png" alt="Viñeta 6 del Cómic 2" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="./ComicsIMG/10.png" alt="Viñeta 2 del Cómic 2" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/11.png" alt="Viñeta 3 del Cómic 2" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/12.png" alt="Viñeta 4 del Cómic 2" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/13.png" alt="Viñeta 5 del Cómic 2" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/14.png" alt="Viñeta 6 del Cómic 2" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
       </div>
     </div>
     <div class="vinetas-container">
       <h3>La soledad de Pedro y Pato</h3>
       <div class="vinetas-grid">
-        <img src="ComicsIMG/16.png" alt="Viñeta 2 del Cómic 3" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/17.png" alt="Viñeta 3 del Cómic 3" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/18.png" alt="Viñeta 4 del Cómic 3" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/19.png" alt="Viñeta 5 del Cómic 3" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="./ComicsIMG/16.png" alt="Viñeta 2 del Cómic 3" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/17.png" alt="Viñeta 3 del Cómic 3" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/18.png" alt="Viñeta 4 del Cómic 3" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/19.png" alt="Viñeta 5 del Cómic 3" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
       </div>
     </div>
     <div class="vinetas-container">
       <h3>Con quien hablan realmente Juan y Victoria</h3>
       <div class="vinetas-grid">
-        <img src="ComicsIMG/21.png" alt="Viñeta 2 del Cómic 4" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/22.png" alt="Viñeta 3 del Cómic 4" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/23.png" alt="Viñeta 4 del Cómic 4" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="./ComicsIMG/21.png" alt="Viñeta 2 del Cómic 4" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/22.png" alt="Viñeta 3 del Cómic 4" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/23.png" alt="Viñeta 4 del Cómic 4" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
       </div>
     </div>
     <div class="vinetas-container">
-      <h3>Psicologos y amigos bots</h3>
+      <h3>Psicólogos y amigos bots</h3>
       <div class="vinetas-grid">
-        <img src="ComicsIMG/25.png" alt="Viñeta 2 del Cómic 5" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/26.png" alt="Viñeta 3 del Cómic 5" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="./ComicsIMG/25.png" alt="Viñeta 2 del Cómic 5" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/26.png" alt="Viñeta 3 del Cómic 5" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
       </div>
     </div>
     <div class="vinetas-container">
       <h3>El conflicto de Nico</h3>
       <div class="vinetas-grid">
-        <img src="ComicsIMG/28.png" alt="Viñeta 2 del Cómic 6" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/29.png" alt="Viñeta 3 del Cómic 6" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/30.png" alt="Viñeta 4 del Cómic 6" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/31.png" alt="Viñeta 5 del Cómic 6" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/32.png" alt="Viñeta 6 del Cómic 6" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/33.png" alt="Viñeta 7 del Cómic 6" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="./ComicsIMG/28.png" alt="Viñeta 2 del Cómic 6" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/29.png" alt="Viñeta 3 del Cómic 6" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/30.png" alt="Viñeta 4 del Cómic 6" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/31.png" alt="Viñeta 5 del Cómic 6" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/32.png" alt="Viñeta 6 del Cómic 6" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/33.png" alt="Viñeta 7 del Cómic 6" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
       </div>
     </div>
     <div class="vinetas-container">
       <h3>El conflicto de Pepe</h3>
       <div class="vinetas-grid">
-        <img src="ComicsIMG/35.png" alt="Viñeta 2 del Cómic 7" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/36.png" alt="Viñeta 3 del Cómic 7" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/37.png" alt="Viñeta 4 del Cómic 7" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/38.png" alt="Viñeta 5 del Cómic 7" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/39.png" alt="Viñeta 6 del Cómic 7" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
-        <img src="ComicsIMG/40.png" alt="Viñeta 7 del Cómic 7" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="./ComicsIMG/35.png" alt="Viñeta 2 del Cómic 7" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/36.png" alt="Viñeta 3 del Cómic 7" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/37.png" alt="Viñeta 4 del Cómic 7" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/38.png" alt="Viñeta 5 del Cómic 7" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/39.png" alt="Viñeta 6 del Cómic 7" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
+        <img src="./ComicsIMG/40.png" alt="Viñeta 7 del Cómic 7" class="vineta-image" loading="lazy" onerror="this.style.display='none'; console.error('Error cargando imagen:', this.src)">
       </div>
     </div>
   </section>
@@ -801,7 +800,6 @@
       }
 
       setupImages() {
-        // Group images by their vineta-container
         this.comicGroups = Array.from(document.querySelectorAll('.vinetas-container')).map(container => {
           return Array.from(container.querySelectorAll('.vineta-image')).map(img => ({
             src: img.src,
@@ -811,17 +809,13 @@
       }
 
       setupEventListeners() {
-        // Close modal when clicking X
         this.closeBtn.onclick = () => this.closeModal();
-
-        // Close modal when clicking outside
         this.modal.onclick = (e) => {
           if (e.target === this.modal) {
             this.closeModal();
           }
         };
 
-        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
           if (this.modal.style.display === 'block') {
             if (e.key === 'Escape') {
@@ -834,10 +828,8 @@
           }
         });
 
-        // Setup image click handlers
         document.querySelectorAll('.vineta-image').forEach((img, index) => {
           img.addEventListener('click', () => {
-            // Find the comic group for the clicked image
             const container = img.closest('.vinetas-container');
             const containerIndex = Array.from(document.querySelectorAll('.vinetas-container')).indexOf(container);
             this.currentComicGroup = this.comicGroups[containerIndex];
@@ -850,7 +842,7 @@
       openModal(src, alt) {
         this.modalImg.src = src;
         this.modalImg.alt = alt;
-        this.modal.style.display = 'block';
+        this.modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
       }
 
@@ -910,12 +902,10 @@
       handleScroll() {
         const scrollY = window.scrollY;
         
-        // Header scroll effect
         if (this.header) {
           this.header.classList.toggle('scrolled', scrollY > 50);
         }
 
-        // Active section highlighting
         this.updateActiveSection(scrollY);
       }
 
@@ -941,7 +931,6 @@
           }
         });
 
-        // Asegurar que el enlace principal de "S.O.S" esté activo si estamos en una de sus subsecciones
         if (['humanosSOS', 'vinetas', 'tu-voz-crea-conciencia'].includes(currentSection)) {
           this.navLinks.forEach(link => {
             if (link.getAttribute('href') === '#humanosSOS') {
@@ -949,13 +938,11 @@
             }
           });
         } else if (this.sections.length > 0 && scrollY < this.sections[0].offsetTop - offset) {
-          // No marcar ningún enlace si estamos arriba del todo
           this.navLinks.forEach(link => link.classList.remove('active'));
         }
       }
 
       setupInitialState() {
-        // Handle initial hash navigation
         if (window.location.hash) {
           const sectionId = window.location.hash.substring(1);
           const section = document.getElementById(sectionId);
@@ -968,7 +955,6 @@
       }
 
       setupSmoothScrolling() {
-        // Smooth scroll for internal links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
           anchor.addEventListener('click', (e) => {
             e.preventDefault();
@@ -1012,6 +998,16 @@
           section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
           this.observer.observe(section);
         });
+
+        // Forzar visibilidad después de 1 segundo si el observer no se activa
+        setTimeout(() => {
+          this.sections.forEach(section => {
+            if (section.style.opacity === '0') {
+              section.style.opacity = '1';
+              section.style.transform = 'translateY(0)';
+            }
+          });
+        }, 1000);
       }
 
       get sections() {
