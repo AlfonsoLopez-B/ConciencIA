@@ -7,7 +7,7 @@
   <meta name="keywords" content="comics, conflictos, digital, valores, humanos, educación">
   <title>Humanos S.O.S - Conciencia IA</title>
   
-  <link rel="preload" href="/Imagenes/logo_verde_b.png" as="image">
+  <link rel="preload" href="Imagenes/logo_verde_b.png" as="image">
   
   <style>
     :root {
@@ -499,24 +499,24 @@
 <body>
   <header>
     <div class="logo">
-      <img src="/Imagenes/logo_verde_b.png" alt="Conciencia IA Logo">
+      <img src="Imagenes/logo_verde_b.png" alt="Conciencia IA Logo">
     </div>
     <nav>
       <div class="dropdown">
-        <a href="/index.html#introduccion">Nuestro Proyecto</a>
+        <a href="index.html#introduccion">Nuestro Proyecto</a>
         <div class="dropdown-content">
-          <a href="/index.html#introduccion">Introducción</a>
-          <a href="/index.html#alcance">Alcance</a>
-          <a href="/index.html#marco-conceptual">Marco Conceptual</a>
-          <a href="/index.html#objetivos">Objetivos</a>
-          <a href="/index.html#metodologia">Metodología</a>
+          <a href="index.html#introduccion">Introducción</a>
+          <a href="index.html#alcance">Alcance</a>
+          <a href="index.html#marco-conceptual">Marco Conceptual</a>
+          <a href="index.html#objetivos">Objetivos</a>
+          <a href="index.html#metodologia">Metodología</a>
         </div>
       </div>
       <div class="dropdown">
-        <a href="/corlux.html#historia">Corlux</a>
+        <a href="corlux.html#historia">Corlux</a>
         <div class="dropdown-content">
-          <a href="/corlux.html#historia">Historia</a>
-          <a href="/corlux.html#personajes">Personajes</a>
+          <a href="corlux.html#historia">Historia</a>
+          <a href="corlux.html#personajes">Personajes</a>
         </div>
       </div>
       <div class="dropdown">
@@ -528,13 +528,13 @@
         </div>
       </div>
       <div class="dropdown">
-        <a href="/juego.html#reglas">Juego</a>
+        <a href="juego.html#reglas">Juego</a>
         <div class="dropdown-content">
-          <a href="/juego.html#reglas">Reglas</a>
-          <a href="/juego.html#cartas">Cartas</a>
+          <a href="juego.html#reglas">Reglas</a>
+          <a href="juego.html#cartas">Cartas</a>
         </div>
       </div>
-      <a href="/audios.html#espacio-pausa">Pausa & Conexión</a>
+      <a href="audios.html#espacio-pausa">Pausa & Conexión</a>
     </nav>
   </header>
 
@@ -555,7 +555,7 @@
   </section>
 
   <section id="vinetas">
-    <h2>Viñetas</h2>
+    <h2>Comics</h2>
     <div class="vinetas-container">
       <h3>El conflicto de Jonathan</h3>
       <div class="vinetas-grid">
@@ -647,8 +647,6 @@
   </footer>
 
   <script>
-    const FALLBACK_IMAGE = "/corlux/Todos/corlux_claro_cortado.png";
-
     class ModalManager {
       constructor() {
         this.modal = document.getElementById("imageModal");
@@ -674,13 +672,6 @@
             alt: img.alt
           }))
         );
-
-        document.querySelectorAll('.vineta-image').forEach(img => {
-          img.onerror = () => {
-            img.src = FALLBACK_IMAGE;
-            img.alt = 'Imagen de respaldo';
-          };
-        });
       }
 
       setupEventListeners() {
