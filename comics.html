@@ -3,21 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Humanos S.O.S - Comics educativos sobre conflictos digitales y valores humanos">
+  <meta name="keywords" content="comics, conflictos, digital, valores, humanos, educación">
   <title>Humanos S.O.S - Conciencia IA</title>
+  
+  <!-- Precarga de recursos críticos -->
+  <link rel="preload" href="Imagenes/logo_verde_b.png" as="image">
+  
   <style>
+    /* Variables CSS para consistencia de colores */
+    :root {
+      --primary-bg: #f2f1eb;
+      --primary-text: #26134b;
+      --secondary-bg: #383838;
+      --accent-color: #26d1c8;
+      --accent-hover: #1e9c94;
+      --white: #f2f1eb;
+      --shadow-light: rgba(38, 209, 200, 0.3);
+      --shadow-medium: rgba(38, 209, 200, 0.4);
+      --shadow-dark: rgba(0, 0, 0, 0.3);
+      --transition-fast: 0.2s ease;
+      --transition-medium: 0.3s ease;
+      --transition-slow: 0.5s ease;
+      --border-radius: 12px;
+      --border-radius-small: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     html {
       scroll-behavior: smooth;
+      font-size: 16px;
+      scroll-padding-top: 140px;
     }
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f2f1eb;
-      color: #26134b;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--primary-bg);
+      color: var(--primary-text);
       position: relative;
       overflow-x: hidden;
+      line-height: 1.6;
+      font-weight: 400;
     }
 
+    /* Fondo animado */
     body::before {
       content: '';
       position: fixed;
@@ -25,61 +58,120 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%2326d1c8" fill-opacity="0.2" d="M0,128L48,138.7C96,149,192,171,288,181.3C384,192,480,192,576,181.3C672,171,768,149,864,144C960,139,1056,149,1152,154.7C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path><path fill="%23383838" fill-opacity="0.1" d="M0,192L48,181.3C96,171,192,149,288,144C384,139,480,149,576,154.7C672,160,768,160,864,160C960,160,1056,160,1152,160C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x bottom;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(38, 209, 200, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(38, 209, 200, 0.1) 0%, transparent 50%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%2326d1c8" fill-opacity="0.1" d="M0,128L48,138.7C96,149,192,171,288,181.3C384,192,480,192,576,181.3C672,171,768,149,864,144C960,139,1056,149,1152,154.7C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x bottom;
       z-index: -1;
+      animation: backgroundFloat 20s ease-in-out infinite;
     }
 
-    body::after {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to right, rgba(38, 209, 200, 0.3) 0%, transparent 10%, transparent 90%, rgba(38, 209, 200, 0.3) 100%), linear-gradient(to left, rgba(56, 56, 56, 0.2) 0%, transparent 5%, transparent 95%, rgba(56, 56, 56, 0.2) 100%);
-      z-index: -1;
+    @keyframes backgroundFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
     }
 
+    /* Header */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 30px;
-      background-color: #383838;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, var(--secondary-bg) 0%, #2a2a2a 100%);
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 999;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      height: 80px;
+      z-index: 1000;
+      box-shadow: 0 4px 20px var(--shadow-dark);
+      transition: all var(--transition-medium);
+      height: 120px;
+      backdrop-filter: blur(10px);
+    }
+
+    header.scrolled {
+      padding: 0.75rem 1.5rem;
+      height: 70px;
+      background: rgba(56, 56, 56, 0.95);
+      backdrop-filter: blur(15px);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      transition: transform var(--transition-medium);
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     .logo img {
       width: 260px;
       height: auto;
+      transition: width var(--transition-medium);
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
     }
 
+    header.scrolled .logo img {
+      width: 180px;
+    }
+
+    /* Navegación */
     nav {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 1.5rem;
       margin-left: auto;
-      margin-right: 30px;
+      transition: gap var(--transition-medium);
+    }
+
+    header.scrolled nav {
+      gap: 1rem;
     }
 
     nav a {
+      position: relative;
       text-decoration: none;
-      color: #f2f1eb;
-      font-weight: bold;
-      font-size: 16px;
-      padding: 8px 12px;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+      border-radius: var(--border-radius-small);
+      transition: all var(--transition-medium);
+      white-space: nowrap;
     }
 
-    nav a:hover {
-      color: #26d1c8;
+    header.scrolled nav a {
+      font-size: 0.9rem;
+      padding: 0.5rem 0.75rem;
     }
 
+    nav a:hover, nav a.active {
+      color: var(--accent-color);
+      background: rgba(38, 209, 200, 0.1);
+      transform: translateY(-2px);
+    }
+
+    nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+      border-radius: 2px;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { width: 0%; }
+      to { width: 80%; }
+    }
+
+    /* Dropdown */
     .dropdown {
       position: relative;
     }
@@ -87,185 +179,469 @@
     .dropdown:hover .dropdown-content {
       display: block;
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
+      visibility: visible;
     }
 
     .dropdown-content {
-      display: none;
+      display: block;
       position: absolute;
       top: 100%;
       left: 0;
-      background-color: #383838;
-      min-width: 200px;
-      box-shadow: 0 8px 12px rgba(0,0,0,0.3);
-      z-index: 1000;
-      border-radius: 8px;
+      background: linear-gradient(135deg, var(--secondary-bg) 0%, #2a2a2a 100%);
+      min-width: 220px;
+      box-shadow: 0 8px 25px var(--shadow-dark);
+      z-index: 1001;
+      border-radius: var(--border-radius);
       opacity: 0;
-      transform: translateY(-10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translateY(-10px) scale(0.95);
+      transition: all var(--transition-medium);
+      visibility: hidden;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(38, 209, 200, 0.2);
     }
 
     .dropdown-content a {
       display: block;
-      padding: 10px 15px;
-      color: #f2f1eb;
+      padding: 0.75rem 1rem;
+      color: var(--white);
       text-align: left;
       text-decoration: none;
-      font-size: 14px;
-      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      transition: all var(--transition-fast);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .dropdown-content a:last-child {
+      border-bottom: none;
     }
 
     .dropdown-content a:hover {
-      background-color: #1e1c22;
-      color: #26d1c8;
+      background: linear-gradient(90deg, rgba(38, 209, 200, 0.2), rgba(38, 209, 200, 0.1));
+      color: var(--accent-color);
+      padding-left: 1.5rem;
     }
 
+    /* Secciones */
     section {
-      padding: 100px 40px 80px;
-      max-width: 1000px;
-      margin: 0 auto;
-      background-color: rgba(242, 241, 235, 0.95);
-      border-radius: 12px;
-      box-shadow: 0 6px 15px rgba(38, 209, 200, 0.3);
+      padding: 6rem 3rem 4rem;
+      max-width: 1200px;
+      margin: 2rem auto;
+      background: linear-gradient(135deg, rgba(242, 241, 235, 0.95) 0%, rgba(242, 241, 235, 0.98) 100%);
+      border-radius: var(--border-radius);
+      box-shadow: 
+        0 8px 25px var(--shadow-light),
+        0 0 0 1px rgba(38, 209, 200, 0.1);
+      transition: all var(--transition-medium);
       position: relative;
       z-index: 1;
-      scroll-margin-top: 120px;
+      scroll-margin-top: 140px;
+      backdrop-filter: blur(5px);
     }
 
     section:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(38, 209, 200, 0.4);
+      transform: translateY(-8px);
+      box-shadow: 
+        0 15px 35px var(--shadow-medium),
+        0 0 0 1px rgba(38, 209, 200, 0.2);
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
     }
 
     section h2 {
-      font-size: 24px;
-      color: #383838;
-      margin-bottom: 16px;
+      font-size: 2.5rem;
+      color: rgba(56, 56, 56, 0.95);
+      margin-bottom: 1.5rem;
       position: relative;
-      padding-bottom: 8px;
-      text-align: left;
+      padding-bottom: 1rem;
+      font-weight: 700;
+      text-align: center;
     }
 
     section h2::after {
       content: '';
       position: absolute;
       bottom: 0;
-      left: 0;
-      width: 50px;
-      height: 3px;
-      background-color: #26d1c8;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+      border-radius: 2px;
     }
 
     section h3 {
-      font-size: 20px;
-      color: #f2f1eb;
-      margin: 20px 0 10px;
+      font-size: 1.8rem;
+      color: var(--white);
+      margin: 2rem 0 1.5rem;
       text-align: center;
+      font-weight: 600;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
 
     section p, section li {
-      font-size: 14px;
-      color: #383838;
+      font-size: 1.1rem;
+      color: rgba(56, 56, 56, 0.95);
       line-height: 1.8;
+      margin-bottom: 1rem;
     }
 
     section ul {
-      margin: 0 0 20px 20px;
-      padding-left: 10px;
+      margin: 1.5rem 0 2rem 2rem;
+      padding-left: 1rem;
+      list-style: none;
     }
 
+    section li {
+      margin-bottom: 0.75rem;
+      position: relative;
+      padding-left: 0.5rem;
+    }
+
+    /* Contenido de comics */
     .comic-intro {
-      font-size: 14px;
+      font-size: 1.1rem;
       line-height: 1.8;
-      margin-bottom: 20px;
-      max-width: 750px;
+      margin-bottom: 2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      color: rgba(56, 56, 56, 0.95);
     }
 
     .vinetas-container {
-      background-color: #383838;
-      border-radius: 15px;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-      padding: 30px;
+      background: linear-gradient(135deg, var(--secondary-bg) 0%, #2a2a2a 100%);
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 25px var(--shadow-dark);
+      padding: 2.5rem;
       width: 100%;
-      max-width: 1000px;
-      margin: 0 auto 40px;
-      border-left: 4px solid #26d1c8;
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+      border-left: 4px solid var(--accent-color);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(38, 209, 200, 0.2);
+      transition: all var(--transition-medium);
     }
 
     .vinetas-container:hover {
-      box-shadow: 0 8px 20px rgba(38, 209, 200, 0.5);
+      box-shadow: 0 12px 30px var(--shadow-medium);
+      transform: translateY(-5px);
     }
 
     .vinetas-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
+      gap: 1.5rem;
     }
 
     .vineta-image {
       width: 100%;
       max-height: 400px;
       object-fit: cover;
-      border-radius: 8px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: all var(--transition-medium);
+      cursor: pointer;
     }
 
+    .vineta-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    }
+
+    /* Modal para imágenes */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: var(--border-radius);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: var(--white);
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color var(--transition-fast);
+    }
+
+    .close:hover {
+      color: var(--accent-color);
+    }
+
+    .modal-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(38, 209, 200, 0.2);
+      color: var(--white);
+      border: none;
+      padding: 1rem 0.75rem;
+      cursor: pointer;
+      font-size: 1.5rem;
+      border-radius: var(--border-radius-small);
+      transition: all var(--transition-fast);
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-nav:hover {
+      background: rgba(38, 209, 200, 0.4);
+      transform: scale(1.1) translateY(-50%);
+    }
+
+    .modal-nav.prev {
+      left: 20px;
+    }
+
+    .modal-nav.next {
+      right: 20px;
+    }
+
+    /* Spacer */
+    .spacer {
+      height: 160px;
+    }
+
+    /* Footer */
     footer {
+      background: linear-gradient(135deg, var(--primary-bg) 0%, #e8e7e1 100%);
+      padding: 2rem 0;
+      margin-top: 3rem;
+      border-top: 3px solid var(--accent-color);
+    }
+
+    footer p {
       text-align: center;
-      font-size: 14px;
-      color: #383838;
-      padding: 20px 0;
+      font-size: 0.95rem;
+      color: rgba(56, 56, 56, 0.95);
       margin: 0;
-      background-color: #f2f1eb;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      section {
+        margin: 1.5rem;
+        padding: 4rem 2rem 3rem;
+      }
+      
+      section h2 {
+        font-size: 2rem;
+      }
+
+      section h3 {
+        font-size: 1.5rem;
+      }
+
+      .vinetas-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+      }
     }
 
     @media (max-width: 768px) {
+      html {
+        font-size: 14px;
+      }
+
       header {
-        padding: 10px 20px;
-        height: 50px;
+        padding: 0.75rem 1rem;
+        height: 100px;
+      }
+
+      header.scrolled {
+        height: 60px;
+        padding: 0.5rem 1rem;
       }
 
       .logo img {
-        width: 170px;
+        width: 200px;
+      }
+
+      header.scrolled .logo img {
+        width: 150px;
       }
 
       nav {
-        margin-right: 10px;
-        flex-wrap: wrap;
-        gap: 10px;
+        margin-right: 0;
+        gap: 0.5rem;
       }
 
-      nav a, .dropdown-content a {
-        font-size: 14px;
-        padding: 6px;
+      nav a {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.75rem;
+      }
+
+      .dropdown-content {
+        min-width: 180px;
       }
 
       section {
-        padding: 80px 20px 60px;
+        padding: 3rem 1.5rem 2rem;
+        margin: 1rem;
+      }
+
+      section h2 {
+        font-size: 1.8rem;
+      }
+
+      section h3 {
+        font-size: 1.3rem;
+      }
+
+      section p, section li {
+        font-size: 1rem;
+      }
+
+      .vinetas-container {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
       }
 
       .vinetas-grid {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
       }
 
       .vineta-image {
         max-height: 250px;
       }
 
-      body::after {
-        background: linear-gradient(to right, rgba(38, 209, 200, 0.3) 0%, transparent 10%, transparent 90%, rgba(38, 209, 200, 0.3) 100%);
+      .comic-intro {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
       }
+
+      .modal-nav {
+        padding: 0.75rem 0.5rem;
+        font-size: 1.2rem;
+      }
+      
+      .modal-nav.prev {
+        left: 10px;
+      }
+      
+      .modal-nav.next {
+        right: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.25rem;
+      }
+
+      nav a {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.6rem;
+      }
+
+      .dropdown-content {
+        min-width: 160px;
+      }
+
+      section {
+        padding: 2.5rem 1rem 1.5rem;
+        margin: 0.5rem;
+      }
+
+      section h2 {
+        font-size: 1.5rem;
+      }
+
+      section h3 {
+        font-size: 1.2rem;
+      }
+
+      .vinetas-container {
+        padding: 1rem;
+      }
+
+      .vinetas-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      .vineta-image {
+        max-height: 200px;
+      }
+    }
+
+    /* Animaciones de entrada */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    section {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    /* Mejoras de accesibilidad */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Focus visible para accesibilidad */
+    nav a:focus-visible,
+    .dropdown-content a:focus-visible,
+    .vineta-image:focus-visible {
+      outline: 2px solid var(--accent-color);
+      outline-offset: 2px;
     }
   </style>
 </head>
 <body>
   <header>
     <div class="logo">
-      <img src="/Imagenes/logo_verde_b.png" alt="Logo">
+      <img src="Imagenes/logo_verde_b.png" alt="Conciencia IA Logo">
     </div>
     <nav>
       <div class="dropdown">
-        <a href="index.html#alcance">Nuestro Proyecto</a>
+        <a href="index.html#introduccion">Nuestro Proyecto</a>
         <div class="dropdown-content">
+          <a href="index.html#introduccion">Introducción</a>
           <a href="index.html#alcance">Alcance</a>
           <a href="index.html#marco-conceptual">Marco Conceptual</a>
           <a href="index.html#objetivos">Objetivos</a>
@@ -294,17 +670,17 @@
           <a href="juego.html#cartas">Cartas</a>
         </div>
       </div>
-      <a href="Audios.html#espacio-pausa">Pausa Conexión</a>
+      <a href="Audios.html#espacio-pausa">Pausa & Conexión</a>
     </nav>
   </header>
 
-  <div class="spacer" style="height: 100px;"></div>
+  <div class="spacer"></div>
 
   <section id="humanosSOS">
     <h2>Humanos S.O.S</h2>
     <div class="comic-intro">
       <p>El programa incluye imágenes de historias de adolescentes que atraviesan conflictos que necesitan resolver. A continuación se muestra viñetas que introducen conflictos que atraviesan adolescentes en el entorno digital.</p>
-      <p>Los estudiantes deberán analizar:</p>
+      <p><strong>Los estudiantes deberán analizar:</strong></p>
       <ul>
         <li>¿Qué pensamientos y emociones tienen los personajes de las historietas?</li>
         <li>¿Cómo influye el entorno digital en el conflicto?</li>
@@ -319,84 +695,336 @@
     <div class="vinetas-container">
       <h3>El conflicto de Jonathan</h3>
       <div class="vinetas-grid">
-        <img src="comicsIMG/2.png" alt="Viñeta 2 del Cómic 1" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/3.png" alt="Viñeta 3 del Cómic 1" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/4.png" alt="Viñeta 4 del Cómic 1" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/5.png" alt="Viñeta 5 del Cómic 1" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/6.png" alt="Viñeta 6 del Cómic 1" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/7.png" alt="Viñeta 7 del Cómic 1" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/8.png" alt="Viñeta 8 del Cómic 1" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/2.png" alt="Viñeta 2 del Cómic 1" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/3.png" alt="Viñeta 3 del Cómic 1" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/4.png" alt="Viñeta 4 del Cómic 1" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/5.png" alt="Viñeta 5 del Cómic 1" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/6.png" alt="Viñeta 6 del Cómic 1" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/7.png" alt="Viñeta 7 del Cómic 1" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/8.png" alt="Viñeta 8 del Cómic 1" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
       </div>
     </div>
     <div class="vinetas-container">
       <h3>El conflicto de Sofi y el error de Tincho</h3>
       <div class="vinetas-grid">
-        <img src="comicsIMG/10.png" alt="Viñeta 2 del Cómic 2" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/11.png" alt="Viñeta 3 del Cómic 2" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/12.png" alt="Viñeta 4 del Cómic 2" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/13.png" alt="Viñeta 5 del Cómic 2" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/14.png" alt="Viñeta 6 del Cómic 2" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/10.png" alt="Viñeta 2 del Cómic 2" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/11.png" alt="Viñeta 3 del Cómic 2" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/12.png" alt="Viñeta 4 del Cómic 2" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/13.png" alt="Viñeta 5 del Cómic 2" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/14.png" alt="Viñeta 6 del Cómic 2" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
       </div>
     </div>
     <div class="vinetas-container">
       <h3>La soledad de Pedro y Pato</h3>
       <div class="vinetas-grid">
-        <img src="comicsIMG/16.png" alt="Viñeta 2 del Cómic 3" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/17.png" alt="Viñeta 3 del Cómic 3" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/18.png" alt="Viñeta 4 del Cómic 3" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/19.png" alt="Viñeta 5 del Cómic 3" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/16.png" alt="Viñeta 2 del Cómic 3" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/17.png" alt="Viñeta 3 del Cómic 3" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/18.png" alt="Viñeta 4 del Cómic 3" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/19.png" alt="Viñeta 5 del Cómic 3" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
       </div>
     </div>
     <div class="vinetas-container">
       <h3>Con quien hablan realmente Juan y Victoria</h3>
       <div class="vinetas-grid">
-        <img src="comicsIMG/21.png" alt="Viñeta 2 del Cómic 4" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/22.png" alt="Viñeta 3 del Cómic 4" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/23.png" alt="Viñeta 4 del Cómic 4" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/21.png" alt="Viñeta 2 del Cómic 4" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/22.png" alt="Viñeta 3 del Cómic 4" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/23.png" alt="Viñeta 4 del Cómic 4" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
       </div>
     </div>
     <div class="vinetas-container">
       <h3>Psicologos y amigos bots</h3>
       <div class="vinetas-grid">
-        <img src="comicsIMG/25.png" alt="Viñeta 2 del Cómic 5" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/26.png" alt="Viñeta 3 del Cómic 5" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/25.png" alt="Viñeta 2 del Cómic 5" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/26.png" alt="Viñeta 3 del Cómic 5" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
       </div>
     </div>
     <div class="vinetas-container">
       <h3>El conflicto de Nico</h3>
       <div class="vinetas-grid">
-        <img src="comicsIMG/28.png" alt="Viñeta 2 del Cómic 6" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/29.png" alt="Viñeta 3 del Cómic 6" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/30.png" alt="Viñeta 4 del Cómic 6" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/31.png" alt="Viñeta 5 del Cómic 6" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/32.png" alt="Viñeta 6 del Cómic 6" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/33.png" alt="Viñeta 7 del Cómic 6" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/28.png" alt="Viñeta 2 del Cómic 6" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/29.png" alt="Viñeta 3 del Cómic 6" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/30.png" alt="Viñeta 4 del Cómic 6" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/31.png" alt="Viñeta 5 del Cómic 6" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/32.png" alt="Viñeta 6 del Cómic 6" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/33.png" alt="Viñeta 7 del Cómic 6" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
       </div>
     </div>
     <div class="vinetas-container">
-      <h3>El conflicto de pepe</h3>
+      <h3>El conflicto de Pepe</h3>
       <div class="vinetas-grid">
-        <img src="comicsIMG/35.png" alt="Viñeta 2 del Cómic 7" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/36.png" alt="Viñeta 3 del Cómic 7" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/37.png" alt="Viñeta 4 del Cómic 7" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/38.png" alt="Viñeta 5 del Cómic 7" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/39.png" alt="Viñeta 6 del Cómic 7" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
-        <img src="comicsIMG/40.png" alt="Viñeta 7 del Cómic 7" class="vineta-image" onerror="this.src='/corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/35.png" alt="Viñeta 2 del Cómic 7" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/36.png" alt="Viñeta 3 del Cómic 7" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/37.png" alt="Viñeta 4 del Cómic 7" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/38.png" alt="Viñeta 5 del Cómic 7" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/39.png" alt="Viñeta 6 del Cómic 7" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
+        <img src="ComicsIMG/40.png" alt="Viñeta 7 del Cómic 7" class="vineta-image" onerror="this.src='corlux/Todos/corlux_claro_cortado.png'">
       </div>
     </div>
   </section>
 
   <section id="tu-voz-crea-conciencia">
     <h2>Tu voz Crea Conciencia</h2>
-    <p>Te invitamos a contar una historia “Humanos S.O.S”, que con una narrativa propia relate una experiencia de conflicto en el entorno digital y como fue resuelta.</p>
-    <p>Describir como la capacidad de hacer pausas, ejercer un espíritu crítico, recorrer el camino de las virtudes, la fé en los propios talentos así como la confianza en los de otros, permitió transformar los conflictos en oportunidades de crecimiento.</p>
+    <p>Te invitamos a contar una historia <strong>"Humanos S.O.S"</strong>, que con una narrativa propia relate una experiencia de conflicto en el entorno digital y como fue resuelta.</p>
+    <p>Describir como la capacidad de hacer pausas, ejercer un espíritu crítico, recorrer el camino de las virtudes, la fe en los propios talentos así como la confianza en los de otros, permitió transformar los conflictos en oportunidades de crecimiento.</p>
   </section>
 
+  <!-- Modal para imágenes -->
+  <div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <button class="modal-nav prev" onclick="modalManager.previousImage()">&lt;</button>
+    <button class="modal-nav next" onclick="modalManager.nextImage()">&gt;</button>
+    <img class="modal-content" id="modalImage">
+  </div>
+
   <footer>
-    <p style="text-align: center; font-size: 14px; color: #383838; padding: 20px 0; margin: 0; background-color: #f2f1eb;">
-            ©2025 Conciencia IA Todos los derechos reservados. <br><br> Autora del programa: María Balsa | Colaboradores: Gonzalo Aemilius, Mariana Blengio <br><br>
-            Diseño web: Alfonso López | Ilustraciones: Delfina Lorente
-    </p>
+    <p>©2025 Conciencia IA Todos los derechos reservados.<br><br>
+    Autora del programa: María Balsa | Colaboradores: Gonzalo Aemilius, Mariana Blengio<br><br>
+    Diseño web: Alfonso López | Ilustraciones: Delfina Lorente</p>
   </footer>
+
+  <script>
+    // Modal Manager
+    class ModalManager {
+      constructor() {
+        this.modal = document.getElementById("imageModal");
+        this.modalImg = document.getElementById("modalImage");
+        this.closeBtn = document.querySelector(".close");
+        this.currentImageIndex = 0;
+        this.currentComicGroup = [];
+        this.comicGroups = [];
+        this.init();
+      }
+
+      init() {
+        this.setupImages();
+        this.setupEventListeners();
+      }
+
+      setupImages() {
+        // Group images by their vineta-container
+        this.comicGroups = Array.from(document.querySelectorAll('.vinetas-container')).map(container => {
+          return Array.from(container.querySelectorAll('.vineta-image')).map(img => ({
+            src: img.src,
+            alt: img.alt
+          }));
+        });
+      }
+
+      setupEventListeners() {
+        // Close modal when clicking X
+        this.closeBtn.onclick = () => this.closeModal();
+
+        // Close modal when clicking outside
+        this.modal.onclick = (e) => {
+          if (e.target === this.modal) {
+            this.closeModal();
+          }
+        };
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+          if (this.modal.style.display === 'block') {
+            if (e.key === 'Escape') {
+              this.closeModal();
+            } else if (e.key === 'ArrowLeft') {
+              this.previousImage();
+            } else if (e.key === 'ArrowRight') {
+              this.nextImage();
+            }
+          }
+        });
+
+        // Setup image click handlers
+        document.querySelectorAll('.vineta-image').forEach((img, index) => {
+          img.addEventListener('click', () => {
+            // Find the comic group for the clicked image
+            const container = img.closest('.vinetas-container');
+            const containerIndex = Array.from(document.querySelectorAll('.vinetas-container')).indexOf(container);
+            this.currentComicGroup = this.comicGroups[containerIndex];
+            this.currentImageIndex = Array.from(container.querySelectorAll('.vineta-image')).indexOf(img);
+            this.openModal(img.src, img.alt);
+          });
+        });
+      }
+
+      openModal(src, alt) {
+        this.modalImg.src = src;
+        this.modalImg.alt = alt;
+        this.modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      }
+
+      closeModal() {
+        this.modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+
+      nextImage() {
+        if (this.currentImageIndex < this.currentComicGroup.length - 1) {
+          this.currentImageIndex++;
+          const image = this.currentComicGroup[this.currentImageIndex];
+          this.modalImg.src = image.src;
+          this.modalImg.alt = image.alt;
+        }
+      }
+
+      previousImage() {
+        if (this.currentImageIndex > 0) {
+          this.currentImageIndex--;
+          const image = this.currentComicGroup[this.currentImageIndex];
+          this.modalImg.src = image.src;
+          this.modalImg.alt = image.alt;
+        }
+      }
+    }
+
+    // Navigation Manager
+    class NavigationManager {
+      constructor() {
+        this.header = document.querySelector('header');
+        this.sections = document.querySelectorAll('section');
+        this.navLinks = document.querySelectorAll('nav a');
+        this.init();
+      }
+
+      init() {
+        this.setupScrollHandler();
+        this.setupInitialState();
+        this.setupSmoothScrolling();
+      }
+
+      setupScrollHandler() {
+        let ticking = false;
+        
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            requestAnimationFrame(() => {
+              this.handleScroll();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        });
+      }
+
+      handleScroll() {
+        const scrollY = window.scrollY;
+        
+        // Header scroll effect
+        if (this.header) {
+          this.header.classList.toggle('scrolled', scrollY > 50);
+        }
+
+        // Active section highlighting
+        this.updateActiveSection(scrollY);
+      }
+
+      updateActiveSection(scrollY) {
+        let currentSection = '';
+        const offset = 150;
+
+        this.sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          
+          if (scrollY >= sectionTop - offset && scrollY < sectionTop + sectionHeight - offset) {
+            currentSection = section.getAttribute('id');
+          }
+        });
+
+        this.navLinks.forEach(link => {
+          link.classList.remove('active');
+          const href = link.getAttribute('href').toLowerCase();
+          
+          if (href.includes(`#${currentSection.toLowerCase()}`)) {
+            link.classList.add('active');
+          }
+        });
+
+        // Asegurar que el enlace principal de "S.O.S" esté activo si estamos en una de sus subsecciones
+        if (['humanosSOS', 'vinetas', 'tu-voz-crea-conciencia'].includes(currentSection)) {
+          this.navLinks.forEach(link => {
+            if (link.getAttribute('href') === '#humanosSOS') {
+              link.classList.add('active');
+            }
+          });
+        } else if (this.sections.length > 0 && scrollY < this.sections[0].offsetTop - offset) {
+          // No marcar ningún enlace si estamos arriba del todo
+          this.navLinks.forEach(link => link.classList.remove('active'));
+        }
+      }
+
+      setupInitialState() {
+        // Handle initial hash navigation
+        if (window.location.hash) {
+          const sectionId = window.location.hash.substring(1);
+          const section = document.getElementById(sectionId);
+          if (section) {
+            setTimeout(() => {
+              section.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+          }
+        }
+      }
+
+      setupSmoothScrolling() {
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = document.querySelector(anchor.getAttribute('href'));
+            if (target) {
+              target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          });
+        });
+      }
+    }
+
+    // Performance optimization: Intersection Observer for animations
+    class AnimationManager {
+      constructor() {
+        this.observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+          }
+        );
+        
+        this.init();
+      }
+
+      init() {
+        this.sections.forEach(section => {
+          section.style.opacity = '0';
+          section.style.transform = 'translateY(30px)';
+          section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+          this.observer.observe(section);
+        });
+      }
+
+      get sections() {
+        return document.querySelectorAll('section');
+      }
+    }
+
+    // Initialize when DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+      window.modalManager = new ModalManager();
+      new NavigationManager();
+      new AnimationManager();
+    });
+  </script>
 </body>
 </html>

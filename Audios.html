@@ -3,21 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pausa Conexión</title>
+  <meta name="description" content="Pausa Conexión - Audios de meditación y mindfulness para Conciencia IA">
+  <meta name="keywords" content="audio, meditación, mindfulness, pausa, conexión, conciencia">
+  <title>Pausa Conexión - Conciencia IA</title>
+  
+  <!-- Precarga de recursos críticos -->
+  <link rel="preload" href="Imagenes/logo_verde_b.png" as="image">
+  
   <style>
+    /* Variables CSS para consistencia de colores */
+    :root {
+      --primary-bg: #f2f1eb;
+      --primary-text: #26134b;
+      --secondary-bg: #383838;
+      --accent-color: #26d1c8;
+      --accent-hover: #1e9c94;
+      --white: #ffffff;
+      --shadow-light: rgba(38, 209, 200, 0.3);
+      --shadow-medium: rgba(38, 209, 200, 0.4);
+      --shadow-dark: rgba(0, 0, 0, 0.3);
+      --transition-fast: 0.2s ease;
+      --transition-medium: 0.3s ease;
+      --transition-slow: 0.5s ease;
+      --border-radius: 12px;
+      --border-radius-small: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     html {
       scroll-behavior: smooth;
+      font-size: 16px;
+      scroll-padding-top: 140px;
     }
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f2f1eb;
-      color: #26134b;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--primary-bg);
+      color: var(--primary-text);
       position: relative;
       overflow-x: hidden;
+      line-height: 1.6;
+      font-weight: 400;
     }
 
+    /* Fondo animado */
     body::before {
       content: '';
       position: fixed;
@@ -25,94 +58,120 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%2326d1c8" fill-opacity="0.2" d="M0,128L48,138.7C96,149,192,171,288,181.3C384,192,480,192,576,181.3C672,171,768,149,864,144C960,139,1056,149,1152,154.7C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path><path fill="%23383838" fill-opacity="0.1" d="M0,192L48,181.3C96,171,192,149,288,144C384,139,480,149,576,154.7C672,160,768,160,864,160C960,160,1056,160,1152,160C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x bottom;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(38, 209, 200, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(38, 209, 200, 0.1) 0%, transparent 50%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%2326d1c8" fill-opacity="0.1" d="M0,128L48,138.7C96,149,192,171,288,181.3C384,192,480,192,576,181.3C672,171,768,149,864,144C960,139,1056,149,1152,154.7C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x bottom;
       z-index: -1;
+      animation: backgroundFloat 20s ease-in-out infinite;
     }
 
-    body::after {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to right, rgba(38, 209, 200, 0.3) 0%, transparent 10%, transparent 90%, rgba(38, 209, 200, 0.3) 100%), linear-gradient(to left, rgba(56, 56, 56, 0.2) 0%, transparent 5%, transparent 95%, rgba(56, 56, 56, 0.2) 100%);
-      z-index: -1;
+    @keyframes backgroundFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
     }
 
+    /* Header */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 30px;
-      background-color: #383838;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, var(--secondary-bg) 0%, #2a2a2a 100%);
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 999;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s ease;
-      height: 80px;
+      z-index: 1000;
+      box-shadow: 0 4px 20px var(--shadow-dark);
+      transition: all var(--transition-medium);
+      height: 120px;
+      backdrop-filter: blur(10px);
     }
 
     header.scrolled {
-      padding: 10px 20px;
-      height: 50px;
+      padding: 0.75rem 1.5rem;
+      height: 70px;
+      background: rgba(56, 56, 56, 0.95);
+      backdrop-filter: blur(15px);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      transition: transform var(--transition-medium);
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     .logo img {
       width: 260px;
       height: auto;
-      transition: width 0.3s ease;
+      transition: width var(--transition-medium);
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
     }
 
     header.scrolled .logo img {
-      width: 170px;
+      width: 180px;
     }
 
+    /* Navegación */
     nav {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 1.5rem;
       margin-left: auto;
-      margin-right: 30px;
-      transition: gap 0.3s ease;
+      transition: gap var(--transition-medium);
     }
 
     header.scrolled nav {
-      gap: 15px;
+      gap: 1rem;
     }
 
     nav a {
       position: relative;
       text-decoration: none;
-      color: #f2f1eb;
-      font-weight: bold;
-      font-size: 16px;
-      padding: 8px 12px;
-      transition: all 0.3s ease;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+      border-radius: var(--border-radius-small);
+      transition: all var(--transition-medium);
+      white-space: nowrap;
     }
 
     header.scrolled nav a {
-      font-size: 14px;
-      padding: 6px 10px;
+      font-size: 0.9rem;
+      padding: 0.5rem 0.75rem;
     }
 
     nav a:hover, nav a.active {
-      color: #26d1c8;
+      color: var(--accent-color);
+      background: rgba(38, 209, 200, 0.1);
+      transform: translateY(-2px);
     }
 
     nav a.active::after {
       content: '';
       position: absolute;
       bottom: -2px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background-color: #26d1c8;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+      border-radius: 2px;
+      animation: slideIn 0.3s ease-out;
     }
 
+    @keyframes slideIn {
+      from { width: 0%; }
+      to { width: 80%; }
+    }
+
+    /* Dropdown */
     .dropdown {
       position: relative;
     }
@@ -120,88 +179,122 @@
     .dropdown:hover .dropdown-content {
       display: block;
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
+      visibility: visible;
     }
 
     .dropdown-content {
-      display: none;
+      display: block;
       position: absolute;
       top: 100%;
       left: 0;
-      background-color: #383838;
-      min-width: 200px;
-      box-shadow: 0 8px 12px rgba(0,0,0,0.3);
-      z-index: 1000;
-      border-radius: 8px;
+      background: linear-gradient(135deg, var(--secondary-bg) 0%, #2a2a2a 100%);
+      min-width: 220px;
+      box-shadow: 0 8px 25px var(--shadow-dark);
+      z-index: 1001;
+      border-radius: var(--border-radius);
       opacity: 0;
-      transform: translateY(-10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translateY(-10px) scale(0.95);
+      transition: all var(--transition-medium);
+      visibility: hidden;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(38, 209, 200, 0.2);
     }
 
     .dropdown-content a {
       display: block;
-      padding: 10px 15px;
-      color: #f2f1eb;
+      padding: 0.75rem 1rem;
+      color: var(--white);
       text-align: left;
       text-decoration: none;
-      font-size: 14px;
-      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      transition: all var(--transition-fast);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .dropdown-content a:last-child {
+      border-bottom: none;
     }
 
     .dropdown-content a:hover {
-      background-color: #1e1c22;
-      color: #26d1c8;
+      background: linear-gradient(90deg, rgba(38, 209, 200, 0.2), rgba(38, 209, 200, 0.1));
+      color: var(--accent-color);
+      padding-left: 1.5rem;
     }
 
+    /* Secciones */
     section {
-      padding: 100px 40px 80px;
-      max-width: 1000px;
-      margin: 0 auto;
-      background-color: rgba(242, 241, 235, 0.95);
-      border-radius: 12px;
-      box-shadow: 0 6px 15px rgba(38, 209, 200, 0.3);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 6rem 3rem 4rem;
+      max-width: 1200px;
+      margin: 2rem auto;
+      background: linear-gradient(135deg, rgba(242, 241, 235, 0.95) 0%, rgba(242, 241, 235, 0.98) 100%);
+      border-radius: var(--border-radius);
+      box-shadow: 
+        0 8px 25px var(--shadow-light),
+        0 0 0 1px rgba(38, 209, 200, 0.1);
+      transition: all var(--transition-medium);
       position: relative;
       z-index: 1;
-      scroll-margin-top: 120px;
+      scroll-margin-top: 140px;
+      backdrop-filter: blur(5px);
     }
 
     section:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(38, 209, 200, 0.4);
+      transform: translateY(-8px);
+      box-shadow: 
+        0 15px 35px var(--shadow-medium),
+        0 0 0 1px rgba(38, 209, 200, 0.2);
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
     }
 
     section h2 {
-      font-size: 24px;
-      color: #383838;
-      margin-bottom: 16px;
+      font-size: 2.5rem;
+      color: var(--secondary-bg);
+      margin-bottom: 1.5rem;
       position: relative;
-      padding-bottom: 8px;
+      padding-bottom: 1rem;
+      font-weight: 700;
+      text-align: center;
     }
 
     section h2::after {
       content: '';
       position: absolute;
       bottom: 0;
-      left: 0;
-      width: 50px;
-      height: 3px;
-      background-color: #26d1c8;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+      border-radius: 2px;
     }
 
     section p, section li {
-      font-size: 14px;
-      color: #383838;
+      font-size: 1.1rem;
+      color: var(--secondary-bg);
       line-height: 1.8;
+      margin-bottom: 1rem;
     }
 
     section ul {
-      margin: 0 0 20px 20px;
-      padding-left: 20px;
+      margin: 1.5rem 0 2rem 2rem;
+      padding-left: 1rem;
     }
 
     section li {
-      margin-bottom: 10px;
+      margin-bottom: 0.75rem;
+      position: relative;
+      padding-left: 0.5rem;
     }
 
     .audio-list {
@@ -211,44 +304,33 @@
     }
 
     .audio-list li {
-      margin-bottom: 8px;
+      margin-bottom: 0.75rem;
+      padding-left: 0;
     }
 
-    .audio-list button {
-      width: 100%;
-      padding: 10px;
-      font-size: 14px;
-      background-color: #383838;
-      color: #f2f1eb;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s;
-      font-weight: bold;
-      text-align: left;
+    .audio-list li::before {
+      content: none;
     }
 
-    .audio-list button:hover {
-      background-color: #26d1c8;
-      transform: scale(1.02);
-    }
-
+    /* Contenedor principal */
     .main-container {
       display: grid;
-      grid-template-columns: 1fr 250px;
-      gap: 20px;
-      max-width: 1000px;
-      width: 90%;
+      grid-template-columns: 1fr 300px;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
       margin: 0 auto;
     }
 
     .content-container {
-      background-color: #383838;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 6px 15px rgba(38, 209, 200, 0.3);
+      background: linear-gradient(135deg, var(--secondary-bg) 0%, #2a2a2a 100%);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 25px var(--shadow-dark);
       display: flex;
       flex-direction: column;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(38, 209, 200, 0.2);
     }
 
     .image-container {
@@ -256,102 +338,320 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 2rem;
+      min-height: 300px;
     }
 
     .image-container img {
       max-width: 100%;
       max-height: 400px;
       object-fit: contain;
-      border-radius: 8px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      transition: transform var(--transition-medium);
+    }
+
+    .image-container img:hover {
+      transform: scale(1.05);
     }
 
     .audio-container {
       width: 100%;
     }
 
+    /* Reproductor de audio */
     audio {
       width: 100%;
       outline: none;
-      background-color: #f2f1eb;
-      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary-bg) 0%, #e8e7e1 100%);
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: all var(--transition-medium);
     }
 
+    audio:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Selector de audio */
     .audio-selector {
-      max-height: 400px;
+      max-height: 500px;
       overflow-y: auto;
-      background-color: rgba(242, 241, 235, 0.95);
-      border-radius: 12px;
-      padding: 15px;
-      box-shadow: 0 6px 15px rgba(38, 209, 200, 0.3);
+      background: linear-gradient(135deg, rgba(242, 241, 235, 0.95) 0%, rgba(242, 241, 235, 0.98) 100%);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      box-shadow: 0 8px 25px var(--shadow-light);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(38, 209, 200, 0.1);
     }
 
     .audio-selector::-webkit-scrollbar {
-      width: 8px;
+      width: 10px;
     }
 
     .audio-selector::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0.2);
+      background: rgba(0, 0, 0, 0.1);
       border-radius: 10px;
     }
 
     .audio-selector::-webkit-scrollbar-thumb {
-      background: #26d1c8;
+      background: linear-gradient(180deg, var(--accent-color), var(--accent-hover));
       border-radius: 10px;
+      border: 2px solid rgba(242, 241, 235, 0.8);
     }
 
     .audio-selector::-webkit-scrollbar-thumb:hover {
-      background: #1e9c94;
+      background: linear-gradient(180deg, var(--accent-hover), #1a8a82);
+    }
+
+    .audio-list button {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1rem;
+      background: linear-gradient(135deg, rgba(242, 241, 235, 0.95) 0%, rgba(242, 241, 235, 0.98) 100%);
+      color: var(--secondary-bg);
+      border: none;
+      border-radius: var(--border-radius-small);
+      cursor: pointer;
+      transition: all var(--transition-medium);
+      font-weight: 600;
+      text-align: left;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .audio-list button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(38, 209, 200, 0.2), transparent);
+      transition: left var(--transition-slow);
+    }
+
+    .audio-list button:hover {
+      background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
+      color: var(--secondary-bg);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(38, 209, 200, 0.4);
+    }
+
+    .audio-list button:hover::before {
+      left: 100%;
+    }
+
+    .audio-list button.active {
+      background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
+      color: var(--secondary-bg);
+      box-shadow: 0 4px 15px rgba(38, 209, 200, 0.4);
     }
 
     .error-message {
       display: none;
       color: #ff4d4d;
-      font-size: 12px;
+      font-size: 0.9rem;
       text-align: center;
-      margin-top: 10px;
+      margin-top: 1rem;
+      padding: 0.75rem;
+      background: rgba(255, 77, 77, 0.1);
+      border-radius: var(--border-radius-small);
+      border: 1px solid rgba(255, 77, 77, 0.3);
     }
 
+    /* Spacer */
     .spacer {
-      height: 100px;
+      height: 160px;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--primary-bg) 0%, #e8e7e1 100%);
+      padding: 2rem 0;
+      margin-top: 3rem;
+      border-top: 3px solid var(--accent-color);
+    }
+
+    footer p {
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--secondary-bg);
+      margin: 0;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .main-container {
+        grid-template-columns: 1fr 250px;
+        gap: 1.5rem;
+      }
+      
+      section {
+        margin: 1.5rem;
+        padding: 4rem 2rem 3rem;
+      }
+      
+      section h2 {
+        font-size: 2rem;
+      }
     }
 
     @media (max-width: 768px) {
+      html {
+        font-size: 14px;
+      }
+
+      header {
+        padding: 0.75rem 1rem;
+        height: 100px;
+      }
+
+      header.scrolled {
+        height: 60px;
+        padding: 0.5rem 1rem;
+      }
+
+      .logo img {
+        width: 200px;
+      }
+
+      header.scrolled .logo img {
+        width: 150px;
+      }
+
+      nav {
+        margin-right: 0;
+        gap: 0.5rem;
+      }
+
+      nav a {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.75rem;
+      }
+
+      .dropdown-content {
+        min-width: 180px;
+      }
+
+      section {
+        padding: 3rem 1.5rem 2rem;
+        margin: 1rem;
+      }
+
+      section h2 {
+        font-size: 1.8rem;
+      }
+
+      section p, section li {
+        font-size: 1rem;
+      }
+
       .main-container {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto;
+        gap: 1rem;
       }
 
       .content-container, .audio-selector {
         max-width: 100%;
       }
 
+      .image-container {
+        min-height: 200px;
+      }
+
+      .image-container img {
+        max-height: 250px;
+      }
+    }
+
+    @media (max-width: 480px) {
       nav {
-        margin-right: 10px;
         flex-wrap: wrap;
-        gap: 10px;
+        justify-content: center;
+        gap: 0.25rem;
       }
 
-      nav a, .dropdown-content a {
-        font-size: 14px;
-        padding: 6px;
+      nav a {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.6rem;
       }
 
-      body::after {
-        background: linear-gradient(to right, rgba(38, 209, 200, 0.3) 0%, transparent 5%, transparent 95%, rgba(38, 209, 200, 0.3) 100%);
+      .dropdown-content {
+        min-width: 160px;
       }
+
+      section {
+        padding: 2.5rem 1rem 1.5rem;
+        margin: 0.5rem;
+      }
+
+      section h2 {
+        font-size: 1.5rem;
+      }
+
+      .content-container {
+        padding: 1.5rem;
+      }
+
+      .audio-selector {
+        padding: 1rem;
+      }
+
+      .audio-list button {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Animaciones de entrada */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    section {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    /* Mejoras de accesibilidad */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Focus visible para accesibilidad */
+    nav a:focus-visible,
+    .dropdown-content a:focus-visible,
+    .audio-list button:focus-visible {
+      outline: 2px solid var(--accent-color);
+      outline-offset: 2px;
     }
   </style>
 </head>
 <body>
   <header>
     <div class="logo">
-      <img src="/Imagenes/logo_verde_b.png" alt="Logo">
+      <img src="Imagenes/logo_verde_b.png" alt="Conciencia IA Logo">
     </div>
     <nav>
       <div class="dropdown">
-        <a href="index.html#alcance">Nuestro Proyecto</a>
+        <a href="index.html#introduccion">Nuestro Proyecto</a>
         <div class="dropdown-content">
+          <a href="index.html#introduccion">Introducción</a>
           <a href="index.html#alcance">Alcance</a>
           <a href="index.html#marco-conceptual">Marco Conceptual</a>
           <a href="index.html#objetivos">Objetivos</a>
@@ -380,17 +680,17 @@
           <a href="juego.html#cartas">Cartas</a>
         </div>
       </div>
-      <a href="#espacio-pausa">Pausa Conexión</a>
+      <a href="#espacio-pausa">Pausa & Conexión</a>
     </nav>
   </header>
 
   <div class="spacer"></div>
 
   <section id="espacio-pausa">
-    <h2>Pausa Conexión</h2>
-    <p>Hacer una pausa no es detener la vida, es volver a ella.</p>
-    <p>Una Pausa es un  acto de resistencia suave en un mundo que nos empuja a la prisa.</p>
-    <p>Somos libres cuando aprendemos a hacer pausas.</p>
+    <h2>Pausa & Conexión</h2>
+    <p><strong>Hacer una pausa no es detener la vida, es volver a ella.</strong></p>
+    <p>Una Pausa es un acto de resistencia suave en un mundo que nos empuja a la prisa.</p>
+    <p><strong>Somos libres cuando aprendemos a hacer pausas.</strong></p>
     <div class="main-container">
       <div class="content-container">
         <div class="image-container">
@@ -398,7 +698,7 @@
         </div>
         <div class="audio-container">
           <audio id="audioPlayer" controls>
-            <source src="Audios/mindfulness_relajacion.mp3" type="audio/mpeg">
+            <source src="audios/1.mp3" type="audio/mpeg">
             Tu navegador no soporta la reproducción de audio. Prueba con Chrome, Firefox o un navegador actualizado.
           </audio>
           <div id="errorMessage" class="error-message"></div>
@@ -411,141 +711,241 @@
   </section>
 
   <footer>
-    <p style="text-align: center; font-size: 14px; color: #383838; padding: 20px 0; margin: 0; background-color: #f2f1eb;">
-            ©2025 Conciencia IA Todos los derechos reservados. <br><br> Autora del programa: María Balsa | Colaboradores: Gonzalo Aemilius, Mariana Blengio <br><br>
-            Diseño web: Alfonso López | Ilustraciones: Delfina Lorente
-    </p>
+    <p>©2025 Conciencia IA Todos los derechos reservados.<br><br>
+    Autora del programa: María Balsa | Colaboradores: Gonzalo Aemilius, Mariana Blengio<br><br>
+    Diseño web: Alfonso López | Ilustraciones: Delfina Lorente</p>
   </footer>
 
   <script>
     // Lista de audios
     const audios = [
-      { nombre: "Calma", audio: "Audios/1.mp3", imagen: "corlux/Amara/amara-1.png" },
-      { nombre: "Dolor físico y emocional", audio: "Audios/2.mp3", imagen: "corlux/Esperanza/esperanza-1.png" },
-      { nombre: "Limpieza energética", audio: "Audios/3.mp3", imagen: "corlux/Graciano/graciano-1.png" },
-      { nombre: "Sueño", audio: "Audios/4.mp3", imagen: "corlux/Justino/justino-1.png" },
-      { nombre: "Creatividad", audio: "Audios/5.mp3", imagen: "corlux/Paz/paz-1.png" },
-      { nombre: "Calma y enfoque", audio: "Audios/6.mp3", imagen: "corlux/Valentin/valentin-1.png" },
-      { nombre: "Activación", audio: "Audios/7.mp3", imagen: "corlux/Amara/amara-2.png" },
-      { nombre: "Intuición", audio: "Audios/8.mp3", imagen: "corlux/Graciano/graciano-2.png" },
-      { nombre: "Claridad y aprendizaje", audio: "Audios/9.mp3", imagen: "corlux/Justino/justino-2.png" },
-      { nombre: "Foco y Concentración", audio: "Audios/10.mp3", imagen: "corlux/Valentin/valentin-1.png" },
-      { nombre: "Sanando heridas", audio: "Audios/11.mp3", imagen: "corlux/Paz/paz-3.png" },
-      { nombre: "Punto quieto", audio: "Audios/12.mp3", imagen: "corlux/Laura/laura-2.png" },
-      { nombre: "Grounding", audio: "Audios/13.mp3", imagen: "corlux/Amara/amara-3.png" },
-      { nombre: "Espejo energético", audio: "Audios/14.mp3", imagen: "corlux/Graciano/graciano-3.png" },
-      { nombre: "Visualizo mi meta", audio: "Audios/15.mp3", imagen: "corlux/Justino/justino-3.png" },
-      { nombre: "El poder de la palabra", audio: "Audios/16.mp3", imagen: "corlux/Paz/paz-2.png" },
-      { nombre: "Afinando cuerdas", audio: "Audios/17.mp3", imagen: "corlux/Valentin/valentin-3.png" },
-      { nombre: "Construyendo confianza", audio: "Audios/18.mp3", imagen: "corlux/Laura/laura-3.png" },
-      { nombre: "Mi frase poderosa", audio: "Audios/19.mp3", imagen: "corlux/Amara/amara-1.png" },
-      { nombre: "Un cuerpo una sinfonía", audio: "Audios/20.mp3", imagen: "corlux/Graciano/graciano-1.png" },
-      { nombre: "Fortaleza interior", audio: "Audios/21.mp3", imagen: "corlux/Justino/justino-1.png" },
-      { nombre: "Visualización pantalla mental 1", audio: "Audios/22.mp3", imagen: "corlux/Paz/paz-1.png" },
-      { nombre: "Visualización pantalla mental 2", audio: "Audios/23.mp3", imagen: "corlux/Valentin/valentin-1.png" },
-      { nombre: "Visualización pantalla mental 3", audio: "Audios/24.mp3", imagen: "corlux/Laura/laura-1.png" },
-      { nombre: "Cápsula de movimiento y energía", audio: "Audios/25.mp3", imagen: "corlux/Amara/amara-2.png" },
-      { nombre: "Sonidos Cuencos", audio: "Audios/sonidos cuencos.mp3", imagen: "corlux/Graciano/graciano-1.png" }
+      { nombre: "Calma", audio: "audios/1.mp3", imagen: "corlux/Amara/amara-1.png" },
+      { nombre: "Dolor físico y emocional", audio: "audios/2.mp3", imagen: "corlux/Esperanza/esperanza-1.png" },
+      { nombre: "Limpieza energética", audio: "audios/3.mp3", imagen: "corlux/Graciano/graciano-1.png" },
+      { nombre: "Sueño", audio: "audios/4.mp3", imagen: "corlux/Justino/justino-1.png" },
+      { nombre: "Creatividad", audio: "audios/5.mp3", imagen: "corlux/Paz/paz-1.png" },
+      { nombre: "Calma y enfoque", audio: "audios/6.mp3", imagen: "corlux/Valentin/valentin-1.png" },
+      { nombre: "Activación", audio: "audios/7.mp3", imagen: "corlux/Amara/amara-2.png" },
+      { nombre: "Intuición", audio: "audios/8.mp3", imagen: "corlux/Graciano/graciano-2.png" },
+      { nombre: "Claridad y aprendizaje", audio: "audios/9.mp3", imagen: "corlux/Justino/justino-2.png" },
+      { nombre: "Foco y Concentración", audio: "audios/10.mp3", imagen: "corlux/Valentin/valentin-1.png" },
+      { nombre: "Sanando heridas", audio: "audios/11.mp3", imagen: "corlux/Paz/paz-3.png" },
+      { nombre: "Punto quieto", audio: "audios/12.mp3", imagen: "corlux/Laura/laura-2.png" },
+      { nombre: "Grounding", audio: "audios/13.mp3", imagen: "corlux/Amara/amara-3.png" },
+      { nombre: "Espejo energético", audio: "audios/14.mp3", imagen: "corlux/Graciano/graciano-3.png" },
+      { nombre: "Visualizo mi meta", audio: "audios/15.mp3", imagen: "corlux/Justino/justino-3.png" },
+      { nombre: "El poder de la palabra", audio: "audios/16.mp3", imagen: "corlux/Paz/paz-2.png" },
+      { nombre: "Afinando cuerdas", audio: "audios/17.mp3", imagen: "corlux/Valentin/valentin-3.png" },
+      { nombre: "Construyendo confianza", audio: "audios/18.mp3", imagen: "corlux/Laura/laura-3.png" },
+      { nombre: "Mi frase poderosa", audio: "audios/19.mp3", imagen: "corlux/Amara/amara-1.png" },
+      { nombre: "Un cuerpo una sinfonía", audio: "audios/20.mp3", imagen: "corlux/Graciano/graciano-1.png" },
+      { nombre: "Fortaleza interior", audio: "audios/21.mp3", imagen: "corlux/Justino/justino-1.png" },
+      { nombre: "Visualización pantalla mental 1", audio: "audios/22.mp3", imagen: "corlux/Paz/paz-1.png" },
+      { nombre: "Visualización pantalla mental 2", audio: "audios/23.mp3", imagen: "corlux/Valentin/valentin-1.png" },
+      { nombre: "Visualización pantalla mental 3", audio: "audios/24.mp3", imagen: "corlux/Laura/laura-1.png" },
+      { nombre: "Cápsula de movimiento y energía", audio: "audios/25.mp3", imagen: "corlux/Amara/amara-2.png" },
+      { nombre: "Sonidos Cuencos", audio: "audios/sonidos cuencos.mp3", imagen: "corlux/Graciano/graciano-1.png" }
     ];
 
-    // Generar lista de audios
-    const audioList = document.getElementById("audioList");
-    audios.forEach((audio, index) => {
-      const li = document.createElement("li");
-      const button = document.createElement("button");
-      button.textContent = audio.nombre;
-      button.onclick = () => cambiarAudio(index);
-      li.appendChild(button);
-      audioList.appendChild(li);
-    });
+    class AudioManager {
+      constructor() {
+        this.audioPlayer = document.getElementById("audioPlayer");
+        this.image = document.getElementById("audioImage");
+        this.errorMessage = document.getElementById("errorMessage");
+        this.audioList = document.getElementById("audioList");
+        this.currentAudioIndex = 0;
+        
+        this.init();
+      }
 
-    // Función para cambiar audio
-    function cambiarAudio(index) {
-      const audioData = audios[index];
-      const audioPlayer = document.getElementById("audioPlayer");
-      const image = document.getElementById("audioImage");
-      const errorMessage = document.getElementById("errorMessage");
+      init() {
+        this.generateAudioList();
+        this.setupEventListeners();
+        this.loadInitialAudio();
+      }
 
-      // Limpiar estado anterior
-      audioPlayer.pause();
-      audioPlayer.src = '';
-      image.src = '';
-      image.onerror = null;
-      errorMessage.style.display = 'none';
-      errorMessage.textContent = '';
+      generateAudioList() {
+        audios.forEach((audio, index) => {
+          const li = document.createElement("li");
+          const button = document.createElement("button");
+          button.textContent = audio.nombre;
+          button.setAttribute('data-index', index);
+          button.onclick = () => this.changeAudio(index);
+          li.appendChild(button);
+          this.audioList.appendChild(li);
+        });
+      }
 
-      // Actualizar audio e imagen
-      audioPlayer.src = audioData.audio;
-      image.src = audioData.imagen;
-      image.alt = `Imagen de ${audioData.nombre}`;
+      setupEventListeners() {
+        // Audio player events
+        this.audioPlayer.addEventListener('loadstart', () => this.showLoading());
+        this.audioPlayer.addEventListener('canplay', () => this.hideLoading());
+        this.audioPlayer.addEventListener('error', () => this.handleError());
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowUp' && e.ctrlKey) {
+            e.preventDefault();
+            this.previousAudio();
+          } else if (e.key === 'ArrowDown' && e.ctrlKey) {
+            e.preventDefault();
+            this.nextAudio();
+          }
+        });
+      }
 
-      // Manejo de error de imagen
-      image.onerror = () => {
-        image.src = 'corlux/Todos/corlux_claro_cortado.png';
-        errorMessage.style.display = 'block';
-        errorMessage.textContent = 'No se pudo cargar la imagen.';
-      };
+      loadInitialAudio() {
+        // Check URL parameters for specific audio
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = parseInt(urlParams.get('id')) - 1;
 
-      // Cargar y reproducir audio
-      audioPlayer.load();
-      audioPlayer.play().catch(() => {
-        errorMessage.style.display = 'block';
-        errorMessage.textContent = 'No se pudo cargar el audio.';
-      });
+        if (id >= 0 && id < audios.length) {
+          this.changeAudio(id);
+        } else {
+          this.changeAudio(0);
+        }
+
+        // Scroll to section if coming from another page
+        if (window.location.hash === '#espacio-pausa') {
+          document.getElementById("espacio-pausa").scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+
+      changeAudio(index) {
+        if (index < 0 || index >= audios.length) return;
+
+        this.currentAudioIndex = index;
+        const audioData = audios[index];
+
+        // Update active button
+        this.updateActiveButton(index);
+
+        // Clear previous state
+        this.clearPreviousState();
+
+        // Update audio and image
+        this.audioPlayer.src = audioData.audio;
+        this.image.src = audioData.imagen;
+        this.image.alt = `Imagen de ${audioData.nombre}`;
+
+        // Handle image error
+        this.image.onerror = () => {
+          this.image.src = 'corlux/Todos/corlux_claro_cortado.png';
+          this.showError('No se pudo cargar la imagen.');
+        };
+
+        // Load and play audio
+        this.audioPlayer.load();
+        this.audioPlayer.play().catch(() => {
+          this.showError('No se pudo cargar el audio.');
+        });
+      }
+
+      updateActiveButton(index) {
+        // Remove active class from all buttons
+        document.querySelectorAll('.audio-list button').forEach(btn => {
+          btn.classList.remove('active');
+        });
+
+        // Add active class to current button
+        const currentButton = document.querySelector(`[data-index="${index}"]`);
+        if (currentButton) {
+          currentButton.classList.add('active');
+          currentButton.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }
+
+      clearPreviousState() {
+        this.audioPlayer.pause();
+        this.audioPlayer.src = '';
+        this.image.src = '';
+        this.image.onerror = null;
+        this.hideError();
+      }
+
+      showLoading() {
+        this.image.style.opacity = '0.7';
+      }
+
+      hideLoading() {
+        this.image.style.opacity = '1';
+      }
+
+      showError(message) {
+        this.errorMessage.textContent = message;
+        this.errorMessage.style.display = 'block';
+      }
+
+      hideError() {
+        this.errorMessage.style.display = 'none';
+        this.errorMessage.textContent = '';
+      }
+
+      handleError() {
+        this.showError('Error al cargar el audio. Verifica que el archivo existe.');
+      }
+
+      previousAudio() {
+        const newIndex = this.currentAudioIndex > 0 ? this.currentAudioIndex - 1 : audios.length - 1;
+        this.changeAudio(newIndex);
+      }
+
+      nextAudio() {
+        const newIndex = this.currentAudioIndex < audios.length - 1 ? this.currentAudioIndex + 1 : 0;
+        this.changeAudio(newIndex);
+      }
     }
 
-    // Leer parámetro de la URL y reproducir audio automáticamente
-    window.addEventListener('load', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const id = parseInt(urlParams.get('id')) - 1;
-
-      if (id >= 0 && id < audios.length) {
-        cambiarAudio(id);
-        document.getElementById("espacio-pausa").scrollIntoView({ behavior: 'smooth' });
+    // Navigation Manager
+    class NavigationManager {
+      constructor() {
+        this.header = document.querySelector('header');
+        this.navLinks = document.querySelectorAll('nav a');
+        this.init();
       }
 
-      // Resaltar sección activa en el menú al cargar
-      const navLinks = document.querySelectorAll('nav a');
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#espacio-pausa') {
-          link.classList.add('active');
-        }
-      });
-    });
-
-    // Reducir encabezado y manejar navegación activa al hacer scroll
-    window.addEventListener('scroll', () => {
-      const header = document.querySelector('header');
-      if (header) {
-        header.classList.toggle('scrolled', window.scrollY > 50);
+      init() {
+        this.setupScrollHandler();
+        this.setupActiveNavigation();
       }
 
-      // Resaltar sección activa
-      const sections = document.querySelectorAll('section');
-      const navLinks = document.querySelectorAll('nav a');
-      let currentSection = '';
-
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        if (window.scrollY >= sectionTop - 120 && window.scrollY < sectionTop + sectionHeight - 120) {
-          currentSection = section.getAttribute('id');
-        }
-      });
-
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        const href = link.getAttribute('href').toLowerCase();
-        if (href === `#${currentSection.toLowerCase()}`) {
-          link.classList.add('active');
-        }
-      });
-
-      // No marcar ningún enlace si estamos arriba del todo
-      if (sections.length > 0 && window.scrollY < sections[0].offsetTop - 120) {
-        navLinks.forEach(link => link.classList.remove('active'));
+      setupScrollHandler() {
+        let ticking = false;
+        
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            requestAnimationFrame(() => {
+              this.handleScroll();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        });
       }
+
+      handleScroll() {
+        const scrollY = window.scrollY;
+        
+        // Header scroll effect
+        if (this.header) {
+          this.header.classList.toggle('scrolled', scrollY > 50);
+        }
+      }
+
+      setupActiveNavigation() {
+        // Set active state for current page
+        this.navLinks.forEach(link => {
+          if (link.getAttribute('href') === '#espacio-pausa') {
+            link.classList.add('active');
+          }
+        });
+      }
+    }
+
+    // Initialize when DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+      new AudioManager();
+      new NavigationManager();
     });
   </script>
 </body>
