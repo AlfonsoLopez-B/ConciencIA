@@ -400,7 +400,7 @@
     .audio-list button:hover::before { left: 100%; }
 
     .audio-list button.active {
-      background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
+      background: linear-gradient(135deg, var(--accent-color) 0%);
       color: var(--white);
       box-shadow: 0 4px 15px var(--shadow-medium);
     }
@@ -547,7 +547,7 @@
   <section id="espacio-pausa">
     <h2>Pausa & Conexión</h2>
     <p><strong>Hacer una pausa no es detener la vida, es volver a ella.</strong></p>
-    <p>Una Pausa es un acto de resistencia suave en un mundo que nos empuja a la prisa.</p>
+    <p>Una pausa es un acto de resistencia suave en un mundo que nos empuja a la prisa.</p>
     <p><strong>Somos libres cuando aprendemos a hacer pausas.</strong></p>
     <div class="main-container">
       <div class="content-container">
@@ -634,10 +634,15 @@
       }
 
       setupEventListeners() {
-        this.audioPlayer.addEventListener('error', (e) => {
-          console.error('Audio error:', e);
-          this.showError('Error al cargar el audio. Verifica que el archivo exista y sea accesible.');
+        this.audioPlayer.addEventListener('error', () => {
+          this.showError('Error al cargar el audio. Verifica la ruta del archivo.');
         });
+
+        this.image.addEventListener('error', () => {
+          this.image.alt = 'Error al cargar la imagen';
+          this.showError('No se pudo cargar la imagen asociada.');
+        });
+
         this.audioPlayer.addEventListener('canplay', () => {
           this.audioPlayer.style.opacity = '1';
           this.image.style.opacity = '1';
@@ -673,8 +678,7 @@
         button.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
         this.audioPlayer.load();
-        this.audioPlayer.play().catch((e) => {
-          console.error('Playback error:', e);
+        this.audioPlayer.play().catch(() => {
           this.showError('Error al reproducir el audio.');
         });
       }
