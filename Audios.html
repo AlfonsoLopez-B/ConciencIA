@@ -538,7 +538,7 @@
           <a href="juego.html#cartas">Cartas</a>
         </div>
       </div>
-      <a href="#espacio-pausa" class="active">Pausa & Conexión</a>
+      <a href="audios.html" class="active">Pausa & Conexión</a>
     </nav>
   </header>
 
@@ -634,7 +634,10 @@
       }
 
       setupEventListeners() {
-        this.audioPlayer.addEventListener('error', () => this.showError('Error al cargar el audio.'));
+        this.audioPlayer.addEventListener('error', (e) => {
+          console.error('Audio error:', e);
+          this.showError('Error al cargar el audio. Verifica que el archivo exista y sea accesible.');
+        });
         this.audioPlayer.addEventListener('canplay', () => {
           this.audioPlayer.style.opacity = '1';
           this.image.style.opacity = '1';
@@ -670,7 +673,10 @@
         button.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
         this.audioPlayer.load();
-        this.audioPlayer.play().catch(() => this.showError('Error al reproducir el audio.'));
+        this.audioPlayer.play().catch((e) => {
+          console.error('Playback error:', e);
+          this.showError('Error al reproducir el audio.');
+        });
       }
 
       showError(message) {
@@ -700,7 +706,7 @@
         });
 
         this.navLinks.forEach(link => {
-          if (link.getAttribute('href') === '#espacio-pausa') {
+          if (link.getAttribute('href') === 'audios.html') {
             link.classList.add('active');
           }
           link.addEventListener('click', (e) => {
