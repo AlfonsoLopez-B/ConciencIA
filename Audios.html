@@ -362,7 +362,8 @@
       background: linear-gradient(180deg, var(--accent-hover), #1a8a82);
     }
 
-    .audio-list button {
+    .audio-list a {
+      display: block;
       width: 100%;
       padding: 0.75rem;
       font-size: 0.95rem;
@@ -377,9 +378,10 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
       position: relative;
       overflow: hidden;
+      text-decoration: none;
     }
 
-    .audio-list button::before {
+    .audio-list a::before {
       content: '';
       position: absolute;
       top: 0;
@@ -390,16 +392,16 @@
       transition: left var(--transition-slow);
     }
 
-    .audio-list button:hover {
+    .audio-list a:hover {
       background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
       color: var(--white);
       transform: translateY(-2px);
       box-shadow: 0 4px 15px var(--shadow-medium);
     }
 
-    .audio-list button:hover::before { left: 100%; }
+    .audio-list a:hover::before { left: 100%; }
 
-    .audio-list button.active {
+    .audio-list a.active {
       background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
       color: var(--white);
       box-shadow: 0 4px 15px var(--shadow-medium);
@@ -474,7 +476,7 @@
       section h2 { font-size: 1.6rem; }
       .content-container { padding: 1.5rem; }
       .audio-selector { padding: 1rem; }
-      .audio-list button { padding: 0.75rem; font-size: 0.9rem; }
+      .audio-list a { padding: 0.75rem; font-size: 0.9rem; }
     }
 
     @keyframes fadeInUp {
@@ -494,7 +496,7 @@
 
     nav a:focus-visible,
     .dropdown-content a:focus-visible,
-    .audio-list button:focus-visible {
+    .audio-list a:focus-visible {
       outline: 2px solid var(--accent-color);
       outline-offset: 2px;
     }
@@ -576,32 +578,32 @@
 
   <script>
     const audios = [
-      { nombre: "Calma", audio: "Audios/1.mp3", imagen: "corlux/Amara/amara-4.png" },
-      { nombre: "Dolor físico y emocional", audio: "Audios/2.mp3", imagen: "corlux/Esperanza/esperanza-4.png" },
-      { nombre: "Limpieza energética", audio: "Audios/3.mp3", imagen: "corlux/Graciano/graciano-4.png" },
-      { nombre: "Sueño", audio: "Audios/4.mp3", imagen: "corlux/Justino/justino-4.PNG" },
-      { nombre: "Creatividad", audio: "Audios/5.mp3", imagen: "corlux/Paz/paz-4.PNG" },
-      { nombre: "Calma y enfoque", audio: "Audios/6.mp3", imagen: "corlux/Valentin/valentin-4.png" },
-      { nombre: "Activación", audio: "Audios/7.mp3", imagen: "corlux/Amara/amara-2.png" },
-      { nombre: "Intuición", audio: "Audios/8.mp3", imagen: "corlux/Justino/justino-4.PNG" },
-      { nombre: "Claridad y aprendizaje", audio: "Audios/9.mp3", imagen: "corlux/Graciano/graciano-4.png" },
-      { nombre: "Foco y Concentración", audio: "Audios/10.mp3", imagen: "corlux/Valentin/valentin-4.png" },
-      { nombre: "Sanando heridas", audio: "Audios/11.mp3", imagen: "corlux/Paz/paz-4.PNG" },
-      { nombre: "Punto quieto", audio: "Audios/12.mp3", imagen: "corlux/Laura/laura-4.png" },
-      { nombre: "Grounding", audio: "Audios/13.mp3", imagen: "corlux/Amara/amara-3.png" },
-      { nombre: "Espejo energético", audio: "Audios/14.mp3", imagen: "corlux/Graciano/graciano-3.png" },
-      { nombre: "Visualizo mi meta", audio: "Audios/15.mp3", imagen: "corlux/Justino/justino-4.PNG" },
-      { nombre: "El poder de la palabra", audio: "Audios/16.mp3", imagen: "corlux/Amara/amara-3.png" },
-      { nombre: "Afinando cuerdas", audio: "Audios/17.mp3", imagen: "corlux/Todos/corlux_oscurocortado.png" },
-      { nombre: "Construyendo confianza", audio: "Audios/18.mp3", imagen: "corlux/Todos/corlux_oscurocortado.png" },
-      { nombre: "Mi frase poderosa", audio: "Audios/19.mp3", imagen: "corlux/Amara/amara-1.png" },
-      { nombre: "Un cuerpo una sinfonía", audio: "Audios/20.mp3", imagen: "corlux/Todos/corlux_oscurocortado.png" },
-      { nombre: "Fortaleza interior", audio: "Audios/21.mp3", imagen: "corlux/Esperanza/esperanza-4.png" },
-      { nombre: "Visualización pantalla mental 1", audio: "Audios/22.mp3", imagen: "corlux/Valentin/valentin-4.png" },
-      { nombre: "Visualización pantalla mental 2", audio: "Audios/23.mp3", imagen: "corlux/Valentin/valentin-4.png" },
-      { nombre: "Visualización pantalla mental 3", audio: "Audios/24.mp3", imagen: "corlux/Valentin/valentin-4.png" },
-      { nombre: "Cápsula de movimiento y energía", audio: "Audios/25.mp3", imagen: "corlux/Amara/amara-2.png" },
-      { nombre: "Sonidos Cuencos", audio: "Audios/sonidos cuencos.mp3", imagen: "corlux/Graciano/graciano-4.png" }
+      { nombre: "Calma", audio: "Audios/1.mp3", imagen: "corlux/Amara/amara-4.png", id: 1 },
+      { nombre: "Dolor físico y emocional", audio: "Audios/2.mp3", imagen: "corlux/Esperanza/esperanza-4.png", id: 2 },
+      { nombre: "Limpieza energética", audio: "Audios/3.mp3", imagen: "corlux/Graciano/graciano-4.png", id: 3 },
+      { nombre: "Sueño", audio: "Audios/4.mp3", imagen: "corlux/Justino/justino-4.PNG", id: 4 },
+      { nombre: "Creatividad", audio: "Audios/5.mp3", imagen: "corlux/Paz/paz-4.PNG", id: 5 },
+      { nombre: "Calma y enfoque", audio: "Audios/6.mp3", imagen: "corlux/Valentin/valentin-4.png", id: 6 },
+      { nombre: "Activación", audio: "Audios/7.mp3", imagen: "corlux/Amara/amara-2.png", id: 7 },
+      { nombre: "Intuición", audio: "Audios/8.mp3", imagen: "corlux/Justino/justino-4.PNG", id: 8 },
+      { nombre: "Claridad y aprendizaje", audio: "Audios/9.mp3", imagen: "corlux/Graciano/graciano-4.png", id: 9 },
+      { nombre: "Foco y Concentración", audio: "Audios/10.mp3", imagen: "corlux/Valentin/valentin-4.png", id: 10 },
+      { nombre: "Sanando heridas", audio: "Audios/11.mp3", imagen: "corlux/Paz/paz-4.PNG", id: 11 },
+      { nombre: "Punto quieto", audio: "Audios/12.mp3", imagen: "corlux/Laura/laura-4.png", id: 12 },
+      { nombre: "Grounding", audio: "Audios/13.mp3", imagen: "corlux/Amara/amara-3.png", id: 13 },
+      { nombre: "Espejo energético", audio: "Audios/14.mp3", imagen: "corlux/Graciano/graciano-3.png", id: 14 },
+      { nombre: "Visualizo mi meta", audio: "Audios/15.mp3", imagen: "corlux/Justino/justino-4.PNG", id: 15 },
+      { nombre: "El poder de la palabra", audio: "Audios/16.mp3", imagen: "corlux/Amara/amara-3.png", id: 16 },
+      { nombre: "Afinando cuerdas", audio: "Audios/17.mp3", imagen: "corlux/Todos/corlux_oscurocortado.png", id: 17 },
+      { nombre: "Construyendo confianza", audio: "Audios/18.mp3", imagen: "corlux/Todos/corlux_oscurocortado.png", id: 18 },
+      { nombre: "Mi frase poderosa", audio: "Audios/19.mp3", imagen: "corlux/Amara/amara-1.png", id: 19 },
+      { nombre: "Un cuerpo una sinfonía", audio: "Audios/20.mp3", imagen: "corlux/Todos/corlux_oscurocortado.png", id: 20 },
+      { nombre: "Fortaleza interior", audio: "Audios/21.mp3", imagen: "corlux/Esperanza/esperanza-4.png", id: 21 },
+      { nombre: "Visualización pantalla mental 1", audio: "Audios/22.mp3", imagen: "corlux/Valentin/valentin-4.png", id: 22 },
+      { nombre: "Visualización pantalla mental 2", audio: "Audios/23.mp3", imagen: "corlux/Valentin/valentin-4.png", id: 23 },
+      { nombre: "Visualización pantalla mental 3", audio: "Audios/24.mp3", imagen: "corlux/Valentin/valentin-4.png", id: 24 },
+      { nombre: "Cápsula de movimiento y energía", audio: "Audios/25.mp3", imagen: "corlux/Amara/amara-2.png", id: 25 },
+      { nombre: "Sonidos Cuencos", audio: "Audios/sonidos cuencos.mp3", imagen: "corlux/Graciano/graciano-4.png", id: 26 }
     ];
 
     class AudioManager {
@@ -624,11 +626,15 @@
       generateAudioList() {
         audios.forEach((audio, index) => {
           const li = document.createElement("li");
-          const button = document.createElement("button");
-          button.textContent = audio.nombre;
-          button.dataset.index = index;
-          button.addEventListener('click', () => this.changeAudio(index));
-          li.appendChild(button);
+          const link = document.createElement("a");
+          link.textContent = audio.nombre;
+          link.href = `${window.location.pathname}?id=${audio.id}#espacio-pausa`;
+          link.dataset.index = index;
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.changeAudio(index);
+          });
+          li.appendChild(link);
           this.audioList.appendChild(li);
         });
       }
@@ -658,6 +664,10 @@
             this.changeAudio(this.currentAudioIndex < audios.length - 1 ? this.currentAudioIndex + 1 : 0);
           }
         });
+
+        window.addEventListener('popstate', () => {
+          this.loadInitialAudio();
+        });
       }
 
       changeAudio(index) {
@@ -673,15 +683,18 @@
         this.image.style.opacity = '0.7';
         this.errorMessage.style.display = 'none';
 
-        document.querySelectorAll('.audio-list button').forEach(btn => btn.classList.remove('active'));
-        const button = document.querySelector(`[data-index="${index}"]`);
-        button.classList.add('active');
-        button.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        document.querySelectorAll('.audio-list a').forEach(link => link.classList.remove('active'));
+        const link = document.querySelector(`[data-index="${index}"]`);
+        link.classList.add('active');
+        link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
         this.audioPlayer.load();
         this.audioPlayer.play().catch(() => {
           this.showError('Error al reproducir el audio.');
         });
+
+        const newUrl = `${window.location.pathname}?id=${audioData.id}#espacio-pausa`;
+        window.history.pushState({ audioIndex: index }, '', newUrl);
       }
 
       showError(message) {
@@ -690,8 +703,9 @@
       }
 
       loadInitialAudio() {
-        const id = parseInt(new URLSearchParams(window.location.search).get('id')) - 1;
-        this.changeAudio(id >= 0 && id < audios.length ? id : 0);
+        const id = parseInt(new URLSearchParams(window.location.search).get('id'));
+        const index = audios.findIndex(audio => audio.id === id);
+        this.changeAudio(index >= 0 ? index : 0);
         if (window.location.hash === '#espacio-pausa') {
           document.getElementById("espacio-pausa").scrollIntoView({ behavior: 'smooth' });
         }
