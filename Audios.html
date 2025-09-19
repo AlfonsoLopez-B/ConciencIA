@@ -630,7 +630,7 @@
           const li = document.createElement("li");
           const link = document.createElement("a");
           link.textContent = audio.nombre;
-          link.href = `/index.html?id=${audio.id}#espacio-pausa`; // Ruta absoluta para Vercel
+          link.href = `?id=${audio.id}#espacio-pausa`; // Ruta relativa
           link.dataset.index = index;
           link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -643,7 +643,7 @@
 
       setupEventListeners() {
         this.audioPlayer.addEventListener('error', () => {
-          this.showError('Error al cargar el audio. Verifica la ruta o el archivo en el servidor.');
+          this.showError('Error al cargar el audio. Verifica los archivos en Audios/.');
         });
 
         this.image.addEventListener('error', () => {
@@ -677,8 +677,8 @@
         const audioData = audios[index];
 
         this.audioPlayer.pause();
-        this.audioSource.src = `/${audioData.audio}`; // Ruta absoluta para Vercel
-        this.image.src = `/${audioData.imagen}`; // Ruta absoluta para Vercel
+        this.audioSource.src = audioData.audio; // Ruta relativa
+        this.image.src = audioData.imagen; // Ruta relativa
         this.image.alt = `Imagen de ${audioData.nombre}`;
         this.image.style.display = 'block';
         this.audioPlayer.style.opacity = '0.7';
@@ -692,10 +692,10 @@
 
         this.audioPlayer.load();
         this.audioPlayer.play().catch(() => {
-          this.showError('Error al reproducir el audio. Podría ser un problema de conexión o archivo.');
+          this.showError('Error al reproducir el audio. Revisá la consola.');
         });
 
-        const newUrl = `/index.html?id=${audioData.id}#espacio-pausa`;
+        const newUrl = `?id=${audioData.id}#espacio-pausa`;
         window.history.pushState({ audioIndex: index }, '', newUrl);
       }
 
