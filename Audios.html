@@ -605,7 +605,7 @@
       { nombre: "Visualización pantalla mental 3", audio: "Audios/24.mp3", imagen: "corlux/Valentin/valentin-4.png", id: 24 },
       { nombre: "Cápsula de movimiento y energía", audio: "Audios/25.mp3", imagen: "corlux/Amara/amara-2.png", id: 25 },
       { nombre: "Sonidos Cuencos", audio: "Audios/sonidos cuencos.mp3", imagen: "corlux/Graciano/graciano-4.png", id: 26 },
-      { nombre: "Canción: Tu voz", audio: "Audios/EsTuVoz.mp3", imagen: "Imagenes/logo_verde_b_solo.png", id: 27 }
+      { nombre: "Canción: Tu voz", audio: "Audios/EsTuVoz.mp3", imagen: "logo_verde_b_solo.png", id: 27 }
     ];
 
     class AudioManager {
@@ -630,7 +630,7 @@
           const li = document.createElement("li");
           const link = document.createElement("a");
           link.textContent = audio.nombre;
-          link.href = `?id=${audio.id}#espacio-pausa`; // Ruta relativa
+          link.href = `${window.location.pathname}?id=${audio.id}#espacio-pausa`;
           link.dataset.index = index;
           link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -643,7 +643,7 @@
 
       setupEventListeners() {
         this.audioPlayer.addEventListener('error', () => {
-          this.showError('Error al cargar el audio. Verifica los archivos en Audios/.');
+          this.showError('Error al cargar el audio. Verifica la ruta del archivo.');
         });
 
         this.image.addEventListener('error', () => {
@@ -677,8 +677,8 @@
         const audioData = audios[index];
 
         this.audioPlayer.pause();
-        this.audioSource.src = audioData.audio; // Ruta relativa
-        this.image.src = audioData.imagen; // Ruta relativa
+        this.audioSource.src = audioData.audio;
+        this.image.src = audioData.imagen;
         this.image.alt = `Imagen de ${audioData.nombre}`;
         this.image.style.display = 'block';
         this.audioPlayer.style.opacity = '0.7';
@@ -692,10 +692,10 @@
 
         this.audioPlayer.load();
         this.audioPlayer.play().catch(() => {
-          this.showError('Error al reproducir el audio. Revisá la consola.');
+          this.showError('Error al reproducir el audio.');
         });
 
-        const newUrl = `?id=${audioData.id}#espacio-pausa`;
+        const newUrl = `${window.location.pathname}?id=${audioData.id}#espacio-pausa`;
         window.history.pushState({ audioIndex: index }, '', newUrl);
       }
 
