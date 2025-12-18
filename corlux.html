@@ -412,21 +412,23 @@
     .character-capsule {
       display: flex;
       flex-direction: row;
-      min-height: 350px;
-      gap: 1.5rem;
+      gap: 2rem;
+      align-items: flex-start;
+      min-height: auto;
+      padding: 2.5rem;
     }
 
     .character-image-container {
-      flex: 1;
+      flex: 0 0 350px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
     }
 
     .character-image-container img {
       max-width: 100%;
-      max-height: 300px;
+      max-height: 400px;
       object-fit: contain;
       border-radius: var(--border-radius-small);
       opacity: 0;
@@ -439,7 +441,10 @@
 
     .character-description {
       flex: 1;
-      padding: 1.5rem;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
 
     .character-navigation {
@@ -501,6 +506,19 @@
       
       section h2 {
         font-size: 2.2rem;
+      }
+
+      .character-capsule {
+        padding: 2rem;
+        gap: 1.5rem;
+      }
+
+      .character-image-container {
+        flex: 0 0 300px;
+      }
+
+      .character-image-container img {
+        max-height: 350px;
       }
     }
 
@@ -574,12 +592,21 @@
 
       .character-capsule {
         flex-direction: column;
-        min-height: auto;
-        gap: 1rem;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 2rem;
+      }
+
+      .character-image-container {
+        flex: none;
       }
 
       .character-image-container img {
-        max-height: 250px;
+        max-height: 300px;
+      }
+
+      .character-description {
+        text-align: center;
       }
     }
 
@@ -619,7 +646,7 @@
       }
 
       .character-image-container img {
-        max-height: 200px;
+        max-height: 250px;
       }
     }
 
@@ -710,7 +737,6 @@
       <div class="main-description" id="mainDescription">
         <p class="short-text">Los habitantes de IluminanDia vienen observando desde hace un largo tiempo el comportamiento de los Seres “Humanos” y la dificultad que muchas veces tienen para resolver sus problemas y vivir felices...</p>
         <p class="full-text">Los habitantes de IluminanDia vienen observando desde hace un largo tiempo el comportamiento de los Seres “Humanos” y la dificultad que muchas veces tienen para resolver sus problemas y vivir felices. Ello, ante su falta de autoconocimiento, a lo que en el último tiempo se ha sumado su desconocimiento del entorno Digital y de las consecuencias de sus prácticas en él. Desde entonces, “Los Corlux” partieron de IluminanDia con la Misión de acercarse a los habitantes del planeta Tierra con la intención de poner sus virtudes al servicio de ellos y colaborar así con su mayor bienestar. En mayo del 2025, aterrizaron en una institución educativa, La Cea 183, Nelson Mandela. Los “CorLux”, pueden comunicarse con el corazón de las personas, en un lenguaje que solo pueden entender sus almas. Para hacerlo, envían sus mensajes en formas de rayos de luz, iluminando las zonas inconscientes del cerebro humano, colaborando así con el despertar de sus CONCIENCIAS. De este modo planean ayudar a los humanos, para que entiendan no solo a la IA (Inteligencia Artificial), sino también a la otra IA, la Inteligencia Amorosa, una fuente de poder sin límites que los humanos tienen disposición. Los Seres humanos antes de llegar al mundo conocíamos a los Corlux. Ahora limitados por nuestras formas humanas y creencias limitantes, se nos hace difícil recordar de dónde venimos para que estamos en el mundo, que queremos ser y que queremos hacer. Los Corlux no entienden porqué los humanos muchas veces hacemos lo que no nos gusta y no hacemos lo que nos gusta, por miedo a no pertenecer o a no ser aceptados o queridos. Estos mensajeros de luz sienten que gran parte de nuestros problemas como humanos tienen su origen en no recordar quienes somos, de dónde venimos hacia dónde vamos y cuál es nuestro propósito o Misión en el mundo.</p>
-        <button class="toggle-text" onclick="toggleMainDescription()">Ver más...</button>
       </div>
     </div>
     <div class="corlux-capsule">
@@ -718,7 +744,6 @@
         <h3 id="corluxName">Los Corlux y La Libertad</h3>
         <span class="short-text">Los Corlux, ven a los humanos ocupados, distraídos, apáticos, vacíos, con los cerebros dormidos y sus talentos en el olvido...</span>
         <span class="full-text">Los Corlux, ven a los humanos ocupados, distraídos, apáticos, vacíos, con los cerebros dormidos y sus talentos en el olvido. Ante la pregunta ¿Cuál será la causa? Contestan “Es que no hay libertad sin pausa”. Los humanos somos libres cuando podemos encontrar momentos de pausa para conectar con la naturaleza, con nuestra voz interior, que nos permita sentir, sentirnos, preguntarnos como estamos, que queremos, hacia a dónde vamos. Sólo si sabemos hacer pausas tendremos la capacidad de sentir y pensar libremente. Los Corlux recuerdan a un viejo maestro que decía en sus clases “No crean nada de lo que les dije... Olviden mis ideas, no se encierren en las ideas, las ideas are cárceles. Por encima de las ideas hay algo que vuela más alto y es el espíritu de vida que sopla en dirección a la verdad.” (J.E.Rodó). Los Corlux también vienen observando como los humanos utilizan los “IA Companions para mantener vínculos, conversaciones, soporte emocional, juego de roles, amistad e incluso interacciones románticas. Muchas veces para adquirir habilidades sociales de la IA a las situaciones de la vida real, creyéndose incapaces de hacerlos por si mismos. Como humanos tenemos la capacidad y el desafío de pensar y construir esos vínculos por nosotros mismos.</span>
-        <button class="toggle-text" onclick="toggleCorluxDescription()">Ver más</button>
       </div>
     </div>
     <div class="corlux-navigation">
@@ -737,7 +762,7 @@
       <div class="character-description" id="characterDescription">
         <span class="short-text">Tiene un gran sentido de la Justicia, lo llaman “El luchador”.</span>
         <span class="full-text">En un tiempo se sobrecargaba de responsabilidad sintiendo que todo dependía de él. Para no sentirse vulnerable, intentó controlar, e intimidar a otros para imponer su verdad, sin respetar la libertad de cada uno de elegir su propio camino. Con el tiempo aprendió a respetar los caminos de los otros y también a cumplir sus compromisos con serenidad, delegando y confiando. Hoy lidera con coraje, y defiende con justicia y compasión. Hace tiempo viene observando la dinámica de las redes sociales, cómo se polarizan sus opiniones, cómo está afectando el ciberbullying a los adolescentes.</span>
-        <button class="toggle-text" onclick="toggleDescription()">Datos</button>
+
       </div>
     </div>
     <div class="character-navigation">
@@ -846,7 +871,7 @@
         Quería  ayudar a otros resolviendo todo solo, sobrecargándose. <br>
         Le costaba escucharse y escuchar. <br>
         Así se desconectaba de sus propias emociones  y muchas veces no respetaba la libertad de los otros  de elegir su propio camino. <br>
-        Incluso llegó a intimidar a otros para imponer su verdad.<br><br>
+        Incluso llegó a intimidar a otros para imponer su verdad.<br>
 
         Con el tiempo aprendió a soltar “mochilas” innecesarias.<br>
          Hoy respeta los caminos de otros, y vive con serenidad,delegando y confiando. 
@@ -859,13 +884,13 @@
       imagen: "corlux/Paz/paz-1.png",
       color: "#f97000",
       descripcion: `
-        Es tolerante y paciente. 
-Se toma las cosas con calma. 
+        Es tolerante y paciente. <br>
+Se toma las cosas con calma. <br>
 
-Hubo un tiempo que la llamaban “La Huidiza Evitativa” .
-Evitaba lugares ruidosos, y situaciones dolorosas. No quería ni conflictos, ni compromisos. 
+Hubo un tiempo que la llamaban “La Huidiza Evitativa” . <br>
+Evitaba lugares ruidosos, y situaciones dolorosas. No quería ni conflictos, ni compromisos. <br>
 
-Aprendió que la Paz es saber estar en calma, más allá de las tormentas.  
+Aprendió que la Paz es saber estar en calma, más allá de las tormentas.  <br>
 
 Hoy escucha a los demás con atención, canalizando su sensibilidad  en acciones que realmente ayudan. 
 Su serenidad es fruto de su trabajo interior.
@@ -878,13 +903,13 @@ Su serenidad es fruto de su trabajo interior.
       color: "#8f69ed",
       descripcion: `
       <strong>Es observadora, perseverante, optimista y soñadora. </strong><br>
-      De gran apertura mental y capacidad de pensar por si misma. <br><br>
+      De gran apertura mental y capacidad de pensar por si misma. <br>
 
       <strong>Hubo un tiempo</strong> que la llamaban la “Soñadora Despistada”. <br>
       Vivía en las nubes, con poca concentración en el mundo real. <br>
       Se refugiaba en la fantasía para no enfrentar conflictos evitando compromisos y problemas.  <br>
 
-      <strong>Aprendió </strong> a usar su capacidad de soñar, enfocando su creatividad en proyectos concretos.<br><br>
+      <strong>Aprendió </strong> a usar su capacidad de soñar, enfocando su creatividad en proyectos concretos.<br>
 
       <strong>Hoy</strong> asume sus compromisos con creatividad, perseverancia y optimismo. `
     },
@@ -913,13 +938,13 @@ Su serenidad es fruto de su trabajo interior.
       color: "#a6d11e",
       descripcion: `
         Es valiente y alegre. Disfruta la vida con entusiasmo.  <br>
-        Es también curioso, tiene ideas muy creativas y resuelve problemas ingeniosamente. <br><br>
+        Es también curioso, tiene ideas muy creativas y resuelve problemas ingeniosamente. <br>
 
-        Hubo un tiempo que lo llamaban “El Peleador”. Buscaba conflicto y se enojaba mucho.  <br><br>
+        Hubo un tiempo que lo llamaban “El Peleador”. Buscaba conflicto y se enojaba mucho.  <br>
 
         Aprendió a transformar su bronca en energía positiva. 
         Sabe que el principal enemigo que tenemos los humanos somos muchas veces nosotros mismos y
-        que el mayor acto de valentía es enfrentar y aprender a aceptar nuestros  miedos. <br><br>
+        que el mayor acto de valentía es enfrentar y aprender a aceptar nuestros  miedos. <br>
 
         Hoy combate el miedo con Amor. Resuelve problemas en forma creativa y con valentía serena. 
       `
@@ -931,13 +956,13 @@ Su serenidad es fruto de su trabajo interior.
       color: "#3469ea",
       descripcion: `
         <strong>Es  Generoso,  Empático y Productivo</strong> <br>
-        Confía en la abundancia de la vida. <br><br>
+        Confía en la abundancia de la vida. <br>
 
         <strong>Hubo un tiempo</strong> que no podía sacarse la máscara 
         de “El Gracioso”. <br>
-        Usaba el humor para tapar su dolor. También le tenía miedo a la escasez y le costaba compartir lo que tenía. <br><br>
+        Usaba el humor para tapar su dolor. También le tenía miedo a la escasez y le costaba compartir lo que tenía. <br>
 
-        <strong>Aprendió</strong> a usar el humor sin pasar por arriba de sus emociones, amigándose con sus partes no tan “divertidas”.  Y también que “la abundancia” es confiar que siempre llegará lo que necesitamos, porque ya existe. <br><br>
+        <strong>Aprendió</strong> a usar el humor sin pasar por arriba de sus emociones, amigándose con sus partes no tan “divertidas”.  Y también que “la abundancia” es confiar que siempre llegará lo que necesitamos, porque ya existe. <br>
 
         <strong>Hoy  sigue usando</strong> su sentido del humor, respetándose.  <br>
         También  ofrece lo que  tiene sin esperar nada a cambio, sabiendo que  nunca le va a faltar nada. 
@@ -949,17 +974,17 @@ Su serenidad es fruto de su trabajo interior.
       imagen: "corlux/Amara/amara-1.png",
       color: "#f993a2",
       descripcion: `
-         Es la líder del grupo. 
-Alcanzó 'la perla de las virtudes:“La Humildad”. 
+         <strong>Es la líder del grupo. <br>
+Alcanzó 'la perla de las virtudes:“La Humildad”. </strong><br>
 
-Hubo un tiempo que se sentía una derrotada. Se comparaba con otros sintiéndose incapaz e insuficiente.
+<strong>Hubo un tiempo</strong> que se sentía una derrotada. Se comparaba con otros sintiéndose incapaz e insuficiente. <br>
 
-Aprendió a amar su pequeñez a confiar en sus talentos y también en los de los demás. 
+<strong>Aprendió</strong> a amar su pequeñez a confiar en sus talentos y también en los de los demás. <br>
 
-Cree que el desafío de los seres humanos es aceptarnos y amarnos unos a los otros tal cual somos. Y que nuestras diferencias e imperfecciones permiten que el Amor se expanda y multiplique. 
-
-Confía en la oportunidad de transformación y desarrollo que tenemos como humanos 
-y que cuando nos apoyamos unos los otros:
+Cree que <strong>el desafío de los seres humanos es aceptarnos y amarnos unos a los otros</strong> tal cual somos.</strong>  Y que nuestras diferencias e imperfecciones permiten que el Amor se expanda y multiplique. 
+<br>
+<strong>Confía</strong> en la oportunidad de transformación y desarrollo que tenemos como humanos 
+y que cuando nos apoyamos unos los otros:<br>
  “Somos todos ganadores” .`
     }
   ];
@@ -984,7 +1009,7 @@ y que cuando nos apoyamos unos los otros:
     desc.querySelector('.full-text').innerHTML = parts.slice(1).join('<br><br>') || parts[0];
 
     desc.classList.remove('expanded');
-    desc.querySelector('.toggle-text').textContent = 'Ver más';
+  
 
     currentCorluxIndex = index;
     prev.disabled = index === 0;
@@ -1025,12 +1050,12 @@ y que cuando nos apoyamos unos los otros:
     desc.querySelector('.full-text').innerHTML = parts.slice(1).join('<br><br>') || parts[0];
 
     desc.classList.remove('expanded');
-    desc.querySelector('.toggle-text').textContent = 'Ver más';
 
     currentCharacterIndex = index;
 
     buttons.forEach((btn, i) => {
       btn.disabled = i === index;
+      btn.style.setProperty('--character-hover-color', personajes[i].color);
     });
   }
 
@@ -1038,19 +1063,16 @@ y que cuando nos apoyamos unos los otros:
   function toggleMainDescription() {
     const desc = document.getElementById('mainDescription');
     desc.classList.toggle('expanded');
-    desc.querySelector('.toggle-text').textContent = desc.classList.contains('expanded') ? 'Ocultar' : 'Ver más...';
-  }
+    }
 
   function toggleCorluxDescription() {
     const desc = document.getElementById('corluxDescription');
     desc.classList.toggle('expanded');
-    desc.querySelector('.toggle-text').textContent = desc.classList.contains('expanded') ? 'Ocultar' : 'Ver más';
-  }
+    }
 
   function toggleDescription() {
     const desc = document.getElementById('characterDescription');
     desc.classList.toggle('expanded');
-    desc.querySelector('.toggle-text').textContent = desc.classList.contains('expanded') ? 'Ocultar' : 'Ver más';
   }
 
   // ==================== NAVEGACIÓN Y ANIMACIONES (sin cambios) ====================
