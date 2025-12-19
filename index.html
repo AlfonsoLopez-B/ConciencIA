@@ -499,6 +499,38 @@
       outline: 2px solid var(--accent-color);
       outline-offset: 2px;
     }
+
+    /* Estilo para el video vertical - versión más pequeña */
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 380px; /* Achicado para que quepa sin scroll en la mayoría de pantallas */
+      margin: 2rem auto;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 25px var(--shadow-light);
+      overflow: hidden;
+    }
+
+    .video-container video {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      background: #000;
+    }
+
+    /* En móviles, ajusta un poco más */
+    @media (max-width: 768px) {
+      .video-container {
+        max-width: 340px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .video-container {
+        max-width: 300px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -511,10 +543,11 @@
         <a href="#introduccion">Nuestro Proyecto</a>
         <div class="dropdown-content">
           <a href="#introduccion">Introducción</a>
-          <a href="#alcance">Alcance</a>
+          <a href="#alcance">Que es Alfabetizar</a>
           <a href="#marco-conceptual">Marco Conceptual</a>
           <a href="#objetivos">Objetivos</a>
           <a href="#metodologia">Metodología</a>
+          <a href="#piloto">Piloto</a>
         </div>
       </div>
       <div class="dropdown">
@@ -552,7 +585,7 @@
   </section>
 
   <section id="alcance">
-    <h2>Alcance</h2>
+    <h2>¿Que es Alfabetizar?</h2>
     <p>"Alfabetizar en IA" es dotar a los destinatarios de los sistemas de IA de conocimientos y competencias para usar, cuestionar, y cuando corresponda también para rechazar el uso de sistemas de IA o sus salidas/respuestas, evaluando beneficios y riesgos de acuerdo a nuestros propósitos, valores democráticos y derechos humanos fundamentales.</p>
     <p>Así "Alfabetizar en IA" implica también educar en saber generar pausas para dar lugar el pensamiento crítico, la libertad de expresión (que incluya las facultades de buscar, recibir y transmitir información veraz), lo que implica que puedan convivir en el ciberespacio distintos lenguajes, poder debatir, criticar, cuestionar, interrumpir y desafiar activamente las estructuras de poder, hoy basadas en las lógicas de extracción de datos, vigilancia masiva, y control algorítmico, que utilizan las redes sociales y más recientemente sistemas de IA Generativa (IAG). Y ello en base a nuestra Inteligencia Emocional e "Inteligencia Amorosa" (hacia nosotros mismos y los demás).</p>
   </section>
@@ -648,6 +681,20 @@
         </ul>
       </li>
     </ol>
+  </section>
+
+  <section id="piloto">
+    <h2>Piloto</h2>
+    <p>A continuación, el video resumen del piloto realizado en la CEA 183 Nelson Mandela (Montevideo, Uruguay) durante 2025.</p>
+  
+    <div class="video-container">
+      <video controls preload="metadata" poster="imagenes/poster-piloto.jpg">
+        <source src="videos/VideoPilotoCEA.mp4" type="video/mp4">
+        Tu navegador no soporta la reproducción de video.
+      </video>
+    </div>
+
+    <p>Duración: 2:47 minutos.</p>
   </section>
 
   <footer>
