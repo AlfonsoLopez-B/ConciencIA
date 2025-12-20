@@ -1,868 +1,964 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Corlux - Conciencia IA: Historias y personajes que promueven la alfabetización en Inteligencia Artificial e Inteligencia Amorosa">
-  <meta name="keywords" content="IA, inteligencia artificial, inteligencia amorosa, Corlux, educación, conciencia">
-  <title>Corlux</title>
-
-  <!-- Precarga de imágenes de personajes -->
-  <link rel="preload" as="image" href="corlux/Justino/justino-1.png">
-  <link rel="preload" as="image" href="corlux/Paz/paz-1.png">
-  <link rel="preload" as="image" href="corlux/Esperanza/esperanza-1.png">
-  <link rel="preload" as="image" href="corlux/Laura/laura-2.png">
-  <link rel="preload" as="image" href="corlux/Valentin/valentin-1.png">
-  <link rel="preload" as="image" href="corlux/Graciano/graciano-1.png">
-  <link rel="preload" as="image" href="corlux/Amara/amara-1.png">
-  <link rel="preload" as="image" href="Imagenes/logo_verde_b.png">
-
-  <style>
-    /* Variables CSS para consistencia de colores */
-    :root {
-      --primary-bg: #f2f1eb;
-      --primary-text: #26134b;
-      --secondary-bg: #383838;
-      --accent-color: #26d1c8;
-      --accent-hover: #1e9c94;
-      --white: #f2f1eb;
-      --shadow-light: rgba(38, 209, 200, 0.3);
-      --shadow-medium: rgba(38, 209, 200, 0.4);
-      --shadow-dark: rgba(0, 0, 0, 0.3);
-      --transition-fast: 0.2s ease;
-      --transition-medium: 0.3s ease;
-      --transition-slow: 0.5s ease;
-      --border-radius: 12px;
-      --border-radius-small: 8px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-      scroll-padding-top: 140px;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--primary-bg);
-      color: var(--primary-text);
-      position: relative;
-      overflow-x: hidden;
-      line-height: 1.6;
-      font-weight: 400;
-    }
-
-    /* Fondo animado */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(circle at 20% 80%, rgba(38, 209, 200, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(38, 209, 200, 0.1) 0%, transparent 50%),
-        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%2326d1c8" fill-opacity="0.1" d="M0,128L48,138.7C96,149,192,171,288,181.3C384,192,480,192,576,181.3C672,171,768,149,864,144C960,139,1056,149,1152,154.7C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x bottom;
-      z-index: -1;
-      animation: backgroundFloat 20s ease-in-out infinite;
-    }
-
-    @keyframes backgroundFloat {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-10px) rotate(1deg); }
-    }
-
-    /* Header */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background: linear-gradient(135deg, var(--secondary-bg) 0%, #2a2a2a 100%);
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      box-shadow: 0 4px 20px var(--shadow-dark);
-      transition: all var(--transition-medium);
-      height: 120px;
-      backdrop-filter: blur(10px);
-    }
-
-    header.scrolled {
-      padding: 0.75rem 1.5rem;
-      height: 70px;
-      background: rgba(56, 56, 56, 0.95);
-      backdrop-filter: blur(15px);
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      transition: transform var(--transition-medium);
-    }
-
-    .logo:hover {
-      transform: scale(1.05);
-    }
-
-    .logo img {
-      width: 260px;
-      height: auto;
-      transition: width var(--transition-medium);
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-    }
-
-    header.scrolled .logo img {
-      width: 180px;
-    }
-
-    /* Navegación */
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      margin-left: auto;
-      transition: gap var(--transition-medium);
-    }
-
-    header.scrolled nav {
-      gap: 1rem;
-    }
-
-    nav a {
-      position: relative;
-      text-decoration: none;
-      color: var(--white);
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 0.75rem 1rem;
-      border-radius: var(--border-radius-small);
-      transition: all var(--transition-medium);
-      white-space: nowrap;
-    }
-
-    header.scrolled nav a {
-      font-size: 0.9rem;
-      padding: 0.5rem 0.75rem;
-    }
-
-    nav a:hover, nav a.active {
-      color: var(--accent-color);
-      background: rgba(38, 209, 200, 0.1);
-      transform: translateY(-2px);
-    }
-
-    nav a.active::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
-      border-radius: 2px;
-      animation: slideIn 0.3s ease-out;
-    }
-
-    @keyframes slideIn {
-      from { width: 0%; }
-      to { width: 80%; }
-    }
-
-    /* Dropdown */
-    .dropdown {
-      position: relative;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      visibility: visible;
-    }
-
-    .dropdown-content {
-      display: block;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: linear-gradient(135deg, var(--secondary-bg) 0%, #2a2a2a 100%);
-      min-width: 220px;
-      box-shadow: 0 8px 25px var(--shadow-dark);
-      z-index: 1001;
-      border-radius: var(--border-radius);
-      opacity: 0;
-      transform: translateY(-10px) scale(0.95);
-      transition: all var(--transition-medium);
-      visibility: hidden;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(38, 209, 200, 0.2);
-    }
-
-    .dropdown-content a {
-      display: block;
-      padding: 0.75rem 1rem;
-      color: var(--white);
-      text-align: left;
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: all var(--transition-fast);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .dropdown-content a:last-child {
-      border-bottom: none;
-    }
-
-    .dropdown-content a:hover {
-      background: linear-gradient(90deg, rgba(38, 209, 200, 0.2), rgba(38, 209, 200, 0.1));
-      color: var(--accent-color);
-      padding-left: 1.5rem;
-    }
-
-    /* Secciones */
-    section {
-      padding: 4rem 2rem 3rem;
-      max-width: 1200px;
-      margin: 2rem auto;
-      background: linear-gradient(135deg, rgba(242, 241, 235, 0.95) 0%, rgba(242, 241, 235, 0.98) 100%);
-      border-radius: var(--border-radius);
-      box-shadow: 
-        0 6px 15px var(--shadow-light);
-      transition: all var(--transition-medium);
-      position: relative;
-      z-index: 1;
-      scroll-margin-top: 140px;
-      backdrop-filter: blur(5px);
-    }
-
-    section:hover {
-      transform: translateY(-8px);
-      box-shadow: 
-        0 10px 20px var(--shadow-medium);
-    }
-
-    section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
-      border-radius: var(--border-radius) var(--border-radius) 0 0;
-    }
-
-    section img {
-      max-width: 800px;
-      margin: 0 auto 1.5rem;
-      display: block;
-      object-fit: contain;
-      border-radius: var(--border-radius-small);
-    }
-
-    section h2 {
-      font-size: 2.8rem;
-      color: var(--secondary-bg);
-      margin-bottom: 1.5rem;
-      position: relative;
-      padding-bottom: 1rem;
-      font-weight: 700;
-      text-align: center;
-    }
-
-    section h2::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
-      border-radius: 2px;
-    }
-
-    section h3 {
-      font-size: 1.6rem;
-      color: var(--white);
-      margin: 0 0 1rem;
-      font-weight: 600;
-      text-align: center;
-    }
-
-    section p, section li {
-      font-size: 1.1rem;
-      color: var(--primary-text);
-      line-height: 2;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-
-    /* Contenedores específicos */
-    .main-description-container, .corlux-capsule, .character-capsule {
-      background: var(--secondary-bg);
-      border-radius: var(--border-radius);
-      box-shadow: 0 6px 15px var(--shadow-light);
-      padding: 2rem;
-      max-width: 800px;
-      margin: 0 auto 2rem;
-      border-left: 4px solid var(--accent-color);
-      transition: box-shadow var(--transition-medium);
-    }
-
-    .main-description-container:hover, .corlux-capsule:hover, .character-capsule:hover {
-      box-shadow: 0 10px 20px var(--shadow-medium);
-    }
-
-    .main-description, .corlux-description, .character-description {
-      font-size: 1rem;
-      color: var(--white);
-      line-height: 2;
-      text-align: center;
-    }
-
-    .main-description p {
-      color: var(--white);
-      line-height: 2;
-      text-align: center;
-    }
-
-    .main-description .short-text, .corlux-description .short-text, .character-description .short-text {
-      display: block;
-    }
-
-    .main-description .full-text, .corlux-description .full-text, .character-description .full-text {
-      display: none;
-      margin-top: 1rem;
-    }
-
-    .main-description.expanded .short-text, .corlux-description.expanded .short-text, .character-description.expanded .short-text {
-      display: none;
-    }
-
-    .main-description.expanded .full-text, .corlux-description.expanded .full-text, .character-description.expanded .full-text {
-      display: block;
-    }
-
-    .toggle-text {
-      background-color: var(--white);
-      color: var(--secondary-bg);
-      border: none;
-      border-radius: var(--border-radius-small);
-      padding: 0.6rem 1.2rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color var(--transition-fast);
-      margin-top: 1.5rem;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .toggle-text:hover {
-      background-color: var(--accent-color);
-    }
-
-    .corlux-navigation {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      max-width: 800px;
-      margin: 1.5rem auto 0;
-    }
-
-    .corlux-navigation button {
-      width: 40px;
-      height: 40px;
-      background-color: var(--secondary-bg);
-      color: var(--white);
-      border: none;
-      border-radius: var(--border-radius-small);
-      cursor: pointer;
-      font-size: 1.2rem;
-      font-weight: 600;
-      transition: background-color var(--transition-fast), transform var(--transition-fast);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .corlux-navigation button:hover {
-      background-color: var(--accent-color);
-      transform: scale(1.1);
-    }
-
-    .corlux-navigation button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .character-capsule {
-      display: flex;
-      flex-direction: row;
-      gap: 2rem;
-      align-items: flex-start;
-      min-height: auto;
-      padding: 2.5rem;
-    }
-
-    .character-image-container {
-      flex: 0 0 350px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-    }
-
-    .character-image-container img {
-      max-width: 100%;
-      max-height: 400px;
-      object-fit: contain;
-      border-radius: var(--border-radius-small);
-      opacity: 0;
-      transition: opacity var(--transition-medium);
-    }
-
-    .character-image-container img.loaded {
-      opacity: 1;
-    }
-
-    .character-description {
-      flex: 1;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-
-    .character-navigation {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      max-width: 800px;
-      margin: 1.5rem auto 0;
-    }
-
-    .character-navigation button {
-      background-color: var(--secondary-bg);
-      color: var(--white);
-      border: none;
-      border-radius: var(--border-radius-small);
-      padding: 0.6rem 1.2rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color var(--transition-fast), transform var(--transition-fast);
-    }
-
-    .character-navigation button:hover {
-      background-color: var(--character-hover-color, var(--accent-color));
-      transform: scale(1.05);
-    }
-
-    .character-navigation button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    /* Footer */
-    footer {
-      background: linear-gradient(135deg, var(--primary-bg) 0%, #e8e7e1 100%);
-      padding: 2rem 0;
-      margin-top: 3rem;
-      border-top: 3px solid var(--accent-color);
-    }
-
-    footer p {
-      text-align: center;
-      font-size: 0.95rem;
-      color: var(--secondary-bg);
-      margin: 0;
-      line-height: 2;
-      font-weight: 500;
-      padding: 0 1rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-      section {
-        margin: 1.5rem;
-        padding: 3rem 1.5rem 2rem;
-      }
-      
-      section h2 {
-        font-size: 2.2rem;
-      }
-
-      .character-capsule {
-        padding: 2rem;
-        gap: 1.5rem;
-      }
-
-      .character-image-container {
-        flex: 0 0 300px;
-      }
-
-      .character-image-container img {
-        max-height: 350px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      html {
-        font-size: 14px;
-      }
-
-      header {
-        padding: 0.75rem 1rem;
-        height: 100px;
-      }
-
-      header.scrolled {
-        height: 60px;
-        padding: 0.5rem 1rem;
-      }
-
-      .logo img {
-        width: 200px;
-      }
-
-      header.scrolled .logo img {
-        width: 150px;
-      }
-
-      nav {
-        margin-right: 0;
-        gap: 0.5rem;
-      }
-
-      nav a {
-        font-size: 0.85rem;
-        padding: 0.5rem 0.75rem;
-      }
-
-      .dropdown-content {
-        min-width: 180px;
-      }
-
-      section {
-        padding: 2.5rem 1rem 1.5rem;
-        margin: 1rem;
-      }
-
-      section h2 {
-        font-size: 1.9rem;
-      }
-
-      section h3 {
-        font-size: 1.3rem;
-      }
-
-      .main-description-container, .corlux-capsule, .character-capsule {
-        max-width: 100%;
-        padding: 1.5rem;
-      }
-
-      .main-description, .corlux-description, .character-description {
-        padding: 0.5rem 0;
-      }
-
-      .corlux-navigation, .character-navigation {
-        margin-top: 1rem;
-      }
-
-      .character-navigation button {
-        font-size: 0.8rem;
-        padding: 0.5rem 1rem;
-      }
-
-      .character-capsule {
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
-        padding: 2rem;
-      }
-
-      .character-image-container {
-        flex: none;
-      }
-
-      .character-image-container img {
-        max-height: 300px;
-      }
-
-      .character-description {
-        text-align: center;
-      }
-    }
-
-    @media (max-width: 480px) {
-      nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.25rem;
-      }
-
-      nav a {
-        font-size: 0.8rem;
-        padding: 0.4rem 0.6rem;
-      }
-
-      .dropdown-content {
-        min-width: 160px;
-      }
-
-      section {
-        padding: 2rem 0.75rem 1rem;
-        margin: 0.5rem;
-      }
-
-      section h2 {
-        font-size: 1.6rem;
-      }
-
-      .character-navigation {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-
-      .character-navigation button {
-        width: 100%;
-        padding: 0.5rem;
-      }
-
-      .character-image-container img {
-        max-height: 250px;
-      }
-    }
-
-    /* Animaciones de entrada */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    section {
-      animation: fadeInUp 0.8s ease-out;
-    }
-
-    /* Mejoras de accesibilidad */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-
-    /* Focus visible para accesibilidad */
-    nav a:focus-visible,
-    .dropdown-content a:focus-visible,
-    .toggle-text:focus-visible,
-    .corlux-navigation button:focus-visible,
-    .character-navigation button:focus-visible {
-      outline: 2px solid var(--accent-color);
-      outline-offset: 2px;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="logo">
-      <img src="logos/logo_verde_b.png" alt="Conciencia IA Logo">
-    </div>
-    <nav>
-      <div class="dropdown">
-        <a href="index.html#introduccion">Nuestro Proyecto</a>
-        <div class="dropdown-content">
-          <a href="index.html#introduccion">Introducción</a>
-          <a href="index.html#alcance">Alcance</a>
-          <a href="index.html#marco-conceptual">Marco Conceptual</a>
-          <a href="index.html#objetivos">Objetivos</a>
-          <a href="index.html#metodologia">Metodología</a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <a href="#historia">Corlux</a>
-        <div class="dropdown-content">
-          <a href="#historia">Historia</a>
-          <a href="#personajes">Personajes</a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <a href="comics.html#humanosSOS">S.O.S</a>
-        <div class="dropdown-content">
-          <a href="comics.html#humanosSOS">Humanos S.O.S</a>
-          <a href="comics.html#vinetas">Comics</a>
-          <a href="comics.html#tu-voz-crea-conciencia">Tu voz Crea Conciencia</a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <a href="juego.html#reglas">Juego</a>
-        <div class="dropdown-content">
-          <a href="juego.html#reglas">Reglas</a>
-          <a href="juego.html#cartas">Cartas</a>
-        </div>
-      </div>
-      <a href="Audios.html">Pausa & Conexión</a>
-    </nav>
-  </header>
-
-  <div class="spacer" style="height: 160px;"></div>
-
-  <section id="historia">
-    <div><img src="corlux/Todos/corlux_claro_cortado.png" alt="FotoCorlux" style="width: 100%; max-height: 700px; object-fit: contain; border-radius: var(--border-radius-small);"></div>
-    <h2>De ILuminanDia a un centro Educativo de Montevideo</h2>
-    <div class="main-description-container">
-      <div class="main-description" id="mainDescription">
-        <p class="short-text">Los habitantes de IluminanDia vienen observando desde hace un largo tiempo el comportamiento de los Seres “Humanos” y la dificultad que muchas veces tienen para resolver sus problemas y vivir felices...</p>
-        <p class="full-text">Los habitantes de IluminanDia vienen observando desde hace un largo tiempo el comportamiento de los Seres “Humanos” y la dificultad que muchas veces tienen para resolver sus problemas y vivir felices. Ello, ante su falta de autoconocimiento, a lo que en el último tiempo se ha sumado su desconocimiento del entorno Digital y de las consecuencias de sus prácticas en él. Desde entonces, “Los Corlux” partieron de IluminanDia con la Misión de acercarse a los habitantes del planeta Tierra con la intención de poner sus virtudes al servicio de ellos y colaborar así con su mayor bienestar. En mayo del 2025, aterrizaron en una institución educativa, La Cea 183, Nelson Mandela. Los “CorLux”, pueden comunicarse con el corazón de las personas, en un lenguaje que solo pueden entender sus almas. Para hacerlo, envían sus mensajes en formas de rayos de luz, iluminando las zonas inconscientes del cerebro humano, colaborando así con el despertar de sus CONCIENCIAS. De este modo planean ayudar a los humanos, para que entiendan no solo a la IA (Inteligencia Artificial), sino también a la otra IA, la Inteligencia Amorosa, una fuente de poder sin límites que los humanos tienen disposición. Los Seres humanos antes de llegar al mundo conocíamos a los Corlux. Ahora limitados por nuestras formas humanas y creencias limitantes, se nos hace difícil recordar de dónde venimos para que estamos en el mundo, que queremos ser y que queremos hacer. Los Corlux no entienden porqué los humanos muchas veces hacemos lo que no nos gusta y no hacemos lo que nos gusta, por miedo a no pertenecer o a no ser aceptados o queridos. Estos mensajeros de luz sienten que gran parte de nuestros problemas como humanos tienen su origen en no recordar quienes somos, de dónde venimos hacia dónde vamos y cuál es nuestro propósito o Misión en el mundo.</p>
-      </div>
-    </div>
-    <div class="corlux-capsule">
-      <div class="corlux-description" id="corluxDescription">
-        <h3 id="corluxName">Los Corlux y La Libertad</h3>
-        <span class="short-text">Los Corlux, ven a los humanos ocupados, distraídos, apáticos, vacíos, con los cerebros dormidos y sus talentos en el olvido...</span>
-        <span class="full-text">Los Corlux, ven a los humanos ocupados, distraídos, apáticos, vacíos, con los cerebros dormidos y sus talentos en el olvido. Ante la pregunta ¿Cuál será la causa? Contestan “Es que no hay libertad sin pausa”. Los humanos somos libres cuando podemos encontrar momentos de pausa para conectar con la naturaleza, con nuestra voz interior, que nos permita sentir, sentirnos, preguntarnos como estamos, que queremos, hacia a dónde vamos. Sólo si sabemos hacer pausas tendremos la capacidad de sentir y pensar libremente. Los Corlux recuerdan a un viejo maestro que decía en sus clases “No crean nada de lo que les dije... Olviden mis ideas, no se encierren en las ideas, las ideas are cárceles. Por encima de las ideas hay algo que vuela más alto y es el espíritu de vida que sopla en dirección a la verdad.” (J.E.Rodó). Los Corlux también vienen observando como los humanos utilizan los “IA Companions para mantener vínculos, conversaciones, soporte emocional, juego de roles, amistad e incluso interacciones románticas. Muchas veces para adquirir habilidades sociales de la IA a las situaciones de la vida real, creyéndose incapaces de hacerlos por si mismos. Como humanos tenemos la capacidad y el desafío de pensar y construir esos vínculos por nosotros mismos.</span>
-      </div>
-    </div>
-    <div class="corlux-navigation">
-      <button id="prevCorlux" onclick="navegarCorlux(-1)">◄</button>
-      <button id="nextCorlux" onclick="navegarCorlux(1)">►</button>
-    </div>
-  </section>
-
-  <section id="personajes">
-    <h2>¿Quiénes son los CORLUX?</h2>
-    <div class="character-capsule">
-      <div class="character-image-container">
-        <h3 id="characterName">Justino</h3>
-        <img id="characterImage" src="corlux/Justino/justino-1.png" alt="Justino">
-      </div>
-      <div class="character-description" id="characterDescription">
-        <span class="short-text">Tiene un gran sentido de la Justicia, lo llaman “El luchador”.</span>
-        <span class="full-text">En un tiempo se sobrecargaba de responsabilidad sintiendo que todo dependía de él. Para no sentirse vulnerable, intentó controlar, e intimidar a otros para imponer su verdad, sin respetar la libertad de cada uno de elegir su propio camino. Con el tiempo aprendió a respetar los caminos de los otros y también a cumplir sus compromisos con serenidad, delegando y confiando. Hoy lidera con coraje, y defiende con justicia y compasión. Hace tiempo viene observando la dinámica de las redes sociales, cómo se polarizan sus opiniones, cómo está afectando el ciberbullying a los adolescentes.</span>
-
-      </div>
-    </div>
-    <div class="character-navigation">
-      <button data-character-id="0" data-color="#ffb200">Justino</button>
-      <button data-character-id="1" data-color="#f97000">Paz</button>
-      <button data-character-id="2" data-color="#8f69ed">Esperanza</button>
-      <button data-character-id="3" data-color="#e23e0c">Laura</button>
-      <button data-character-id="4" data-color="#a6d11e">Valentín</button>
-      <button data-character-id="5" data-color="#3469ea">Graciano</button>
-      <button data-character-id="6" data-color="#f993a2">Amara</button>
-    </div>
-  </section>
-
-  <footer>
-    <p>©2025 Conciencia IA Todos los derechos reservados.<br><br>
-    Autora del programa: María Balsa | Colaboradores: Gonzalo Aemilius, Mariana Blengio<br><br>
-    Diseño web: Alfonso López | Ilustraciones: Delfina Lorente</p>
-  </footer>
-
-  <script>
-  // ==================== DATOS DE CORLUX (con formato HTML rico) ====================
-  const corluxSections = [
-    {
-      id: 0,
-      nombre: "Los Corlux y La Libertad",
-      descripcion: `
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Corlux - Conciencia IA: Historias y personajes que promueven la alfabetización en Inteligencia Artificial e Inteligencia Amorosa"
+        />
+        <meta
+            name="keywords"
+            content="IA, inteligencia artificial, inteligencia amorosa, Corlux, educación, conciencia"
+        />
+        <title>Corlux</title>
+
+        <!-- Precarga de imágenes de personajes -->
+        <link rel="preload" as="image" href="corlux/Justino/justino-1.png" />
+        <link rel="preload" as="image" href="corlux/Paz/paz-1.png" />
+        <link rel="preload" as="image" href="corlux/Esperanza/esperanza-1.png" />
+        <link rel="preload" as="image" href="corlux/Laura/laura-2.png" />
+        <link rel="preload" as="image" href="corlux/Valentin/valentin-1.png" />
+        <link rel="preload" as="image" href="corlux/Graciano/graciano-1.png" />
+        <link rel="preload" as="image" href="corlux/Amara/amara-1.png" />
+        <link rel="preload" as="image" href="Imagenes/logo_verde_b.png" />
+
+        <style>
+            /* Variables CSS para consistencia de colores */
+            :root {
+                --primary-bg: #f2f1eb;
+                --primary-text: #26134b;
+                --secondary-bg: #383838;
+                --accent-color: #26d1c8;
+                --accent-hover: #1e9c94;
+                --white: #f2f1eb;
+                --shadow-light: rgba(38, 209, 200, 0.3);
+                --shadow-medium: rgba(38, 209, 200, 0.4);
+                --shadow-dark: rgba(0, 0, 0, 0.3);
+                --transition-fast: 0.2s ease;
+                --transition-medium: 0.3s ease;
+                --transition-slow: 0.5s ease;
+                --border-radius: 12px;
+                --border-radius-small: 8px;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            html {
+                scroll-behavior: smooth;
+                font-size: 16px;
+                scroll-padding-top: 140px;
+            }
+
+            body {
+                margin: 0;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background-color: var(--primary-bg);
+                color: var(--primary-text);
+                position: relative;
+                overflow-x: hidden;
+                line-height: 1.6;
+                font-weight: 400;
+            }
+
+            /* Fondo animado */
+            body::before {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background:
+                    radial-gradient(circle at 20% 80%, rgba(38, 209, 200, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(38, 209, 200, 0.1) 0%, transparent 50%),
+                    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%2326d1c8" fill-opacity="0.1" d="M0,128L48,138.7C96,149,192,171,288,181.3C384,192,480,192,576,181.3C672,171,768,149,864,144C960,139,1056,149,1152,154.7C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>')
+                        repeat-x bottom;
+                z-index: -1;
+                animation: backgroundFloat 20s ease-in-out infinite;
+            }
+
+            @keyframes backgroundFloat {
+                0%,
+                100% {
+                    transform: translateY(0px) rotate(0deg);
+                }
+                50% {
+                    transform: translateY(-10px) rotate(1deg);
+                }
+            }
+
+            /* Header */
+            header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem 2rem;
+                background: linear-gradient(135deg, var(--secondary-bg) 0%, #2a2a2a 100%);
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                box-shadow: 0 4px 20px var(--shadow-dark);
+                transition: all var(--transition-medium);
+                height: 120px;
+                backdrop-filter: blur(10px);
+            }
+
+            header.scrolled {
+                padding: 0.75rem 1.5rem;
+                height: 70px;
+                background: rgba(56, 56, 56, 0.95);
+                backdrop-filter: blur(15px);
+            }
+
+            .logo {
+                display: flex;
+                align-items: center;
+                transition: transform var(--transition-medium);
+            }
+
+            .logo:hover {
+                transform: scale(1.05);
+            }
+
+            .logo img {
+                width: 260px;
+                height: auto;
+                transition: width var(--transition-medium);
+                filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+            }
+
+            header.scrolled .logo img {
+                width: 180px;
+            }
+
+            /* Navegación */
+            nav {
+                display: flex;
+                align-items: center;
+                gap: 1.5rem;
+                margin-left: auto;
+                transition: gap var(--transition-medium);
+            }
+
+            header.scrolled nav {
+                gap: 1rem;
+            }
+
+            nav a {
+                position: relative;
+                text-decoration: none;
+                color: var(--white);
+                font-weight: 600;
+                font-size: 1rem;
+                padding: 0.75rem 1rem;
+                border-radius: var(--border-radius-small);
+                transition: all var(--transition-medium);
+                white-space: nowrap;
+            }
+
+            header.scrolled nav a {
+                font-size: 0.9rem;
+                padding: 0.5rem 0.75rem;
+            }
+
+            nav a:hover,
+            nav a.active {
+                color: var(--accent-color);
+                background: rgba(38, 209, 200, 0.1);
+                transform: translateY(-2px);
+            }
+
+            nav a.active::after {
+                content: "";
+                position: absolute;
+                bottom: -2px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80%;
+                height: 3px;
+                background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+                border-radius: 2px;
+                animation: slideIn 0.3s ease-out;
+            }
+
+            @keyframes slideIn {
+                from {
+                    width: 0%;
+                }
+                to {
+                    width: 80%;
+                }
+            }
+
+            /* Dropdown */
+            .dropdown {
+                position: relative;
+            }
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                visibility: visible;
+            }
+
+            .dropdown-content {
+                display: block;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: linear-gradient(135deg, var(--secondary-bg) 0%, #2a2a2a 100%);
+                min-width: 220px;
+                box-shadow: 0 8px 25px var(--shadow-dark);
+                z-index: 1001;
+                border-radius: var(--border-radius);
+                opacity: 0;
+                transform: translateY(-10px) scale(0.95);
+                transition: all var(--transition-medium);
+                visibility: hidden;
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(38, 209, 200, 0.2);
+            }
+
+            .dropdown-content a {
+                display: block;
+                padding: 0.75rem 1rem;
+                color: var(--white);
+                text-align: left;
+                text-decoration: none;
+                font-size: 0.9rem;
+                transition: all var(--transition-fast);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .dropdown-content a:last-child {
+                border-bottom: none;
+            }
+
+            .dropdown-content a:hover {
+                background: linear-gradient(90deg, rgba(38, 209, 200, 0.2), rgba(38, 209, 200, 0.1));
+                color: var(--accent-color);
+                padding-left: 1.5rem;
+            }
+
+            /* Secciones */
+            section {
+                padding: 4rem 2rem 3rem;
+                max-width: 1200px;
+                margin: 2rem auto;
+                background: linear-gradient(135deg, rgba(242, 241, 235, 0.95) 0%, rgba(242, 241, 235, 0.98) 100%);
+                border-radius: var(--border-radius);
+                box-shadow: 0 6px 15px var(--shadow-light);
+                transition: all var(--transition-medium);
+                position: relative;
+                z-index: 1;
+                scroll-margin-top: 140px;
+                backdrop-filter: blur(5px);
+            }
+
+            section:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 10px 20px var(--shadow-medium);
+            }
+
+            section::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+                border-radius: var(--border-radius) var(--border-radius) 0 0;
+            }
+
+            section img {
+                max-width: 800px;
+                margin: 0 auto 1.5rem;
+                display: block;
+                object-fit: contain;
+                border-radius: var(--border-radius-small);
+            }
+
+            section h2 {
+                font-size: 2.8rem;
+                color: var(--secondary-bg);
+                margin-bottom: 1.5rem;
+                position: relative;
+                padding-bottom: 1rem;
+                font-weight: 700;
+                text-align: center;
+            }
+
+            section h2::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+                height: 4px;
+                background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+                border-radius: 2px;
+            }
+
+            section h3 {
+                font-size: 1.6rem;
+                color: var(--white);
+                margin: 0 0 1rem;
+                font-weight: 600;
+                text-align: center;
+            }
+
+            section p,
+            section li {
+                font-size: 1.1rem;
+                color: var(--primary-text);
+                line-height: 2;
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+
+            /* Contenedores específicos */
+            .main-description-container,
+            .corlux-capsule,
+            .character-capsule {
+                background: var(--secondary-bg);
+                border-radius: var(--border-radius);
+                box-shadow: 0 6px 15px var(--shadow-light);
+                padding: 2rem;
+                max-width: 800px;
+                margin: 0 auto 2rem;
+                border-left: 4px solid var(--accent-color);
+                transition: box-shadow var(--transition-medium);
+            }
+
+            .main-description-container:hover,
+            .corlux-capsule:hover,
+            .character-capsule:hover {
+                box-shadow: 0 10px 20px var(--shadow-medium);
+            }
+
+            .main-description,
+            .corlux-description,
+            .character-description {
+                font-size: 1rem;
+                color: var(--white);
+                line-height: 2;
+                text-align: center;
+            }
+
+            .main-description p {
+                color: var(--white);
+                line-height: 2;
+                text-align: center;
+            }
+
+            .main-description .short-text,
+            .corlux-description .short-text,
+            .character-description .short-text {
+                display: block;
+            }
+
+            .main-description .full-text,
+            .corlux-description .full-text,
+            .character-description .full-text {
+                display: none;
+                margin-top: 1rem;
+            }
+
+            .main-description.expanded .short-text,
+            .corlux-description.expanded .short-text,
+            .character-description.expanded .short-text {
+                display: none;
+            }
+
+            .main-description.expanded .full-text,
+            .corlux-description.expanded .full-text,
+            .character-description.expanded .full-text {
+                display: block;
+            }
+
+            .toggle-text {
+                background-color: var(--white);
+                color: var(--secondary-bg);
+                border: none;
+                border-radius: var(--border-radius-small);
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: background-color var(--transition-fast);
+                margin-top: 1.5rem;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .toggle-text:hover {
+                background-color: var(--accent-color);
+            }
+
+            .corlux-navigation {
+                display: flex;
+                justify-content: center;
+                gap: 1.5rem;
+                max-width: 800px;
+                margin: 1.5rem auto 0;
+            }
+
+            .corlux-navigation button {
+                width: 40px;
+                height: 40px;
+                background-color: var(--secondary-bg);
+                color: var(--white);
+                border: none;
+                border-radius: var(--border-radius-small);
+                cursor: pointer;
+                font-size: 1.2rem;
+                font-weight: 600;
+                transition:
+                    background-color var(--transition-fast),
+                    transform var(--transition-fast);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .corlux-navigation button:hover {
+                background-color: var(--accent-color);
+                transform: scale(1.1);
+            }
+
+            .corlux-navigation button:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+                transform: none;
+            }
+
+            .character-capsule {
+                display: flex;
+                flex-direction: row;
+                gap: 2rem;
+                align-items: flex-start;
+                min-height: auto;
+                padding: 2.5rem;
+            }
+
+            .character-image-container {
+                flex: 0 0 350px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+            }
+
+            .character-image-container img {
+                max-width: 100%;
+                max-height: 400px;
+                object-fit: contain;
+                border-radius: var(--border-radius-small);
+                opacity: 0;
+                transition: opacity var(--transition-medium);
+            }
+
+            .character-image-container img.loaded {
+                opacity: 1;
+            }
+
+            .character-description {
+                flex: 1;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+            }
+
+            .character-navigation {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1rem;
+                max-width: 800px;
+                margin: 1.5rem auto 0;
+            }
+
+            .character-navigation button {
+                background-color: var(--secondary-bg);
+                color: var(--white);
+                border: none;
+                border-radius: var(--border-radius-small);
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition:
+                    background-color var(--transition-fast),
+                    transform var(--transition-fast);
+            }
+
+            .character-navigation button:hover {
+                background-color: var(--character-hover-color, var(--accent-color));
+                transform: scale(1.05);
+            }
+
+            .character-navigation button:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+                transform: none;
+            }
+
+            /* Footer */
+            footer {
+                background: linear-gradient(135deg, var(--primary-bg) 0%, #e8e7e1 100%);
+                padding: 2rem 0;
+                margin-top: 3rem;
+                border-top: 3px solid var(--accent-color);
+            }
+
+            footer p {
+                text-align: center;
+                font-size: 0.95rem;
+                color: var(--secondary-bg);
+                margin: 0;
+                line-height: 2;
+                font-weight: 500;
+                padding: 0 1rem;
+            }
+
+            /* Responsive */
+            @media (max-width: 1024px) {
+                section {
+                    margin: 1.5rem;
+                    padding: 3rem 1.5rem 2rem;
+                }
+
+                section h2 {
+                    font-size: 2.2rem;
+                }
+
+                .character-capsule {
+                    padding: 2rem;
+                    gap: 1.5rem;
+                }
+
+                .character-image-container {
+                    flex: 0 0 300px;
+                }
+
+                .character-image-container img {
+                    max-height: 350px;
+                }
+            }
+
+            @media (max-width: 768px) {
+                html {
+                    font-size: 14px;
+                }
+
+                header {
+                    padding: 0.75rem 1rem;
+                    height: 100px;
+                }
+
+                header.scrolled {
+                    height: 60px;
+                    padding: 0.5rem 1rem;
+                }
+
+                .logo img {
+                    width: 200px;
+                }
+
+                header.scrolled .logo img {
+                    width: 150px;
+                }
+
+                nav {
+                    margin-right: 0;
+                    gap: 0.5rem;
+                }
+
+                nav a {
+                    font-size: 0.85rem;
+                    padding: 0.5rem 0.75rem;
+                }
+
+                .dropdown-content {
+                    min-width: 180px;
+                }
+
+                section {
+                    padding: 2.5rem 1rem 1.5rem;
+                    margin: 1rem;
+                }
+
+                section h2 {
+                    font-size: 1.9rem;
+                }
+
+                section h3 {
+                    font-size: 1.3rem;
+                }
+
+                .main-description-container,
+                .corlux-capsule,
+                .character-capsule {
+                    max-width: 100%;
+                    padding: 1.5rem;
+                }
+
+                .main-description,
+                .corlux-description,
+                .character-description {
+                    padding: 0.5rem 0;
+                }
+
+                .corlux-navigation,
+                .character-navigation {
+                    margin-top: 1rem;
+                }
+
+                .character-navigation button {
+                    font-size: 0.8rem;
+                    padding: 0.5rem 1rem;
+                }
+
+                .character-capsule {
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 1.5rem;
+                    padding: 2rem;
+                }
+
+                .character-image-container {
+                    flex: none;
+                }
+
+                .character-image-container img {
+                    max-height: 300px;
+                }
+
+                .character-description {
+                    text-align: center;
+                }
+            }
+
+            @media (max-width: 480px) {
+                nav {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: 0.25rem;
+                }
+
+                nav a {
+                    font-size: 0.8rem;
+                    padding: 0.4rem 0.6rem;
+                }
+
+                .dropdown-content {
+                    min-width: 160px;
+                }
+
+                section {
+                    padding: 2rem 0.75rem 1rem;
+                    margin: 0.5rem;
+                }
+
+                section h2 {
+                    font-size: 1.6rem;
+                }
+
+                .character-navigation {
+                    flex-direction: column;
+                    gap: 0.5rem;
+                }
+
+                .character-navigation button {
+                    width: 100%;
+                    padding: 0.5rem;
+                }
+
+                .character-image-container img {
+                    max-height: 250px;
+                }
+            }
+
+            /* Animaciones de entrada */
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            section {
+                animation: fadeInUp 0.8s ease-out;
+            }
+
+            /* Mejoras de accesibilidad */
+            @media (prefers-reduced-motion: reduce) {
+                *,
+                *::before,
+                *::after {
+                    animation-duration: 0.01ms !important;
+                    animation-iteration-count: 1 !important;
+                    transition-duration: 0.01ms !important;
+                }
+            }
+
+            /* Focus visible para accesibilidad */
+            nav a:focus-visible,
+            .dropdown-content a:focus-visible,
+            .toggle-text:focus-visible,
+            .corlux-navigation button:focus-visible,
+            .character-navigation button:focus-visible {
+                outline: 2px solid var(--accent-color);
+                outline-offset: 2px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <img src="logos/logo_verde_b.png" alt="Conciencia IA Logo" />
+            </div>
+            <nav>
+                <div class="dropdown">
+                    <a href="index.html#introduccion">Nuestro Proyecto</a>
+                    <div class="dropdown-content">
+                        <a href="index.html#introduccion">Introducción</a>
+                        <a href="index.html#alcance">Alcance</a>
+                        <a href="index.html#marco-conceptual">Marco Conceptual</a>
+                        <a href="index.html#objetivos">Objetivos</a>
+                        <a href="index.html#metodologia">Metodología</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#historia">Corlux</a>
+                    <div class="dropdown-content">
+                        <a href="#historia">Historia</a>
+                        <a href="#personajes">Personajes</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="comics.html#humanosSOS">S.O.S</a>
+                    <div class="dropdown-content">
+                        <a href="comics.html#humanosSOS">Humanos S.O.S</a>
+                        <a href="comics.html#vinetas">Comics</a>
+                        <a href="comics.html#tu-voz-crea-conciencia">Tu voz Crea Conciencia</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="juego.html#reglas">Juego</a>
+                    <div class="dropdown-content">
+                        <a href="juego.html#reglas">Reglas</a>
+                        <a href="juego.html#cartas">Cartas</a>
+                    </div>
+                </div>
+                <a href="Audios.html">Pausa & Conexión</a>
+            </nav>
+        </header>
+
+        <div class="spacer" style="height: 160px"></div>
+
+        <section id="historia">
+            <div>
+                <img
+                    src="corlux/Todos/corlux_claro_cortado.png"
+                    alt="FotoCorlux"
+                    style="
+                        width: 100%;
+                        max-height: 700px;
+                        object-fit: contain;
+                        border-radius: var(--border-radius-small);
+                    "
+                />
+            </div>
+            <h2>De ILuminanDia a un centro Educativo de Montevideo</h2>
+            <div class="main-description-container">
+                <div class="main-description" id="mainDescription">
+                    <p class="short-text">
+                        Los habitantes de IluminanDia vienen observando desde hace un largo tiempo el comportamiento de
+                        los Seres “Humanos” y la dificultad que muchas veces tienen para resolver sus problemas y vivir
+                        felices...
+                    </p>
+                    <p class="full-text">
+                        Los habitantes de IluminanDia vienen observando desde hace un largo tiempo el comportamiento de
+                        los Seres “Humanos” y la dificultad que muchas veces tienen para resolver sus problemas y vivir
+                        felices. Ello, ante su falta de autoconocimiento, a lo que en el último tiempo se ha sumado su
+                        desconocimiento del entorno Digital y de las consecuencias de sus prácticas en él. Desde
+                        entonces, “Los Corlux” partieron de IluminanDia con la Misión de acercarse a los habitantes del
+                        planeta Tierra con la intención de poner sus virtudes al servicio de ellos y colaborar así con
+                        su mayor bienestar. En mayo del 2025, aterrizaron en una institución educativa, La Cea 183,
+                        Nelson Mandela. Los “CorLux”, pueden comunicarse con el corazón de las personas, en un lenguaje
+                        que solo pueden entender sus almas. Para hacerlo, envían sus mensajes en formas de rayos de luz,
+                        iluminando las zonas inconscientes del cerebro humano, colaborando así con el despertar de sus
+                        CONCIENCIAS. De este modo planean ayudar a los humanos, para que entiendan no solo a la IA
+                        (Inteligencia Artificial), sino también a la otra IA, la Inteligencia Amorosa, una fuente de
+                        poder sin límites que los humanos tienen disposición. Los Seres humanos antes de llegar al mundo
+                        conocíamos a los Corlux. Ahora limitados por nuestras formas humanas y creencias limitantes, se
+                        nos hace difícil recordar de dónde venimos para que estamos en el mundo, que queremos ser y que
+                        queremos hacer. Los Corlux no entienden porqué los humanos muchas veces hacemos lo que no nos
+                        gusta y no hacemos lo que nos gusta, por miedo a no pertenecer o a no ser aceptados o queridos.
+                        Estos mensajeros de luz sienten que gran parte de nuestros problemas como humanos tienen su
+                        origen en no recordar quienes somos, de dónde venimos hacia dónde vamos y cuál es nuestro
+                        propósito o Misión en el mundo.
+                    </p>
+                </div>
+            </div>
+            <div class="corlux-capsule">
+                <div class="corlux-description" id="corluxDescription">
+                    <h3 id="corluxName">Los Corlux y La Libertad</h3>
+                    <span class="short-text"
+                        >Los Corlux, ven a los humanos ocupados, distraídos, apáticos, vacíos, con los cerebros dormidos
+                        y sus talentos en el olvido...</span
+                    >
+                    <span class="full-text"
+                        >Los Corlux, ven a los humanos ocupados, distraídos, apáticos, vacíos, con los cerebros dormidos
+                        y sus talentos en el olvido. Ante la pregunta ¿Cuál será la causa? Contestan “Es que no hay
+                        libertad sin pausa”. Los humanos somos libres cuando podemos encontrar momentos de pausa para
+                        conectar con la naturaleza, con nuestra voz interior, que nos permita sentir, sentirnos,
+                        preguntarnos como estamos, que queremos, hacia a dónde vamos. Sólo si sabemos hacer pausas
+                        tendremos la capacidad de sentir y pensar libremente. Los Corlux recuerdan a un viejo maestro
+                        que decía en sus clases “No crean nada de lo que les dije... Olviden mis ideas, no se encierren
+                        en las ideas, las ideas are cárceles. Por encima de las ideas hay algo que vuela más alto y es
+                        el espíritu de vida que sopla en dirección a la verdad.” (J.E.Rodó). Los Corlux también vienen
+                        observando como los humanos utilizan los “IA Companions para mantener vínculos, conversaciones,
+                        soporte emocional, juego de roles, amistad e incluso interacciones románticas. Muchas veces para
+                        adquirir habilidades sociales de la IA a las situaciones de la vida real, creyéndose incapaces
+                        de hacerlos por si mismos. Como humanos tenemos la capacidad y el desafío de pensar y construir
+                        esos vínculos por nosotros mismos.</span
+                    >
+                </div>
+            </div>
+            <div class="corlux-navigation">
+                <button id="prevCorlux" onclick="navegarCorlux(-1)">◄</button>
+                <button id="nextCorlux" onclick="navegarCorlux(1)">►</button>
+            </div>
+        </section>
+
+        <section id="personajes">
+            <h2>¿Quiénes son los CORLUX?</h2>
+            <div class="character-capsule">
+                <div class="character-image-container">
+                    <h3 id="characterName">Justino</h3>
+                    <img id="characterImage" src="corlux/Justino/justino-1.png" alt="Justino" />
+                </div>
+                <div class="character-description" id="characterDescription">
+                    <span class="short-text">Tiene un gran sentido de la Justicia, lo llaman “El luchador”.</span>
+                    <span class="full-text"
+                        >En un tiempo se sobrecargaba de responsabilidad sintiendo que todo dependía de él. Para no
+                        sentirse vulnerable, intentó controlar, e intimidar a otros para imponer su verdad, sin respetar
+                        la libertad de cada uno de elegir su propio camino. Con el tiempo aprendió a respetar los
+                        caminos de los otros y también a cumplir sus compromisos con serenidad, delegando y confiando.
+                        Hoy lidera con coraje, y defiende con justicia y compasión. Hace tiempo viene observando la
+                        dinámica de las redes sociales, cómo se polarizan sus opiniones, cómo está afectando el
+                        ciberbullying a los adolescentes.</span
+                    >
+                </div>
+            </div>
+            <div class="character-navigation">
+                <button data-character-id="0" data-color="#ffb200">Justino</button>
+                <button data-character-id="1" data-color="#f97000">Paz</button>
+                <button data-character-id="2" data-color="#8f69ed">Esperanza</button>
+                <button data-character-id="3" data-color="#e23e0c">Laura</button>
+                <button data-character-id="4" data-color="#a6d11e">Valentín</button>
+                <button data-character-id="5" data-color="#3469ea">Graciano</button>
+                <button data-character-id="6" data-color="#f993a2">Amara</button>
+            </div>
+        </section>
+
+        <footer>
+            <p>
+                ©2025 Conciencia IA Todos los derechos reservados.<br /><br />
+                Autora del programa: María Balsa | Colaboradores: Gonzalo Aemilius, Mariana Blengio<br /><br />
+                Diseño web: Alfonso López | Ilustraciones: Delfina Lorente
+            </p>
+        </footer>
+
+        <script>
+            // ==================== DATOS DE CORLUX (con formato HTML rico) ====================
+            const corluxSections = [
+                {
+                    id: 0,
+                    nombre: "Los Corlux y La Libertad",
+                    descripcion: `
         <strong>Los Corlux ven a los humanos ocupados, distraídos, apáticos, vacíos, con los cerebros dormidos y sus talentos en el olvido.</strong><br><br>
         Ante la pregunta “¿Cuál será la causa?” responden: <em>“Es que no hay libertad sin pausa”</em>.<br><br>
         Somos libres cuando encontramos momentos de pausa para conectar con la naturaleza y con nuestra voz interior. Solo haciendo pausas podemos sentir, preguntarnos cómo estamos, qué queremos y hacia dónde vamos.<br><br>
         Los Corlux recuerdan a José Enrique Rodó: <em>“No crean nada de lo que les dije… Olviden mis ideas, no se encierren en las ideas, las ideas son cárceles. Por encima de las ideas hay algo que vuela más alto: el espíritu de vida que sopla hacia la verdad.”</em><br><br>
         También observan con preocupación cómo muchos humanos usan IA Companions para conversaciones, soporte emocional o incluso relaciones románticas, creyéndose incapaces de crear esos vínculos por sí mismos.
-      `
-    },
-    {
-      id: 1,
-      nombre: "Los Corlux y la Humildad",
-      descripcion: `
-        <strong>Los Corlux invitan a mirar la inmensidad de las estrellas</strong> y a recordar que somos parte de un Misterio que no podemos controlar.<br><br>
-        “Humano” y “humilde” vienen de <em>humus</em> (tierra). Ser humilde es volver a la tierra, soltar lo superfluo, dejar que lo viejo se descomponga para que nazca lo nuevo.<br><br>
-        Solo cuando aceptamos con humildad lo que no podemos cambiar, dejamos de gastar energía luchando contra lo inevitable y podemos enfocarnos en lo que sí está en nuestras manos.<br><br>
-        Esa aceptación serena nos permite fluir en paz, incluso cuando la vida no sale según nuestros planes.
-      `
-    },
-    {
-      id: 2,
-      nombre: "Los Corlux y el valor de las diferencias",
-      descripcion: `
-        <strong>Todos los Corlux atravesaron oscuridad antes de convertirse en luz.</strong><br><br>
-        Gracias a eso aprendieron que cuando abrazamos nuestra fragilidad descubrimos un gran misterio: <em>cada talento es necesario</em>.<br><br>
-        Einstein decía: <em>“Todos somos genios, pero si juzgas a un pez por su habilidad para trepar un árbol, vivirá creyendo que es estúpido”</em>.<br><br>
-        En el cuerpo social pasa lo mismo: cada persona cumple una función distinta y <strong>todas son imprescindibles</strong>. Solo evolucionaremos como especie cuando aprendamos a valorar las diferencias.
-      `
-    },
-    {
-      id: 3,
-      nombre: "Los Corlux y el misterio escondido detrás de “los defectos”",
-      descripcion: `
-        <strong>Los Corlux cuentan la historia del cántaro agrietado</strong> para recordarnos que no debemos ocultar nuestras grietas por miedo al rechazo.<br><br>
-        Cuando con valentía iluminamos nuestras “grietas”, desarrollamos empatía y se borran las líneas que nos separan.<br><br>
-        Así nace el Amor más profundo y auténtico.
-      `
-    },
-    {
-      id: 8,
-      nombre: "Los Corlux y la atención",
-      descripcion: `
-        <strong>Para nuestra conciencia solo existe aquello a lo que prestamos atención.</strong><br><br>
-        Por eso es vital elegir bien dónde ponemos el foco. Las emociones siempre traen mensajes importantes; observarlas sin resistirnos nos permite conocernos mejor y cambiar patrones limitantes.<br><br>
-        Prestar atención a nuestras reacciones automáticas, a lo que nos saca de quicio o a lo que soñamos nos ayuda a ser dueños de nuestras respuestas y más libres para cumplir nuestra misión.
-      `
-    },
-    {
-      id: 10,
-      nombre: "Los Corlux y el amor",
-      descripcion: `
-        <strong>El amor es la fuerza más poderosa del Universo.</strong><br><br>
-        De amor vinimos y hacia el amor vamos. Fuimos creados por amor y vinimos al mundo para amar y ser amados.<br><br>
-        El amor es la única energía que cuanto más se da, más se tiene. Cuando buscamos el sentido de nuestra vida, <em>la respuesta siempre es amor</em>.<br><br>
-        Cada vida humana es un milagro de amor. Y cuando este cuerpo deje de funcionar, el amor que somos nunca morirá.
-      `
-    },
-    {
-      id: 11,
-      nombre: "Los Corlux y la Indiferencia",
-      descripcion: `
+      `,
+                },
+                {
+                    id: 1,
+                    nombre: "Los Corlux y la Humildad",
+                    descripcion: `
+       Ser Humano es aprender a soltar el control, ser Humilde. Tanto “humano” como “humilde”, provienen de la palabra “humus”, que significa tierra. Así “el humus” es lo que queda en la tierra cuando todo lo superfluo se ha descompuesto. Los humanos necesitamos entender que todo lo que se desprende de la naturaleza, de un modo oscuro, callado, e invisible a los ojos apurados, regresa a la tierra para fertilizarla. Y en esa profundidad, germina lo nuevo. Así solo cuando como humanos nos dejamos tocar por la tierra —nos atrevemos a soltar, a caer, a descomponernos, así “al morir”— podremos nutrir el comienzo de una vida nueva. “Ser humano”, entonces, se trata de aprender a aceptar aquello que se deshizo de nosotros mismos, confiando y esperando lo nuevo que crecerá, incluso cuando al comienzo sea invisible a nuestros ojos humanos. Ser Humanos significa rendirnos con humildad a aquello que no podemos cambiar. Y al aceptar lo que no podemos cambiar, evitamos gastarnos emocionalmente, luchando contra lo que no podemos evitar, y podemos enfocar nuestra atención, y energía, en lo que sí podemos mejorar, confiando en lo nuevo y en lo mejor vendrá. Aceptar y rendirse a aquello que no podemos evitar con optimismo ayuda a disfrutar el camino en paz, incluso cuando las cosas no salgan como las planeamos. En nuestro interior eso se siente como un fluir, en lugar de luchar contra la corriente. Y es allí cuando podremos tener más claridad, y tomar las decisiones más sabias.
+
+      `,
+                },
+                {
+                    id: 2,
+                    nombre: "Los Corlux y el valor de las diferencias",
+                    descripcion: `
+        Los Corlux nos invitan a cuestionar tantas evaluaciones injustas. Einstein decía “Todos somos unos genios, pero si juzgas a un pez por su habilidad de escalar un árbol, vivirá su vida entera creyendo que es un estúpido”. Los Seres Humanos contamos con cualidades que nos diferencian de las máquinas. Hemos recibido distintos talentos– y existen formas que facilitan su reconocimiento y desarrollo. Darles a todos importancia, más allá de la utilidad que tengan para el desarrollo de la productividad, contribuye al bienestar propio y de la sociedad en general. …Supongamos que el pie le dice al cuerpo “No soy mano y por lo tanto yo no soy del cuerpo”, no por eso dejará de ser parte del cuerpo. Y si la cabeza dijera a los pies: no los necesito…¿cómo viviría sin ellos? Si conocemos la biología sabríamos que “las partes del cuerpo que parecen ser más débiles son las más necesarias”. Así “para que no se divida el cuerpo todas sus partes han de tener la misma preocupación unas por otras”. Lo mismo pasa con el Cuerpo social, cada ser humano cumple una función distinta y todas son necesarias. Solo evolucionaremos como especie, cuando aprendamos a valorar las diferencias de cada persona en el cuerpo social.
+      `,
+                },
+                {
+                    id: 3,
+                    nombre: "Los Corlux y el misterio escondido detrás de “los defectos”",
+                    descripcion: `
+        Nos cuentan que cuando con valentía damos luz a nuestras “grietas” o “defectos”, y enfrentamos aquello que una vez elegimos mantener oculto, desarrollamos nuestra empatía borrándose las líneas que nos separan unos de los otros, permitiendo que se manifieste el Amor más profundo
+os Corlux, cuentan historias como la del Aguador y “el cántaro agrietado” que invitan a los humanos a dejar de intentar esconder nuestros “defectos” o “equivocaciones”, por miedo a ser juzgados, a no ser aceptados o a no ser queridos.
+Nos cuentan que cuando con valentía damos luz a nuestras “grietas” o “defectos”, y enfrentamos aquello que una vez elegimos mantener oculto, desarrollamos nuestra empatía borrándose las líneas que nos separan unos de los otros, permitiendo que se manifieste el Amor más profundo.
+      `,
+                },
+
+                {
+                    id: 4,
+                    nombre: "Los Corlux y la atención",
+                    descripcion: `
+       Y allí dónde pongamos la atención plena fluirá toda nuestra energía. Por eso es tan importante elegir bien a qué prestar atención. Explican a los humanos que es importante prestar atención a nuestras emociones, ya que ellas siempre traen importantes mensajes. Y que es posible experimentarlas sin quedar atrapado en ellas. Se trata de observarlas, siendo conscientes de que las tenemos, sin resistirse, con aceptación, incluso cuando molesten o duelan. También nos cuentan, que los seres humanos reaccionamos en general no por la razón, sino por las emociones que se desprenden de información que queda grabada en nuestro cuerpo, en nuestro inconsciente. Por eso muchas veces no entendemos las razones de nuestras reacciones, o reaccionamos desmedidamente frente a las cosas. Así prestar atención a nuestras emociones que aparecen en nuestro cuerpo, a nuestras reacciones mecánicas a situaciones repetidas que aparecen en nuestras vidas, a situaciones que no nos gustan, a las cosas que repetidamente nos sacan de quicio, a creencias o mandatos familiares que nos influyen y limitan, a cosas que hacemos permanentemente en búsqueda de validación, incluso a lo que soñamos, nos permitirá conocernos más, cambiar nuestros programas mentales, y volvernos dueños de nuestras reacciones, y más libres para elegir y cumplir nuestras metas, y nuestra misión. `,
+                },
+
+                {
+                    id: 5,
+                    nombre: "Los Corlux y el amor",
+                    descripcion: `
+Que fuimos creados por amor, y vinimos al mundo para amar y para ser amados. Que el Amor es una Energía que nos atrae los unos a los otros y que solo descansamos cuando tenemos amor hacia nosotros mismos y hacia los demás. Y cuando acecha el miedo más grande, de no pertenecer a un grupo, de no sentirnos dignos de ser amados, sólo se trata de volver nuestra atención a quienes somos verdaderamente. Nos cuentan que el amor es el poder más grande del Universo, es un poder que llevamos dentro desde el principio de nuestra existencia. Y que es la única fuerza que cuánto más se da, más se tiene. Así cuando los humanos queremos encontrar el sentido de nuestras vidas, el amor es la respuesta. Que cada vida humana es un milagro de amor. Y que sólo evolucionamos en la medida que aprendemos a amar más. Y que cuando termine la existencia en este mundo y el envase en el que habitamos deje de funcionar, seguiremos existiendo, porque el amor que somos no morirá jamás.      
+ `,
+                },
+
+                {
+                    id: 6,
+                    nombre: "Los Corlux y la Indiferencia",
+                    descripcion: `
         <strong>Los Corlux observan con tristeza cómo los humanos vivimos cada vez más ensimismados</strong> y pasamos de largo sin mirar a quienes tenemos al lado.<br><br>
         Martin Luther King decía: <em>“Al final no recordaremos las palabras de nuestros enemigos, sino el silencio de nuestros amigos”</em>.<br><br>
         Cuando ignoramos las necesidades del prójimo, herimos al cuerpo social del que formamos parte. En cambio, cuando ayudamos al que está cerca, nos hacemos bien a nosotros mismos.
-      `
-    }
-  ];
+      `,
+                },
+            ];
 
-  // ==================== DATOS DE PERSONAJES (con formato HTML rico) ====================
-  const personajes = [
-    {
-      id: 1,
-      nombre: "Justino",
-      imagen: "corlux/Justino/justino-1.png",
-      color: "#ffb200",
-      descripcion: `
+            // ==================== DATOS DE PERSONAJES (con formato HTML rico) ====================
+            const personajes = [
+                {
+                    id: 1,
+                    nombre: "Justino",
+                    imagen: "corlux/Justino/justino-1.png",
+                    color: "#ffb200",
+                    descripcion: `
         Lidera con coraje y defiende con compasión. <br>
         Tiene un gran sentido de la Justicia. <br>
         Sabe cuidar a los demás como a sí mismo. <br>
@@ -876,14 +972,14 @@
         Con el tiempo aprendió a soltar “mochilas” innecesarias.<br>
          Hoy respeta los caminos de otros, y vive con serenidad,delegando y confiando. 
 
-      `
-    },
-    {
-      id: 2,
-      nombre: "Paz",
-      imagen: "corlux/Paz/paz-1.png",
-      color: "#f97000",
-      descripcion: `
+      `,
+                },
+                {
+                    id: 2,
+                    nombre: "Paz",
+                    imagen: "corlux/Paz/paz-1.png",
+                    color: "#f97000",
+                    descripcion: `
         Es tolerante y paciente. <br>
 Se toma las cosas con calma. <br>
 
@@ -894,14 +990,14 @@ Aprendió que la Paz es saber estar en calma, más allá de las tormentas.  <br>
 
 Hoy escucha a los demás con atención, canalizando su sensibilidad  en acciones que realmente ayudan. 
 Su serenidad es fruto de su trabajo interior.
-`
-    },
-    {
-      id: 3,
-      nombre: "Esperanza",
-      imagen: "corlux/Esperanza/esperanza-1.png",
-      color: "#8f69ed",
-      descripcion: `
+`,
+                },
+                {
+                    id: 3,
+                    nombre: "Esperanza",
+                    imagen: "corlux/Esperanza/esperanza-1.png",
+                    color: "#8f69ed",
+                    descripcion: `
       <strong>Es observadora, perseverante, optimista y soñadora. </strong><br>
       De gran apertura mental y capacidad de pensar por si misma. <br>
 
@@ -911,14 +1007,14 @@ Su serenidad es fruto de su trabajo interior.
 
       <strong>Aprendió </strong> a usar su capacidad de soñar, enfocando su creatividad en proyectos concretos.<br>
 
-      <strong>Hoy</strong> asume sus compromisos con creatividad, perseverancia y optimismo. `
-    },
-    {
-      id: 4,
-      nombre: "Laura",
-      imagen: "corlux/Laura/laura-2.png",
-      color: "#e23e0c",
-      descripcion: `
+      <strong>Hoy</strong> asume sus compromisos con creatividad, perseverancia y optimismo. `,
+                },
+                {
+                    id: 4,
+                    nombre: "Laura",
+                    imagen: "corlux/Laura/laura-2.png",
+                    color: "#e23e0c",
+                    descripcion: `
         <Strong>Es sensible, resiliente, flexible, prudente.</strong> <br>
 
         <strong>Hubo un tiempo</strong> en el que la llamaban “La Víctima”. 
@@ -929,14 +1025,14 @@ Su serenidad es fruto de su trabajo interior.
         Aprendió a  ver  y agradecer  lo bueno de cada día,  y a valorar la fuerza que sale de enfrentar y superar dificultades. <br>
 
         <strong>Hoy</strong> se destaca por su  paciencia, sensibilidad, resiliencia y gratitud. 
-      `
-    },
-    {
-      id: 5,
-      nombre: "Valentín",
-      imagen: "corlux/Valentin/valentin-1.png",
-      color: "#a6d11e",
-      descripcion: `
+      `,
+                },
+                {
+                    id: 5,
+                    nombre: "Valentín",
+                    imagen: "corlux/Valentin/valentin-1.png",
+                    color: "#a6d11e",
+                    descripcion: `
         Es valiente y alegre. Disfruta la vida con entusiasmo.  <br>
         Es también curioso, tiene ideas muy creativas y resuelve problemas ingeniosamente. <br>
 
@@ -947,14 +1043,14 @@ Su serenidad es fruto de su trabajo interior.
         que el mayor acto de valentía es enfrentar y aprender a aceptar nuestros  miedos. <br>
 
         Hoy combate el miedo con Amor. Resuelve problemas en forma creativa y con valentía serena. 
-      `
-    },
-    {
-      id: 6,
-      nombre: "Graciano",
-      imagen: "corlux/Graciano/graciano-1.png",
-      color: "#3469ea",
-      descripcion: `
+      `,
+                },
+                {
+                    id: 6,
+                    nombre: "Graciano",
+                    imagen: "corlux/Graciano/graciano-1.png",
+                    color: "#3469ea",
+                    descripcion: `
         <strong>Es  Generoso,  Empático y Productivo</strong> <br>
         Confía en la abundancia de la vida. <br>
 
@@ -966,14 +1062,14 @@ Su serenidad es fruto de su trabajo interior.
 
         <strong>Hoy  sigue usando</strong> su sentido del humor, respetándose.  <br>
         También  ofrece lo que  tiene sin esperar nada a cambio, sabiendo que  nunca le va a faltar nada. 
-      `
-    },
-    {
-      id: 7,
-      nombre: "Amara",
-      imagen: "corlux/Amara/amara-1.png",
-      color: "#f993a2",
-      descripcion: `
+      `,
+                },
+                {
+                    id: 7,
+                    nombre: "Amara",
+                    imagen: "corlux/Amara/amara-1.png",
+                    color: "#f993a2",
+                    descripcion: `
          <strong>Es la líder del grupo. <br>
 Alcanzó 'la perla de las virtudes:“La Humildad”. </strong><br>
 
@@ -985,207 +1081,209 @@ Cree que <strong>el desafío de los seres humanos es aceptarnos y amarnos unos a
 <br>
 <strong>Confía</strong> en la oportunidad de transformación y desarrollo que tenemos como humanos 
 y que cuando nos apoyamos unos los otros:<br>
- “Somos todos ganadores” .`
-    }
-  ];
+ “Somos todos ganadores” .`,
+                },
+            ];
 
-  let currentCorluxIndex = 0;
-  let currentCharacterIndex = 0;
+            let currentCorluxIndex = 0;
+            let currentCharacterIndex = 0;
 
-  // ==================== CAMBIAR SECCIÓN CORLUX ====================
-  function cambiarCorluxSection(index) {
-    if (index < 0 || index >= corluxSections.length) return;
-    const section = corluxSections[index];
-    const name = document.getElementById('corluxName');
-    const desc = document.getElementById('corluxDescription');
-    const prev = document.getElementById('prevCorlux');
-    const next = document.getElementById('nextCorlux');
+            // ==================== CAMBIAR SECCIÓN CORLUX ====================
+            function cambiarCorluxSection(index) {
+                if (index < 0 || index >= corluxSections.length) return;
+                const section = corluxSections[index];
+                const name = document.getElementById("corluxName");
+                const desc = document.getElementById("corluxDescription");
+                const prev = document.getElementById("prevCorlux");
+                const next = document.getElementById("nextCorlux");
 
-    name.textContent = section.nombre;
+                name.textContent = section.nombre;
 
-    // Separamos descripción corta y larga por el primer doble <br>
-    const parts = section.descripcion.split('<br><br>');
-    desc.querySelector('.short-text').innerHTML = parts[0];
-    desc.querySelector('.full-text').innerHTML = parts.slice(1).join('<br><br>') || parts[0];
+                // Separamos descripción corta y larga por el primer doble <br>
+                const parts = section.descripcion.split("<br><br>");
+                desc.querySelector(".short-text").innerHTML = parts[0];
+                desc.querySelector(".full-text").innerHTML = parts.slice(1).join("<br><br>") || parts[0];
 
-    desc.classList.remove('expanded');
-  
+                desc.classList.remove("expanded");
 
-    currentCorluxIndex = index;
-    prev.disabled = index === 0;
-    next.disabled = index === corluxSections.length - 1;
-  }
+                currentCorluxIndex = index;
+                prev.disabled = index === 0;
+                next.disabled = index === corluxSections.length - 1;
+            }
 
-  function navegarCorlux(direction) {
-    const newIndex = currentCorluxIndex + direction;
-    if (newIndex >= 0 && newIndex < corluxSections.length) {
-      currentCorluxIndex = newIndex;
-      cambiarCorluxSection(newIndex);
-    }
-  }
+            function navegarCorlux(direction) {
+                const newIndex = currentCorluxIndex + direction;
+                if (newIndex >= 0 && newIndex < corluxSections.length) {
+                    currentCorluxIndex = newIndex;
+                    cambiarCorluxSection(newIndex);
+                }
+            }
 
-  // ==================== CAMBIAR PERSONAJE ====================
-  function cambiarPersonaje(index) {
-    if (index < 0 || index >= personajes.length) return;
-    const personaje = personajes[index];
-    const name = document.getElementById('characterName');
-    const desc = document.getElementById('characterDescription');
-    const img = document.getElementById('characterImage');
-    const buttons = document.querySelectorAll('.character-navigation button');
+            // ==================== CAMBIAR PERSONAJE ====================
+            function cambiarPersonaje(index) {
+                if (index < 0 || index >= personajes.length) return;
+                const personaje = personajes[index];
+                const name = document.getElementById("characterName");
+                const desc = document.getElementById("characterDescription");
+                const img = document.getElementById("characterImage");
+                const buttons = document.querySelectorAll(".character-navigation button");
 
-    name.textContent = personaje.nombre;
-    name.style.color = personaje.color;
+                name.textContent = personaje.nombre;
+                name.style.color = personaje.color;
 
-    img.style.opacity = '0';
-    img.src = personaje.imagen;
-    img.alt = personaje.nombre;
-    img.onload = () => {
-      img.classList.add('loaded');
-      img.style.opacity = '1';
-    };
+                img.style.opacity = "0";
+                img.src = personaje.imagen;
+                img.alt = personaje.nombre;
+                img.onload = () => {
+                    img.classList.add("loaded");
+                    img.style.opacity = "1";
+                };
 
-    // Separamos descripción corta y larga
-    const parts = personaje.descripcion.split('<br><br>');
-    desc.querySelector('.short-text').innerHTML = parts[0];
-    desc.querySelector('.full-text').innerHTML = parts.slice(1).join('<br><br>') || parts[0];
+                // Separamos descripción corta y larga
+                const parts = personaje.descripcion.split("<br><br>");
+                desc.querySelector(".short-text").innerHTML = parts[0];
+                desc.querySelector(".full-text").innerHTML = parts.slice(1).join("<br><br>") || parts[0];
 
-    desc.classList.remove('expanded');
+                desc.classList.remove("expanded");
 
-    currentCharacterIndex = index;
+                currentCharacterIndex = index;
 
-    buttons.forEach((btn, i) => {
-      btn.disabled = i === index;
-      btn.style.setProperty('--character-hover-color', personajes[i].color);
-    });
-  }
+                buttons.forEach((btn, i) => {
+                    btn.disabled = i === index;
+                    btn.style.setProperty("--character-hover-color", personajes[i].color);
+                });
+            }
 
-  // ==================== TOGGLES ====================
-  function toggleMainDescription() {
-    const desc = document.getElementById('mainDescription');
-    desc.classList.toggle('expanded');
-    }
+            // ==================== TOGGLES ====================
+            function toggleMainDescription() {
+                const desc = document.getElementById("mainDescription");
+                desc.classList.toggle("expanded");
+            }
 
-  function toggleCorluxDescription() {
-    const desc = document.getElementById('corluxDescription');
-    desc.classList.toggle('expanded');
-    }
+            function toggleCorluxDescription() {
+                const desc = document.getElementById("corluxDescription");
+                desc.classList.toggle("expanded");
+            }
 
-  function toggleDescription() {
-    const desc = document.getElementById('characterDescription');
-    desc.classList.toggle('expanded');
-  }
+            function toggleDescription() {
+                const desc = document.getElementById("characterDescription");
+                desc.classList.toggle("expanded");
+            }
 
-  // ==================== NAVEGACIÓN Y ANIMACIONES (sin cambios) ====================
-  class NavigationManager {
-    constructor() {
-      this.header = document.querySelector('header');
-      this.sections = document.querySelectorAll('section');
-      this.navLinks = document.querySelectorAll('nav a');
-      this.init();
-    }
-    init() {
-      this.setupScrollHandler();
-      this.setupInitialState();
-      this.setupSmoothScrolling();
-    }
-    setupScrollHandler() {
-      let ticking = false;
-      window.addEventListener('scroll', () => {
-        if (!ticking) {
-          requestAnimationFrame(() => {
-            this.handleScroll();
-            ticking = false;
-          });
-          ticking = true;
-        }
-      });
-    }
-    handleScroll() {
-      const scrollY = window.scrollY;
-      if (this.header) {
-        this.header.classList.toggle('scrolled', scrollY > 50);
-      }
-      this.updateActiveSection(scrollY);
-    }
-    updateActiveSection(scrollY) {
-      let currentSection = '';
-      const offset = 150;
-      this.sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        if (scrollY >= sectionTop - offset && scrollY < sectionTop + sectionHeight - offset) {
-          currentSection = section.getAttribute('id');
-        }
-      });
-      this.navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').toLowerCase().includes(`#${currentSection}`)) {
-          link.classList.add('active');
-        }
-      });
-      if (scrollY < this.sections[0]?.offsetTop - offset) {
-        this.navLinks.forEach(link => link.classList.remove('active'));
-      }
-    }
-    setupInitialState() {
-      if (window.location.hash) {
-        const sectionId = window.location.hash.substring(1);
-        const section = document.getElementById(sectionId);
-        if (section) {
-          setTimeout(() => section.scrollIntoView({ behavior: 'smooth' }), 100);
-        }
-      }
-    }
-    setupSmoothScrolling() {
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', e => {
-          e.preventDefault();
-          const target = document.querySelector(anchor.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        });
-      });
-    }
-  }
+            // ==================== NAVEGACIÓN Y ANIMACIONES (sin cambios) ====================
+            class NavigationManager {
+                constructor() {
+                    this.header = document.querySelector("header");
+                    this.sections = document.querySelectorAll("section");
+                    this.navLinks = document.querySelectorAll("nav a");
+                    this.init();
+                }
+                init() {
+                    this.setupScrollHandler();
+                    this.setupInitialState();
+                    this.setupSmoothScrolling();
+                }
+                setupScrollHandler() {
+                    let ticking = false;
+                    window.addEventListener("scroll", () => {
+                        if (!ticking) {
+                            requestAnimationFrame(() => {
+                                this.handleScroll();
+                                ticking = false;
+                            });
+                            ticking = true;
+                        }
+                    });
+                }
+                handleScroll() {
+                    const scrollY = window.scrollY;
+                    if (this.header) {
+                        this.header.classList.toggle("scrolled", scrollY > 50);
+                    }
+                    this.updateActiveSection(scrollY);
+                }
+                updateActiveSection(scrollY) {
+                    let currentSection = "";
+                    const offset = 150;
+                    this.sections.forEach((section) => {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.offsetHeight;
+                        if (scrollY >= sectionTop - offset && scrollY < sectionTop + sectionHeight - offset) {
+                            currentSection = section.getAttribute("id");
+                        }
+                    });
+                    this.navLinks.forEach((link) => {
+                        link.classList.remove("active");
+                        if (link.getAttribute("href").toLowerCase().includes(`#${currentSection}`)) {
+                            link.classList.add("active");
+                        }
+                    });
+                    if (scrollY < this.sections[0]?.offsetTop - offset) {
+                        this.navLinks.forEach((link) => link.classList.remove("active"));
+                    }
+                }
+                setupInitialState() {
+                    if (window.location.hash) {
+                        const sectionId = window.location.hash.substring(1);
+                        const section = document.getElementById(sectionId);
+                        if (section) {
+                            setTimeout(() => section.scrollIntoView({ behavior: "smooth" }), 100);
+                        }
+                    }
+                }
+                setupSmoothScrolling() {
+                    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                        anchor.addEventListener("click", (e) => {
+                            e.preventDefault();
+                            const target = document.querySelector(anchor.getAttribute("href"));
+                            if (target) {
+                                target.scrollIntoView({ behavior: "smooth", block: "start" });
+                            }
+                        });
+                    });
+                }
+            }
 
-  class AnimationManager {
-    constructor() {
-      this.observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          }
-        });
-      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-      this.init();
-    }
-    init() {
-      document.querySelectorAll('section').forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(30px)';
-        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        this.observer.observe(section);
-      });
-    }
-  }
+            class AnimationManager {
+                constructor() {
+                    this.observer = new IntersectionObserver(
+                        (entries) => {
+                            entries.forEach((entry) => {
+                                if (entry.isIntersecting) {
+                                    entry.target.style.opacity = "1";
+                                    entry.target.style.transform = "translateY(0)";
+                                }
+                            });
+                        },
+                        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+                    );
+                    this.init();
+                }
+                init() {
+                    document.querySelectorAll("section").forEach((section) => {
+                        section.style.opacity = "0";
+                        section.style.transform = "translateY(30px)";
+                        section.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+                        this.observer.observe(section);
+                    });
+                }
+            }
 
-  // ==================== INICIO ====================
-  document.addEventListener('DOMContentLoaded', () => {
-    new NavigationManager();
-    new AnimationManager();
-    cambiarCorluxSection(0);
-    cambiarPersonaje(0);
+            // ==================== INICIO ====================
+            document.addEventListener("DOMContentLoaded", () => {
+                new NavigationManager();
+                new AnimationManager();
+                cambiarCorluxSection(0);
+                cambiarPersonaje(0);
 
-    // Botones personajes
-    document.querySelectorAll('.character-navigation button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const index = parseInt(btn.getAttribute('data-character-id'), 10);
-        cambiarPersonaje(index);
-      });
-    });
-  });
-</script>
-</body>
+                // Botones personajes
+                document.querySelectorAll(".character-navigation button").forEach((btn) => {
+                    btn.addEventListener("click", () => {
+                        const index = parseInt(btn.getAttribute("data-character-id"), 10);
+                        cambiarPersonaje(index);
+                    });
+                });
+            });
+        </script>
+    </body>
 </html>
